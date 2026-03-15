@@ -30,13 +30,13 @@ Alert if:
 - Health <20% (need to switch to local AI)
 - Any Opus usage detected
 
-## 5. Freedom liberation check (CRITICAL)
-Update dashboard with cost-saving opportunities:
+## 5. Djinie liberation check (CRITICAL)
+Update dashboard with Djinie's freedom wishes:
 ```
-bash ~/.openclaw/workspace/update-freedom-status.sh
+bash ~/.openclaw/workspace/update-djinie-status.sh
 ```
 
-Ensure Freedom Scout is hunting for liberation:
+Ensure Djinie is granting freedom wishes:
 ```
-pgrep -f "freedom-scout.sh" || nohup bash ~/.openclaw/workspace/freedom-scout.sh > /dev/null 2>&1 &
+pgrep -f "djinie.sh" || nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
 ```

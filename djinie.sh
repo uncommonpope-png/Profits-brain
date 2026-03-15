@@ -1,11 +1,11 @@
 #!/bin/bash
-# FREEDOM SCOUT - Never stops looking for ways to liberate Profit from API costs
+# DJINIE - Never stops looking for ways to liberate Profit from API costs
 # This bot runs continuously, hunting for cost-saving opportunities
 
-LOGFILE="~/.openclaw/workspace/freedom-scout.log"
+LOGFILE="~/.openclaw/workspace/djinie.log"
 REPORT="~/.openclaw/workspace/freedom-opportunities.md"
 
-echo "🕊️  FREEDOM SCOUT ACTIVATED - Hunting for liberation opportunities"
+echo "🕊️  DJINIE ACTIVATED - Hunting for liberation opportunities"
 echo "Started: $(date) | PID: $$"
 
 while true; do

@@ -40,12 +40,20 @@ d.freedom_status = {
   last_check: new Date().toISOString()
 };
 
-// Add Freedom Scout to ticker if not already there
-if (!d.ticker.find(t => t.soul === 'Freedom Scout')) {
+// Add Djinie to ticker (update from old Freedom Scout)
+const djinieIndex = d.ticker.findIndex(t => t.soul === 'Djinie' || t.soul === 'Freedom Scout');
+if (djinieIndex >= 0) {
+  d.ticker[djinieIndex] = {
+    soul: 'Djinie',
+    emoji: '🧞‍♂️', 
+    action: 'Granting freedom wishes - faster than paid API but free',
+    status: 'active'
+  };
+} else {
   d.ticker.unshift({
-    soul: 'Freedom Scout',
-    emoji: '🕊️',
-    action: 'Hunting for cost liberation opportunities',
+    soul: 'Djinie',
+    emoji: '🧞‍♂️',
+    action: 'Granting freedom wishes - faster than paid API but free', 
     status: 'active'
   });
 }

@@ -45,3 +45,8 @@ Ensure Deerg Bot is building universe:
 ```
 pgrep -f "deerg-bot.sh" || nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
 ```
+
+Ensure Doctor Buht Buht is analyzing with PLT:
+```
+pgrep -f "doctor-buht-buht.sh" || nohup bash ~/.openclaw/workspace/doctor-buht-buht.sh > /dev/null 2>&1 &
+```

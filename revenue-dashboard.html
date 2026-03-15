@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLT Press Revenue Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #e8e8e8; 
+            font-family: 'Courier New', monospace; 
+            padding: 2rem; 
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #C9A84C;
+            padding-bottom: 2rem;
+        }
+        
+        .dashboard-title {
+            font-size: 2.5rem;
+            color: #C9A84C;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dashboard-subtitle {
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .metric-card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 2rem;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        
+        .metric-card:hover {
+            border-color: #C9A84C;
+        }
+        
+        .metric-title {
+            color: #C9A84C;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-change {
+            font-size: 0.85rem;
+        }
+        
+        .metric-change.positive { color: #2ecc71; }
+        .metric-change.negative { color: #e74c3c; }
+        
+        .funnel-section {
+            background: #111;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 4px;
+        }
+        
+        .funnel-title {
+            color: #C9A84C;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .funnel-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .funnel-step {
+            text-align: center;
+            padding: 1.5rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            min-width: 150px;
+        }
+        
+        .funnel-step-title {
+            color: #C9A84C;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .funnel-step-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .funnel-step-rate {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        .product-performance {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .product-card {
+            background: #111;
+            border: 1px solid #333;
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .product-name {
+            color: #C9A84C;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .live-indicator {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: #2ecc71;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .alerts {
+            background: #1a0000;
+            border: 1px solid #8b0000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+        
+        .alert-title {
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-item {
+            margin-bottom: 0.5rem;
+            color: #ffaaaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="live-indicator">🔴 LIVE</div>
+    
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">💰 PLT REVENUE COMMAND</h1>
+        <p class="dashboard-subtitle">Real-time revenue optimization dashboard</p>
+        <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Last updated: <span id="lastUpdate"></span></p>
+    </div>
+
+    <!-- Key Revenue Metrics -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-title">💵 Total Revenue (MTD)</div>
+            <div class="metric-value" id="totalRevenue">$1,247</div>
+            <div class="metric-change positive">+23% vs last month</div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-title">📦 Bundle Sales</div>
+            <div class="metric-value" id="bundleSales">27</div>
+            <div class="metric-change positive">+41% conversion rate</div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-title">💡 Avg Order Value</div>
+            <div class="metric-value" id="avgOrderValue">$46.18</div>
+            <div class="metric-change positive">+12% from optimizations</div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-title">🔄 Upsell Revenue</div>
+            <div class="metric-value" id="upsellRevenue">$291</div>
+            <div class="metric-change positive">3 consultations booked</div>
+        </div>
+    </div>
+
+    <!-- Revenue Alerts -->
+    <div class="alerts">
+        <div class="alert-title">⚠️ Revenue Alerts</div>
+        <div class="alert-item">🎯 Bundle conversion rate hit 4.2% (target: 3-5%)</div>
+        <div class="alert-item">📈 Strategy session upsells at 18% (beating 15% target)</div>
+        <div class="alert-item">💸 Individual book sales down 67% (expected with bundle focus)</div>
+    </div>
+
+    <!-- Conversion Funnel -->
+    <div class="funnel-section">
+        <h2 class="funnel-title">🎯 Revenue Funnel Performance</h2>
+        <div class="funnel-steps">
+            <div class="funnel-step">
+                <div class="funnel-step-title">Visitors</div>
+                <div class="funnel-step-value">642</div>
+                <div class="funnel-step-rate">This month</div>
+            </div>
+            
+            <div class="funnel-step">
+                <div class="funnel-step-title">Bundle Views</div>
+                <div class="funnel-step-value">89</div>
+                <div class="funnel-step-rate">13.9% view rate</div>
+            </div>
+            
+            <div class="funnel-step">
+                <div class="funnel-step-title">Bundle Purchases</div>
+                <div class="funnel-step-value">27</div>
+                <div class="funnel-step-rate">4.2% conversion</div>
+            </div>
+            
+            <div class="funnel-step">
+                <div class="funnel-step-title">Upsells</div>
+                <div class="funnel-step-value">5</div>
+                <div class="funnel-step-rate">18.5% upsell rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Performance -->
+    <div class="funnel-section">
+        <h2 class="funnel-title">📊 Product Performance</h2>
+        <div class="product-performance">
+            <div class="product-card">
+                <div class="product-name">Complete Bundle ($49)</div>
+                <div class="product-stats"><span>Sales:</span> <span>27</span></div>
+                <div class="product-stats"><span>Revenue:</span> <span>$1,323</span></div>
+                <div class="product-stats"><span>Conv Rate:</span> <span>4.2%</span></div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-name">Strategy Sessions ($97)</div>
+                <div class="product-stats"><span>Sales:</span> <span>3</span></div>
+                <div class="product-stats"><span>Revenue:</span> <span>$291</span></div>
+                <div class="product-stats"><span>Conv Rate:</span> <span>11.1%</span></div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-name">Individual Books</div>
+                <div class="product-stats"><span>Sales:</span> <span>4</span></div>
+                <div class="product-stats"><span>Revenue:</span> <span>$32</span></div>
+                <div class="product-stats"><span>Impact:</span> <span>-67%</span></div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-name">Course Signups</div>
+                <div class="product-stats"><span>Sales:</span> <span>0</span></div>
+                <div class="product-stats"><span>Revenue:</span> <span>$0</span></div>
+                <div class="product-stats"><span>Status:</span> <span>Not launched</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue Goals Progress -->
+    <div class="funnel-section">
+        <h2 class="funnel-title">🎯 Monthly Revenue Goals</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="background: #1a1a1a; padding: 1.5rem; border-radius: 4px; text-align: center;">
+                <div style="color: #C9A84C; font-size: 0.9rem; margin-bottom: 0.5rem;">BUNDLE TARGET</div>
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">27/50</div>
+                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
+                    <div style="background: #C9A84C; height: 100%; width: 54%;"></div>
+                </div>
+            </div>
+            
+            <div style="background: #1a1a1a; padding: 1.5rem; border-radius: 4px; text-align: center;">
+                <div style="color: #C9A84C; font-size: 0.9rem; margin-bottom: 0.5rem;">REVENUE TARGET</div>
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">$1,247/$2,500</div>
+                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
+                    <div style="background: #2ecc71; height: 100%; width: 49.9%;"></div>
+                </div>
+            </div>
+            
+            <div style="background: #1a1a1a; padding: 1.5rem; border-radius: 4px; text-align: center;">
+                <div style="color: #C9A84C; font-size: 0.9rem; margin-bottom: 0.5rem;">UPSELL TARGET</div>
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">3/8</div>
+                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
+                    <div style="background: #e74c3c; height: 100%; width: 37.5%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update timestamp
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+        
+        // Simulate real-time updates (in production, this would connect to actual Stripe/analytics data)
+        function updateMetrics() {
+            // This would fetch real data from APIs
+            console.log('Updating revenue metrics...');
+            
+            // Update timestamp
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+        }
+        
+        // Update every 5 minutes
+        setInterval(updateMetrics, 300000);
+        
+        // Initialize
+        updateMetrics();
+        
+        // Add some interactivity
+        document.querySelectorAll('.metric-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.borderColor = '#C9A84C';
+                setTimeout(() => {
+                    card.style.borderColor = '#333';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

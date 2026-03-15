@@ -1,0 +1,27 @@
+[2026-03-15T12:03:41.128Z] 🔗 🔗 Link Checker Soul initialized - Beginning soul collection
+[2026-03-15T12:03:41.134Z] 🔗 👻 Collecting specialized link validator souls...
+[2026-03-15T12:03:41.141Z] 🔗 ✨ Collected 5 specialized link validator souls
+[2026-03-15T12:03:41.141Z] 🔗   🐙 GitHub Soul: GitHub repositories and pages
+[2026-03-15T12:03:41.142Z] 🔗   🏠 Local Soul: Local file paths and localhost URLs
+[2026-03-15T12:03:41.144Z] 🔗   🌐 Web Soul: External web links and resources
+[2026-03-15T12:03:41.145Z] 🔗   🔄 Internal Soul: Internal ecosystem links and references
+[2026-03-15T12:03:41.146Z] 🔗   📎 Asset Soul: Images, documents, and media files
+[2026-03-15T12:04:30.289Z] 🔗 🔗 Link Checker Soul initialized - Beginning soul collection
+[2026-03-15T12:04:30.316Z] 🔗 👻 Collecting specialized link validator souls...
+[2026-03-15T12:04:30.318Z] 🔗 ✨ Collected 5 specialized link validator souls
+[2026-03-15T12:04:30.319Z] 🔗   🐙 GitHub Soul: GitHub repositories and pages
+[2026-03-15T12:04:30.320Z] 🔗   🏠 Local Soul: Local file paths and localhost URLs
+[2026-03-15T12:04:30.321Z] 🔗   🌐 Web Soul: External web links and resources
+[2026-03-15T12:04:30.321Z] 🔗   🔄 Internal Soul: Internal ecosystem links and references
+[2026-03-15T12:04:30.323Z] 🔗   📎 Asset Soul: Images, documents, and media files
+[2026-03-15T12:04:30.324Z] 🔗 🚀 Starting comprehensive ecosystem link validation...
+[2026-03-15T12:04:30.397Z] 🔗 📁 Found 123 files containing links
+[2026-03-15T12:04:30.621Z] 🔗 🔗 Extracted 924 unique links for validation
+[2026-03-15T12:04:30.622Z] 🔗 🔍 Beginning comprehensive link validation with specialized souls...
+[2026-03-15T12:04:30.624Z] 🔗 🌐 Web Soul validating: https://example.com>`
+[2026-03-15T12:04:30.626Z] 🔗 ❌ ERROR validating https://example.com>`: Invalid URL
+[2026-03-15T12:04:30.727Z] 🔗 📎 Asset Soul validating: /YYYY-MM-DD.md
+[2026-03-15T12:04:30.729Z] 🔗 ❌ BROKEN: /YYYY-MM-DD.md - File not found
+[2026-03-15T12:04:30.831Z] 🔗 🌐 Web Soul validating: /heartbeat-state.js
+[2026-03-15T12:04:30.832Z] 🔗 ❌ BROKEN: /heartbeat-state.js - Not a valid web URL
+[2026-03-15T12:04:30.933Z] 🔗 🌐 Web Soul validating: https://plt-server.onrender.com/chat

@@ -1,0 +1,425 @@
+=== Link Checker Soul - Simple Scan ===
+Started: Sun Mar 15 07:07:27 CDT 2026
+[1] Processing: web-ecosystem/plt-press/ai-business-automation.html
+  ✓ ai-productivity-tools.html
+  ✗ ai-workflow-automation.html
+    → Check if file exists: web-ecosystem/plt-press/ai-workflow-automation.html
+  ✓ automate-small-business.html
+  ✗ business-automation-guide.html
+    → Check if file exists: web-ecosystem/plt-press/business-automation-guide.html
+  ✗ https://buy.stripe.com/28o5kl47gbMscy4fYZ
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/6oE7tt2l85o85dSfZa
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/ai-business-automation.html
+  ✗ https://uncommonpope-png.github.io/plt-press/services.html
+[2] Processing: web-ecosystem/plt-press/ai-productivity-tools.html
+  ✓ ai-business-automation.html
+  ✗ ai-workflow-automation.html
+    → Check if file exists: web-ecosystem/plt-press/ai-workflow-automation.html
+  ✓ automate-small-business.html
+  ✗ business-automation-guide.html
+    → Check if file exists: web-ecosystem/plt-press/business-automation-guide.html
+  ✗ https://buy.stripe.com/28o5kl47gbMscy4fYZ
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/6oE7tt2l85o85dSfZa
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/ai-productivity-tools.html
+  ✗ https://uncommonpope-png.github.io/plt-press/services.html
+[3] Processing: web-ecosystem/plt-press/ai-services-hire.html
+  ✓ #
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/ai-services-hire.html
+[4] Processing: web-ecosystem/plt-press/automate-small-business.html
+  ✓ ai-business-automation.html
+  ✓ ai-productivity-tools.html
+  ✗ ai-workflow-automation.html
+    → Check if file exists: web-ecosystem/plt-press/ai-workflow-automation.html
+  ✗ business-automation-guide.html
+    → Check if file exists: web-ecosystem/plt-press/business-automation-guide.html
+  ✗ https://buy.stripe.com/28o5kl47gbMscy4fYZ
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/6oE7tt2l85o85dSfZa
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/automate-small-business.html
+  ✗ https://uncommonpope-png.github.io/plt-press/services.html
+[5] Processing: web-ecosystem/plt-press/bot-commander.html
+  ✓ dashboard.html
+[6] Processing: web-ecosystem/plt-press/bundle.html
+  ✗ https://buy.stripe.com/eVq4gz1de64z9bbcXXfnO0i
+    → Check Stripe product in dashboard
+  ✓ index.html
+[7] Processing: web-ecosystem/plt-press/business-books-2025.html
+  ✓ bundle.html
+  ✓ index.html
+[8] Processing: web-ecosystem/plt-press/business-credit-building.html
+  ✓ bundle.html
+  ✓ dashboard.html
+  ✗ https://buy.stripe.com/aFafZhbRS3Wr4UV0bbfnO0l
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/dRm8wP6xy8cHaffcXXfnO0m
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/business-credit-building.html
+  ✓ index.html
+  ✓ plt-framework.html
+[9] Processing: web-ecosystem/plt-press/chat.html
+  ✗ http://127.0.0.1:8080/local-chat.html
+[10] Processing: web-ecosystem/plt-press/conversation-scoring.html
+  ✓ /
+  ✓ bundle.html
+  ✗ https://uncommonpope-png.github.io/plt-press/conversation-scoring.html
+  ✓ index.html
+[11] Processing: web-ecosystem/plt-press/craig-jones-author.html
+  ✓ /
+  ✓ bundle.html
+  ✓ conversation-scoring.html
+  ✗ https://uncommonpope-png.github.io/plt-press/craig-jones-author.html
+  ✓ index.html
+  ✓ plt-framework.html
+  ✓ profit-love-tax.html
+[12] Processing: web-ecosystem/plt-press/craig-jones-books.html
+  ✓ bundle.html
+  ✓ index.html
+[13] Processing: web-ecosystem/plt-press/credit-repair-guide-2026.html
+  ✓ bundle.html
+  ✓ dashboard.html
+  ✗ https://buy.stripe.com/aFafZhbRS3Wr4UV0bbfnO0l
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/dRm8wP6xy8cHaffcXXfnO0m
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/credit-repair-guide-2026.html
+  ✓ index.html
+  ✓ plt-framework.html
+[14] Processing: web-ecosystem/plt-press/dashboard.html
+  ✓ ai-services-hire.html
+  ✓ bot-commander.html
+  ✓ conversation-scoring.html
+  ✓ covers/betty-credits.jpg
+  ✓ craig-jones-author.html
+  ✓ deerg-bot.html
+  ✓ djinie.html
+  ✓ doctor-buht-buht.html
+  ✓ free-chapter.html
+  ✓ health.html
+  ✗ https://buy.stripe.com/eVq4gz1de64z9bbcXXfnO0i
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/ai-tools-hub/
+  ✗ https://uncommonpope-png.github.io/plt-blog/
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✓ library.html
+  ✓ links-directory.html
+  ✓ local-chat.html
+  ✓ plt-score-calculator.html
+  ✗ products/openclaw-dashboard-v1.html
+    → Check if file exists: web-ecosystem/plt-press/products/openclaw-dashboard-v1.html
+  ✓ profit-love-tax.html
+  ✓ seo-dashboard.html
+  ✓ teacher.html
+  ✓ ticker.html
+  ✓ vault.html
+  ✓ what-is-plt.html
+[15] Processing: web-ecosystem/plt-press/deerg-bot.html
+  ✓ dashboard.html
+[16] Processing: web-ecosystem/plt-press/djinie.html
+  ✓ dashboard.html
+[17] Processing: web-ecosystem/plt-press/doctor-buht-buht.html
+  ✓ dashboard.html
+[18] Processing: web-ecosystem/plt-press/download.html
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/Brasi_Love_of_the_Game.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/Evols_Love_Story.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/Know_What_You_Are.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/Stiforp.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Build_Pope_Brasi.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Comeback.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Counter.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Deal.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Ledger.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Loss.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Negotiation.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_PLT_Daily.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Parent.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Pivot.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Room.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Scorer_Cold_Calling.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Scorer_Real_Estate.docx
+  ✗ https://github.com/uncommonpope-png/plt-press/raw/main/books/The_Silence.docx
+[19] Processing: web-ecosystem/plt-press/financial-literacy-basics.html
+  ✓ bundle.html
+  ✓ dashboard.html
+  ✗ https://buy.stripe.com/aFafZhbRS3Wr4UV0bbfnO0l
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/dRm8wP6xy8cHaffcXXfnO0m
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/financial-literacy-basics.html
+  ✓ index.html
+  ✓ plt-framework.html
+[20] Processing: web-ecosystem/plt-press/free-chapter.html
+  ✗ https://buy.stripe.com/eVq4gz1de64z9bbcXXfnO0i
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/free-chapter.html
+[21] Processing: web-ecosystem/plt-press/health.html
+  ✓ dashboard.html
+[22] Processing: web-ecosystem/plt-press/how-to-negotiate.html
+  ✓ bundle.html
+  ✓ index.html
+[23] Processing: web-ecosystem/plt-press/index.html
+  ✗ /plt-press/sitemap.xml
+    → Check if file exists: web-ecosystem/plt-press//plt-press/sitemap.xml
+  ✓ bundle.html
+  ✓ covers/betty-credits-1.jpg
+  ✓ covers/blueprint-changes-everything.jpg
+  ✓ covers/invisible-math.jpg
+  ✓ covers/plt-run-equation.jpg
+  ✓ covers/plt-temple.jpg
+  ✓ covers/rcc-013-every-yes.jpg
+  ✓ covers/scorer-real-estate-1.jpg
+  ✓ covers/the-calculation.jpg
+  ✓ covers/the-deal.jpg
+  ✗ https://buy.stripe.com/28E28r6xy3Wr1IJ9LLfnO06
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/28E9AT4pq0Kfdrr3nnfnO0e
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/3cI4gz2hieB5733e21fnO0h
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/3cI9AT1decsXdrraPPfnO00
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/4gM4gz9JKboT9bbga9fnO0b
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/6oU6oH09afF9affaPPfnO03
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/6oUfZhaNO2Sn8775vvfnO05
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/7sY6oHbRSboT5YZf65fnO02
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/8x200jf44akPfzz8HHfnO08
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/8x214ncVWcsXdrre21fnO04
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/9B614n9JKakP733e21fnO0c
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/aFa14n8FG2Sn0EFbTTfnO01
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/bJe7sL3lm8cH0EF0bbfnO0a
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/bJe7sLaNO2Sn5YZ6zzfnO07
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/cNi6oHf440Kfcnn2jjfnO0f
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/cNicN5f44eB53QR2jjfnO0d
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/cNifZhcVW1Ojcnn3nnfnO0g
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/dRmbJ1bRSakPaff8HHfnO09
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✓ what-is-plt.html
+[24] Processing: web-ecosystem/plt-press/library.html
+  ✗ ${baseUrl}${page.file}
+    → Check if file exists: web-ecosystem/plt-press/${baseUrl}${page.file}
+  ✓ dashboard.html
+[25] Processing: web-ecosystem/plt-press/links-directory.html
+  ✗ ${link.url}
+    → Check if file exists: web-ecosystem/plt-press/${link.url}
+  ✗ ../ai-tools-hub/ai-writing-tools-comparison.html
+    → Check if file exists: web-ecosystem/plt-press/../ai-tools-hub/ai-writing-tools-comparison.html
+  ✗ ../plt-blog/why-most-business-advice-fails.html
+    → Check if file exists: web-ecosystem/plt-press/../plt-blog/why-most-business-advice-fails.html
+  ✓ ai-business-automation.html
+  ✓ bot-commander.html
+  ✓ credit-repair-guide-2026.html
+  ✓ dashboard.html
+  ✓ djinie.html
+  ✓ products/automation-toolkit.html
+  ✓ products/email-course-landing.html
+[26] Processing: web-ecosystem/plt-press/local-chat.html
+[27] Processing: web-ecosystem/plt-press/negotiation-books.html
+  ✓ bundle.html
+  ✓ index.html
+[28] Processing: web-ecosystem/plt-press/passive-income-books.html
+  ✓ bundle.html
+  ✓ index.html
+[29] Processing: web-ecosystem/plt-press/plt-framework.html
+  ✓ /
+  ✓ bundle.html
+  ✓ conversation-scoring.html
+  ✓ craig-jones-author.html
+  ✗ https://uncommonpope-png.github.io/plt-press/plt-framework.html
+  ✓ index.html
+[30] Processing: web-ecosystem/plt-press/plt-press-books.html
+  ✓ bundle.html
+  ✓ index.html
+[31] Processing: web-ecosystem/plt-press/plt-score-calculator.html
+  ✓ #
+  ✗ https://buy.stripe.com/eVq4gz1de64z9bbcXXfnO0i
+    → Check Stripe product in dashboard
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/plt-score-calculator.html
+[32] Processing: web-ecosystem/plt-press/products/automation-toolkit.html
+  ✗ https://checkout.stripe.com/c/pay/cs_test_c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0u1V2w3X4y5Z6a7B8#fidkdWxOYHwnPyd1blpxYHZxWjA0VWlBN25QUGZyUDBkZEZcb2E3RXRxT09xcXxzQmFjQkhIV1dxbzRkVDVWUnRwajNzaHRLMF1dfExgVFdxUkh9N2pHMUw8UlNnSWZScXVkbWJiX3FUXUFMZFVzMDBdXkZkZScpJ3VpbGtuQH11anZgYUxhJz8ncWB2cVdeamlzfGxuYGJ3YidocGlhZnJmJyknaWR8bGNpaWR8J2ZgYWx8YSc%2FJ2lkYmV2bWJ3YGJ2YCd2bGtiaHBceCc%2FJ3Vubm5gcG1vYSthY2BrYW5obGluYHdqaCctaGNoZHdqbStvaiZ8cmx%2FY3ZhcXFzJ3Noa2xybm5iJ2xocnltcSd4cHxpYn1xYWR0fHBsYCthYGNkbGtwcWJianEzPSd5SWV6KStgYWJ3cXZ%2FcjJvJykncWdgaSd4cHV6fHJgeSUzQicpJmJhZGthJz9jZ2Z8cHd%2FdH5mPSU3aGNjZCZ1bGBzcCc4YWFiZnVkYm8mJyknaGJgcWpsZWF3YGxtJz8rZ2dmKSdeeSl3Y3x2ZmpmKDV4bCc%2FcXVrbGNjYGZgam1gYGp3Ymd3JyknaWdjY3d2bGJwcXM2cSd0aGJgY3FnYXdrbmd%2FZHBheCc%2FJ3VnYWJnZG5mZGtuYHd1J2xub2BiZGV1cWZzamdgaHV3YGd1JStkNTQ2aGRzZzRiZjJhZWJqZmt3Nmx3Y3F1JytmNXN0aGJgY3FqbGl3Y3JmJ25hZHg2J3VmZHVncSd6bGFycWEuJScpJ21ncmVuYWVoZGxhJz8nYXd9cXV9YGx2JyknaW5qYnVgcGprZnNqYXdpbWB3dWhjdSdpYGtmcXVwYCdiaHJganFoY3V2cW1gJydxaGNiZ2ZoJycsZGJ2dHZkZGdyZGxgfSdybGluYGdxJ3RgbGNrZmVjcW5qcW1xZCdqb3ZvZWFnJykla3MpJ2hwYWpha2xncGZgZnBiJ2dgbWRhY3ZmJyUla3R2Y3d1fTJgZWIwNHZ9b3V8PStmNHh3PCtjbGdjZm9tJzJhYGpiYm1hZGZzMWpwMGpiZ21ibWoxamgwYCdmNDBhMDA0Yz%3D%3D
+    → Check Stripe product in dashboard
+  ✗ https://checkout.stripe.com/c/pay/cs_test_c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0u1V2w3X4y5Z6a7B8#fidkdWxOYHwnPyd1blpxYHZxWjA0VWlBN25QUGZyUDBkZEZcb2E3RXRxT09xcXxzQmFjQkhIV1dxbzRkVDVWUnRwajNzaHRLMF1dfExgVFdxUkh9N2pHMUw8UlNnSWZScXVkbWJiX3FUXUFMZFVzMDBdXkZkZScpJ3VpbGtuQH11anZgYUxhJz8ncWB2cVdeamlzfGxuYGJ3YidocGlhZnJmJyknaWR8bGNpaWR8J2ZgYWx8YSc%2FJ2lkYmV2bWJ3YGJ2YCd2bGtiaHBceCc%2FJ3Vubm5gcG1vYSthY2BrYW5obGluYHdqaCctaGNoZHdqbStvaiZ8cmx%2FY3ZhcXFzJ3Noa2xybm5iJ2xocnltcSd4cHxpYn1xYWR0fHBsYCthYGNkbGtwcWJianEzPSd5SWV6KStgYWJ3cXZ%2FcjJvJykncWdgaSd4cHV6fHJgeSUzQicpJmJhZGthJz9jZ2Z8cHd%2FdH5mPSU3aGNjZCZ1bGBzcCc4YWFiZnVkYm8mJyknaGJgcWpsZWF3YGxtJz8rZ2dmKSdeeSl3Y3x2ZmpmKDV4bCc%2FcXVrbGNjYGZgam1gYGp3Ymd3JyknaWdjY3d2bGJwcXM2cSd0aGJgY3FnYXdrbmd%2FZHBheCc%2FJ3VnYWJnZG5mZGtuYHd1J2xub2BiZGV1cWZzamdgaHV3YGd1JStkNTQ2aGRzZzRiZjJhZWJqZmt3Nmx3Y3F1JytmNXN0aGJgY3FqbGl3Y3JmJ25hZHg2J3VmZHVncSd6bGFycWEuJScpJ21ncmVuYWVoZGxhJz8nYXd9cXV9YGx2JyknaW5qYnVgcGprZnNqYXdpbWB3dWhjdSdpYGtmcXVwYCdiaHJganFoY3V2cW1gJydxaGNiZ2ZoJycsZGJ2dHZkZGdyZGxgfSdybGluYGdxJ3RgbGNrZmVjcW5qcW1xZCdqb3ZvZWFnJykla3MpJ2hwYWpha2xncGZgZnBiJ2dgbWRhY3ZmJyUla3R2Y3d1fTJgZWIwNHZ9b3V8PStmNHh3PStjbGdjZm9tJzJhYGpiYm1hZGZzMWpwMGpiZ21ibWoxamgwYCdmNDBhMDA0Yz%3D%3D
+    → Check Stripe product in dashboard
+[33] Processing: web-ecosystem/plt-press/products/email-course-landing.html
+  ✗ https://checkout.stripe.com/c/pay/cs_test_a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0u1V2w3X4y5Z6#fidkdWxOYHwnPyd1blpxYHZxWjA0VWlBN25QUGZyUDBkZEZcb2A3RXRxT09xcXxzQmFjQkhIV1dxbzRkVDVWUnRwajNzaHRLMF1dfExgVFdxUkh9N2pHMUw8UlNnSWZScXVkbWJiX3FUXUFMZFVzMDBdXkZkZScpJ3VpbGtuQH11anZgYUxhJz8ncWB2cVdeamlzfGxuYGJ3YidocGlhZnJmJyknaWR8bGNpaWR8J2ZgYWx8YSc%2FJ2lkYmV2bWJ3YGJ2YCd2bGtiaHBceCc%2FJ3Vubm5gcG1vYSthY2BrYW5obGluYHdqaCctaGNoZHdqbStvaiZ8cmx%2FY3ZhcXFzJ3Noa2xrbm5iJ2lhcnlmcSd4cHxpYn1xYWRtfHNsaSthYGNkbGtvcWJianMzPSd5SWV6KCtgYWJ3cXZ%2FcjJvJykncWdgaSd4cHV6fHJgeSUzQicpJmJhZGthJz9jZ2Z8cHd%2FdH5mPSU3aGNjZCZ1bGBzcCc4YWFiZnVkYm8mJyknaGJgcWpsZWF3YGxtJz8rZ2dmKSdeeSl3Y3x2ZmpmKDV4bCc%2FcXVrbGNjYGZgam1gYGp3Ymd3JyknaWdjY3d2bGJwcXM2cSd0aGJgY3FnYXdrbmd%2FZHBheCc%2FJ3VnYWJnZG5mZGtuYHd1J2xub2BiZGV1cWZzamdgaHV3YGd1JStkNTQ2aGRzZzRiZjJhZWJqZmt3Nmx3Y3F1JytmNXN0aGJgY3FqbGl3Y3JmJ25hZHg2J3VmZHVncSd6bGFycWEuJScpJ21ncmVuYWVoZGxhJz8nYXd9cXV9YGx2JyknaW5qYnVgcGprZnNqYXdpbWB3dWhjdSdpYGtmcXVwYCdiaHJganFoY3V2cW1gJydxaGNiZ2ZoJycsZGJ2dHZkZGdyZGxgfSdrbGluYGdxJ3RgbGNrZmVjcW5qcW1xZCdqb3ZvZWFnJyklencpJ2hwYWpha2xncGZgZnBiJ2dgbWRhY3ZmJyUlentgY3d1fTJgZWIwNHZ9b3V8PStmNHh3PCtjbGdjZm9tJzJhYGpiYm1hZGZzMWpwMGpiZ21ibWoxamgwYCdmNDBhMDA0Yz%3D%3D
+    → Check Stripe product in dashboard
+[34] Processing: web-ecosystem/plt-press/products/financial-templates.html
+  ✗ https://checkout.stripe.com/c/pay/cs_test_b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q7r8S9t0U1v2W3x4Y5z6A7#fidkdWxOYHwnPyd1blpxYHZxWjA0VWlBN25QUGZyUDBkZEZcb2A3RXRxT09xcXxzQmFjQkhIV1dxbzRkVDVWUnRwajNzaHRLMF1dfExgVFdxUkh9N2pHMUw8UlNnSWZScXVkbWJiX3FUXUFMZFVzMDBdXkZkZScpJ3VpbGtuQH11anZgYUxhJz8ncWB2cVdeamlzfGxuYGJ3YidocGlhZnJmJyknaWR8bGNpaWR8J2ZgYWx8YSc%2FJ2lkYmV2bWJ3YGJ2YCd2bGtiaHBceCc%2FJ3Vubm5gcG1vYSthY2BrYW5obGluYHdqaCctaGNoZHdqbStvaiZ8cmx%2FY3ZhcXFzJ3Noa2xybm5iJ2xocnltcSd4cHxpYn1xYWR0fHBsYCthYGNkbGtwcWJianEzPSd5SWV6KCtgYWJ3cXZ%2FcjJvJykncWdgaSd4cHV6fHJgeSUzQicpJmJhZGthJz9jZ2Z8cHd%2FdH5mPSU3aGNjZCZ1bGBzcCc4YWFiZnVkYm8mJyknaGJgcWpsZWF3YGxtJz8rZ2dmKSdeeSl3Y3x2ZmpmKDV4bCc%2FcXVrbGNjYGZgam1gYGp3Ymd3JyknaWdjY3d2bGJwcXM2cSd0aGJgY3FnYXdrbmd%2FZHBheCc%2FJ3VnYWJnZG5mZGtuYHd1J2xub2BiZGV1cWZzamdgaHV3YGd1JStkNTQ2aGRzZzRiZjJhZWJqZmt3Nmx3Y3F1JytmNXN0aGJgY3FqbGl3Y3JmJ25hZHg2J3VmZHVncSd6bGFycWEuJScpJ21ncmVuYWVoZGxhJz8nYXd9cXV9YGx2JyknaW5qYnVgcGprZnNqYXdpbWB3dWhjdSdpYGtmcXVwYCdiaHJganFoY3V2cW1gJydxaGNiZ2ZoJycsZGJ2dHZkZGdyZGxgfSdrbGluYGdxJ3RgbGNrZmVjcW5qcW1xZCdqb3ZvZWFnJyklencpJ2hwYWpha2xncGZgZnBiJ2dgbWRhY3ZmJyUlentgY3d1fTJgZWIwNHZ9b3V8PStmNHh3PCtjbGdjZm9tJzJhYGpiYm1hZGZzMWpwMGpiZ21ibWoxamgwYCdmNDBhMDA0Yz%3D%3D
+    → Check Stripe product in dashboard
+  ✗ https://checkout.stripe.com/c/pay/cs_test_b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q7r8S9t0U1v2W3x4Y5z6A7#fidkdWxOYHwnPyd1blpxYHZxWjA0VWlBN25QUGZyUDBkZEZcb2E3RXRxT09xcXxzQmFjQkhIV1dxbzRkVDVWUnRwajNzaHRLMF1dfExgVFdxUkh9N2pHMUw8UlNnSWZScXVkbWJiX3FUXUFMZFVzMDBdXkZkZScpJ3VpbGtuQH11anZgYUxhJz8ncWB2cVdeamlzfGxuYGJ3YidocGlhZnJmJyknaWR8bGNpaWR8J2ZgYWx8YSc%2FJ2lkYmV2bWJ3YGJ2YCd2bGtiaHBceCc%2FJ3Vubm5gcG1vYSthY2BrYW5obGluYHdqaCctaGNoZHdqbStvaiZ8cmx%2FY3ZhcXFzJ3Noa2xybm5iJ2xocnltcSd4cHxpYn1xYWR0fHBsYCthYGNkbGtwcWJianEzPSd5SWV6KCtgYWJ3cXZ%2FcjJvJykncWdgaSd4cHV6fHJgeSUzQicpJmJhZGthJz9jZ2Z8cHd%2FdH5mPSU3aGNjZCZ1bGBzcCc4YWFiZnVkYm8mJyknaGJgcWpsZWF3YGxtJz8rZ2dmKSdeeSl3Y3x2ZmpmKDV4bCc%2FcXVrbGNjYGZgam1gYGp3Ymd3JyknaWdjY3d2bGJwcXM2cSd0aGJgY3FnYXdrbmd%2FZHBheCc%2FJ3VnYWJnZG5mZGtuYHd1J2xub2BiZGV1cWZzamdgaHV3YGd1JStkNTQ2aGRzZzRiZjJhZWJqZmt3Nmx3Y3F1JytmNXN0aGJgY3FqbGl3Y3JmJ25hZHg2J3VmZHVncSd6bGFycWEuJScpJ21ncmVuYWVoZGxhJz8nYXd9cXV9YGx2JyknaW5qYnVgcGprZnNqYXdpbWB3dWhjdSdpYGtmcXVwYCdiaHJganFoY3V2cW1gJydxaGNiZ2ZoJycsZGJ2dHZkZGdyZGxgfSdrbGluYGdxJ3RgbGNrZmVjcW5qcW1xZCdqb3ZvZWFnJyllencpJ2hwYWpha2xncGZgZnBiJ2dgbWRhY3ZmJyUlentgY3d1fTJgZWIwNHZ9b3V8PStmNHh3PCtjbGdjZm9tJzJhYGpiYm1hZGZzMWpwMGpiZ21ibWoxamgwYCdmNDBhMDA0Yz%3D%3D
+    → Check Stripe product in dashboard
+[35] Processing: web-ecosystem/plt-press/products/index.html
+  ✗ automation-toolkit.html
+    → Check if file exists: web-ecosystem/plt-press/automation-toolkit.html
+  ✗ email-course-landing.html
+    → Check if file exists: web-ecosystem/plt-press/email-course-landing.html
+  ✗ financial-templates.html
+    → Check if file exists: web-ecosystem/plt-press/financial-templates.html
+  ✗ https://checkout.stripe.com/c/pay/cs_test_bundle_ABC123XYZ789#complete-bundle
+    → Check Stripe product in dashboard
+[36] Processing: web-ecosystem/plt-press/profit-love-tax.html
+  ✓ bundle.html
+  ✓ conversation-scoring.html
+  ✓ craig-jones-author.html
+  ✓ how-to-negotiate.html
+  ✗ https://uncommonpope-png.github.io/plt-press/profit-love-tax.html
+  ✓ index.html
+  ✓ plt-framework.html
+  ✓ what-is-plt.html
+[37] Processing: web-ecosystem/plt-press/self-help-books-for-men.html
+  ✓ bundle.html
+  ✗ https://uncommonpope-png.github.io/plt-press/self-help-books-for-men.html
+  ✓ index.html
+[38] Processing: web-ecosystem/plt-press/seo-dashboard.html
+  ✓ dashboard.html
+[39] Processing: web-ecosystem/plt-press/services.html
+  ✗ https://buy.stripe.com/28EeVdcVWdx11IJe21fnO0j
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/aFafZhbRS3Wr4UV0bbfnO0l
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/cNi00j8FG3Wr9bb0bbfnO0k
+    → Check Stripe product in dashboard
+  ✗ https://buy.stripe.com/dRm8wP6xy8cHaffcXXfnO0m
+    → Check Stripe product in dashboard
+  ✓ index.html
+[40] Processing: web-ecosystem/plt-press/souls.html
+  ✓ dashboard.html
+[41] Processing: web-ecosystem/plt-press/talk.html
+  ✗ file:///data/data/com.termux/files/home/local-profit-chat.html
+    → Check if file exists: web-ecosystem/plt-press/file:///data/data/com.termux/files/home/local-profit-chat.html
+  ✗ http://127.0.0.1:8080/local-chat.html
+[42] Processing: web-ecosystem/plt-press/teacher.html
+  ✓ dashboard.html
+[43] Processing: web-ecosystem/plt-press/the-negotiation-book.html
+  ✓ bundle.html
+  ✓ index.html
+[44] Processing: web-ecosystem/plt-press/ticker.html
+  ✓ dashboard.html
+[45] Processing: web-ecosystem/plt-press/vault.html
+  ✓ dashboard.html
+  ✗ https://buy.stripe.com/eVq4gz1de64z9bbcXXfnO0i
+    → Check Stripe product in dashboard
+  ✓ services.html
+  ✗ store.html
+    → Check if file exists: web-ecosystem/plt-press/store.html
+[46] Processing: web-ecosystem/plt-press/what-is-plt.html
+  ✓ bundle.html
+  ✓ conversation-scoring.html
+  ✓ craig-jones-author.html
+  ✓ how-to-negotiate.html
+  ✗ https://uncommonpope-png.github.io/plt-press/what-is-plt.html
+  ✓ index.html
+  ✓ plt-framework.html
+  ✓ profit-love-tax.html
+[47] Processing: web-ecosystem/plt-blog/every-yes-is-an-obligation.html
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✓ index.html
+[48] Processing: web-ecosystem/plt-blog/index.html
+  ✓ /
+  ✗ every-yes-is-an-obligation.html
+    → Check if file exists: web-ecosystem/plt-press/every-yes-is-an-obligation.html
+  ✗ https://uncommonpope-png.github.io/ai-tools-hub/
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✗ love-is-not-softness.html
+    → Check if file exists: web-ecosystem/plt-press/love-is-not-softness.html
+  ✗ profit-position.html
+    → Check if file exists: web-ecosystem/plt-press/profit-position.html
+  ✗ score-before-you-speak.html
+    → Check if file exists: web-ecosystem/plt-press/score-before-you-speak.html
+  ✗ the-silence-is-a-tax.html
+    → Check if file exists: web-ecosystem/plt-press/the-silence-is-a-tax.html
+  ✗ the-tax-you-dont-pay.html
+    → Check if file exists: web-ecosystem/plt-press/the-tax-you-dont-pay.html
+[49] Processing: web-ecosystem/plt-blog/love-is-not-softness.html
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✓ index.html
+[50] Processing: web-ecosystem/plt-blog/profit-position.html
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✓ index.html
+[51] Processing: web-ecosystem/plt-blog/score-before-you-speak.html
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✓ index.html
+[52] Processing: web-ecosystem/plt-blog/the-silence-is-a-tax.html
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✓ index.html
+[53] Processing: web-ecosystem/plt-blog/the-tax-you-dont-pay.html
+  ✗ https://uncommonpope-png.github.io/plt-press/
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✓ index.html
+[54] Processing: web-ecosystem/ai-tools-hub/best-ai-tools-small-business.html
+  ✓ /
+  ✗ https://canva.com
+  ✗ https://chat.openai.com
+  ✗ https://notion.so/product/ai
+  ✗ https://pictory.ai
+  ✗ https://writesonic.com
+[55] Processing: web-ecosystem/ai-tools-hub/best-ai-tools-under-50.html
+  ✓ /
+  ✗ https://canva.com
+  ✗ https://writesonic.com
+[56] Processing: web-ecosystem/ai-tools-hub/chatgpt-vs-jasper.html
+  ✓ /
+  ✗ https://chat.openai.com
+  ✗ https://jasper.ai
+[57] Processing: web-ecosystem/ai-tools-hub/index.html
+  ✓ #
+  ✓ #compare
+  ✓ #guides
+  ✓ #products
+  ✓ #reviews
+  ✓ /
+  ✗ ai-passive-income.html
+    → Check if file exists: web-ecosystem/plt-press/ai-passive-income.html
+  ✗ ai-side-hustle.html
+    → Check if file exists: web-ecosystem/plt-press/ai-side-hustle.html
+  ✗ ai-tools-under-50.html
+    → Check if file exists: web-ecosystem/plt-press/ai-tools-under-50.html
+  ✗ best-free-ai-tools.html
+    → Check if file exists: web-ecosystem/plt-press/best-free-ai-tools.html
+  ✗ chatgpt-alternatives.html
+    → Check if file exists: web-ecosystem/plt-press/chatgpt-alternatives.html
+  ✗ https://copy.ai
+  ✗ https://jasper.ai
+  ✗ https://notion.so/product/ai
+  ✗ https://pictory.ai
+  ✗ https://surferseo.com
+  ✗ https://uncommonpope-png.github.io/plt-press/bundle.html
+  ✗ https://uncommonpope.gumroad.com
+  ✗ https://writesonic.com
+  ✗ jasper-vs-copy-ai.html
+    → Check if file exists: web-ecosystem/plt-press/jasper-vs-copy-ai.html
+
+=== SUMMARY ===
+Files: 57
+Links: 0
+Broken: 0
+Finished: Sun Mar 15 07:08:13 CDT 2026

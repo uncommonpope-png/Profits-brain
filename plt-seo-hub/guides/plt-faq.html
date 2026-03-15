@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLT Framework FAQ: Profit Love Tax Questions Answered</title>
+    <meta name="description" content="Get answers to all your Profit Love Tax (PLT) framework questions. Complete FAQ covering implementation, examples, benefits, and common concerns.">
+    <meta name="keywords" content="PLT FAQ, profit love tax questions, PLT framework help, profit love tax explained, PLT implementation questions">
+    
+    <!-- FAQ Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What does PLT stand for in business?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "PLT stands for Profit Love Tax - a business framework that balances financial success (Profit), personal passion and values (Love), and social responsibility (Tax)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you implement the PLT framework?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Implement PLT by evaluating every business decision through three lenses: Does it generate sustainable profit? Does it align with your passion and values? Does it contribute positively to society? Only pursue opportunities that score well on all three pillars."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the tax pillar in PLT?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The Tax pillar represents your responsibility to give back to society - not literal taxes, but contributing positively to your community, environment, and the systems that enabled your success."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        .header { 
+            background: linear-gradient(135deg, #3498db, #2c3e50); 
+            color: white; 
+            padding: 40px; 
+            text-align: center; 
+            border-radius: 12px; 
+            margin-bottom: 40px; 
+        }
+        .faq-category { 
+            margin-bottom: 40px; 
+            background: white; 
+            border: 1px solid #dee2e6; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+        .category-header { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            border-bottom: 1px solid #dee2e6; 
+            font-size: 1.4em; 
+            font-weight: bold; 
+            color: #2c3e50; 
+        }
+        .faq-item { 
+            border-bottom: 1px solid #ecf0f1; 
+            cursor: pointer; 
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { 
+            padding: 20px; 
+            font-weight: 600; 
+            color: #2c3e50; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .faq-question:hover { background: #f8f9fa; }
+        .faq-answer { 
+            padding: 0 20px 20px 20px; 
+            color: #555; 
+            display: none; 
+        }
+        .faq-answer.active { display: block; }
+        .faq-toggle { 
+            font-size: 1.5em; 
+            color: #3498db; 
+            transition: transform 0.3s; 
+        }
+        .faq-toggle.rotated { transform: rotate(180deg); }
+        .quick-nav { 
+            background: #e8f4f8; 
+            padding: 25px; 
+            border-radius: 8px; 
+            margin-bottom: 30px; 
+        }
+        .quick-nav h3 { margin-bottom: 15px; color: #2c3e50; }
+        .nav-links { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 10px; 
+        }
+        .nav-links a { 
+            color: #3498db; 
+            text-decoration: none; 
+            padding: 8px 12px; 
+            border-radius: 4px; 
+            transition: background-color 0.3s; 
+        }
+        .nav-links a:hover { background: rgba(52, 152, 219, 0.1); }
+        h1 { font-size: 2.5em; margin-bottom: 15px; }
+        .subtitle { font-size: 1.1em; opacity: 0.9; }
+        .highlight { background: #fff3cd; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        ul { margin-left: 20px; margin-top: 10px; }
+        li { margin-bottom: 5px; }
+        .example { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid #3498db; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PLT Framework FAQ</h1>
+        <p class="subtitle">Everything you need to know about Profit Love Tax</p>
+    </div>
+    
+    <div class="quick-nav">
+        <h3>Jump to Section:</h3>
+        <div class="nav-links">
+            <a href="#basics">PLT Basics</a>
+            <a href="#implementation">Implementation</a>
+            <a href="#business-applications">Business Applications</a>
+            <a href="#comparisons">Comparisons</a>
+            <a href="#common-concerns">Common Concerns</a>
+            <a href="#advanced">Advanced Topics</a>
+        </div>
+    </div>
+    
+    <div class="faq-category" id="basics">
+        <div class="category-header">🎯 PLT Basics</div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What does PLT stand for in business?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT stands for <strong>Profit Love Tax</strong> - a business framework created by Craig Jones that evaluates opportunities across three essential pillars:</p>
+                <ul>
+                    <li><strong>Profit:</strong> Sustainable financial success and growth</li>
+                    <li><strong>Love:</strong> Personal passion, values alignment, and fulfillment</li>
+                    <li><strong>Tax:</strong> Social responsibility and positive impact on society</li>
+                </ul>
+                <p>The framework ensures businesses succeed financially while staying true to the founder's values and contributing positively to the world.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What is the Tax pillar in PLT?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>The Tax pillar represents your <strong>responsibility to give back</strong> to society and the systems that enabled your success. It's not about literal taxes, but about:</p>
+                <ul>
+                    <li>Solving real problems that matter to people</li>
+                    <li>Creating positive environmental impact</li>
+                    <li>Strengthening communities and relationships</li>
+                    <li>Sharing knowledge and expertise</li>
+                    <li>Contributing to the greater good beyond just profit</li>
+                </ul>
+                <p>Think of it as your "social dividend" - what you owe back to the world for your success.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Who created the PLT framework?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Craig Jones</strong> created the PLT framework based on his experience as an entrepreneur and author. After building multiple businesses and observing common patterns of success and failure, Craig developed PLT to address the fundamental challenge of building businesses that are:</p>
+                <ul>
+                    <li>Financially sustainable (not just profitable in the short term)</li>
+                    <li>Personally fulfilling (aligned with values and passion)</li>
+                    <li>Socially beneficial (contributing positively to the world)</li>
+                </ul>
+                <p>Craig has documented PLT principles in his books and through PLT Press, making the framework accessible to entrepreneurs worldwide.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Is PLT just another business buzzword?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong>No.</strong> PLT is a practical decision-making framework with specific tools and measurable outcomes. Unlike vague concepts, PLT provides:</p>
+                <ul>
+                    <li>Concrete scoring systems (rate each pillar 1-10)</li>
+                    <li>Clear decision criteria (pursue opportunities scoring 20+ total with no pillar below 6)</li>
+                    <li>Practical tools (PLT Canvas, Calculator, Assessment templates)</li>
+                    <li>Real case studies and examples</li>
+                    <li>Measurable results across all three pillars</li>
+                </ul>
+                <p>PLT is designed to be actionable, not aspirational.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-category" id="implementation">
+        <div class="category-header">🛠 Implementation</div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How do you implement the PLT framework?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Follow these steps to implement PLT in your business:</p>
+                <ol>
+                    <li><strong>Assessment:</strong> Use the PLT Calculator to score your current business or opportunity</li>
+                    <li><strong>Decision Making:</strong> Apply PLT filters to every major business decision</li>
+                    <li><strong>Goal Setting:</strong> Create objectives that advance all three pillars</li>
+                    <li><strong>Team Building:</strong> Hire people who align with your complete PLT mission</li>
+                    <li><strong>Measurement:</strong> Track financial, satisfaction, and impact metrics equally</li>
+                    <li><strong>Regular Reviews:</strong> Monthly PLT alignment check-ins</li>
+                </ol>
+                <p>Start with the PLT Canvas worksheet to map out your specific profit, love, and tax definitions.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What's a good PLT score for a business opportunity?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT scoring guidelines:</p>
+                <ul>
+                    <li><strong>25-30:</strong> Exceptional opportunity (top 5%) - pursue immediately</li>
+                    <li><strong>20-24:</strong> Strong opportunity - likely worth pursuing</li>
+                    <li><strong>15-19:</strong> Decent opportunity but needs improvement in weak areas</li>
+                    <li><strong>10-14:</strong> Significant concerns - major changes needed</li>
+                    <li><strong>Below 10:</strong> Pass or completely reimagine the opportunity</li>
+                </ul>
+                <div class="highlight">
+                    <strong>Critical rule:</strong> No single pillar should score below 6, regardless of total score. A 9-9-2 (total 20) is worse than a 7-7-7 (total 21) because the Tax pillar is critically weak.
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How often should you review PLT alignment?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT review schedule:</p>
+                <ul>
+                    <li><strong>Daily:</strong> Quick PLT filter for major decisions</li>
+                    <li><strong>Weekly:</strong> Review progress on all three pillars</li>
+                    <li><strong>Monthly:</strong> Deep assessment using PLT Calculator</li>
+                    <li><strong>Quarterly:</strong> Strategic realignment and goal setting</li>
+                    <li><strong>Annually:</strong> Complete framework review and evolution</li>
+                </ul>
+                <p>The key is making PLT a living framework, not a one-time assessment. Market conditions, personal growth, and social needs all evolve over time.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Can you apply PLT to an existing business?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Absolutely.</strong> Many entrepreneurs use PLT to audit and improve existing businesses:</p>
+                <ol>
+                    <li><strong>Current State Assessment:</strong> Score your existing business honestly</li>
+                    <li><strong>Identify Gaps:</strong> Which pillar needs the most improvement?</li>
+                    <li><strong>Create Improvement Plan:</strong> Specific actions to strengthen weak pillars</li>
+                    <li><strong>Gradual Implementation:</strong> Avoid dramatic changes that disrupt operations</li>
+                    <li><strong>Team Communication:</strong> Help employees understand the PLT evolution</li>
+                </ol>
+                <div class="example">
+                    <strong>Example:</strong> A successful consulting firm scored high on Profit (8/10) and Love (7/10) but low on Tax (3/10). They added pro bono work for nonprofits and open-sourced their methodology, raising their Tax score to 7/10 while actually improving client attraction and employee satisfaction.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-category" id="business-applications">
+        <div class="category-header">💼 Business Applications</div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Does PLT work for all types of businesses?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT is framework-agnostic and works for:</p>
+                <ul>
+                    <li><strong>Tech startups:</strong> SaaS, apps, platforms</li>
+                    <li><strong>Service businesses:</strong> Consulting, agencies, freelancing</li>
+                    <li><strong>Physical products:</strong> E-commerce, manufacturing, retail</li>
+                    <li><strong>Creative ventures:</strong> Content creation, art, entertainment</li>
+                    <li><strong>Investment decisions:</strong> Stocks, real estate, partnerships</li>
+                    <li><strong>Career choices:</strong> Job opportunities, career pivots</li>
+                </ul>
+                <p>The specific implementation varies, but the three-pillar evaluation works universally. A restaurant and a software company will have different profit models and tax contributions, but both benefit from PLT alignment.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How does PLT help with pricing decisions?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT provides a holistic approach to pricing:</p>
+                <ul>
+                    <li><strong>Profit Lens:</strong> Ensure pricing supports sustainable business model and growth</li>
+                    <li><strong>Love Lens:</strong> Price in a way that feels authentic and aligns with your values</li>
+                    <li><strong>Tax Lens:</strong> Consider pricing impact on accessibility and social benefit</li>
+                </ul>
+                <div class="example">
+                    <strong>Example:</strong> A business coach could charge $5,000/month (high profit) but realized this excluded many entrepreneurs who needed help. They created a tiered model: premium 1:1 coaching ($3,000), group coaching ($500), and free resources, satisfying all three PLT pillars.
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Can PLT help with hiring decisions?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! Apply PLT to evaluate potential team members:</p>
+                <ul>
+                    <li><strong>Profit Impact:</strong> Will this person contribute to sustainable business growth?</li>
+                    <li><strong>Love Alignment:</strong> Do they share your values and mission?</li>
+                    <li><strong>Tax Contribution:</strong> Do they enhance your positive impact capability?</li>
+                </ul>
+                <p>Candidates who score well on all three pillars become cultural multipliers, while those who only fit one dimension often create friction or underperform long-term.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How does PLT affect investment and funding decisions?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT helps evaluate both raising and providing investment:</p>
+                <p><strong>Raising capital:</strong></p>
+                <ul>
+                    <li>Seek investors who support your complete PLT mission</li>
+                    <li>Avoid funding that would compromise your Love or Tax pillars</li>
+                    <li>Use PLT story to attract values-aligned investors</li>
+                </ul>
+                <p><strong>Investment decisions:</strong></p>
+                <ul>
+                    <li>Evaluate opportunities beyond just financial returns</li>
+                    <li>Consider personal interest and social impact</li>
+                    <li>Build portfolio aligned with your complete value system</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-category" id="comparisons">
+        <div class="category-header">⚖️ Framework Comparisons</div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How is PLT different from Lean Startup methodology?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT and Lean Startup serve different purposes:</p>
+                <ul>
+                    <li><strong>PLT:</strong> Strategic direction - which opportunities to pursue</li>
+                    <li><strong>Lean Startup:</strong> Tactical execution - how to build efficiently</li>
+                </ul>
+                <p>Key differences:</p>
+                <ul>
+                    <li><strong>Focus:</strong> PLT emphasizes holistic success; Lean focuses on product-market fit</li>
+                    <li><strong>Values:</strong> PLT integrates values from day one; Lean is values-neutral</li>
+                    <li><strong>Sustainability:</strong> PLT optimizes for long-term endurance; Lean optimizes for speed</li>
+                </ul>
+                <p>Many entrepreneurs successfully combine both: use PLT for strategy, Lean for execution.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Is PLT similar to triple bottom line (People, Planet, Profit)?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT and Triple Bottom Line share some similarities but have key differences:</p>
+                <p><strong>Similarities:</strong> Both consider profit alongside social/environmental impact</p>
+                <p><strong>Key Differences:</strong></p>
+                <ul>
+                    <li><strong>Personal Dimension:</strong> PLT includes founder passion/values (Love pillar)</li>
+                    <li><strong>Decision Framework:</strong> PLT provides specific scoring and decision criteria</li>
+                    <li><strong>Individual Focus:</strong> PLT works for individual entrepreneurs, not just corporations</li>
+                    <li><strong>Practical Tools:</strong> PLT offers calculators, templates, and implementation guides</li>
+                </ul>
+                <p>PLT is more personal and actionable than traditional Triple Bottom Line accounting.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How does PLT relate to ESG (Environmental, Social, Governance)?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT and ESG complement each other:</p>
+                <ul>
+                    <li><strong>ESG:</strong> External measurement framework for investors</li>
+                    <li><strong>PLT:</strong> Internal decision-making framework for entrepreneurs</li>
+                </ul>
+                <p>PLT's Tax pillar often leads to strong ESG performance, but PLT goes beyond ESG by including:</p>
+                <ul>
+                    <li>Personal fulfillment and values alignment</li>
+                    <li>Practical decision-making tools</li>
+                    <li>Founder-centric perspective</li>
+                    <li>Holistic business success definition</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-category" id="common-concerns">
+        <div class="category-header">❓ Common Concerns</div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Won't focusing on values and impact reduce profits?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Actually, the opposite is often true.</strong> Research shows purpose-driven businesses often outperform purely profit-focused ones:</p>
+                <ul>
+                    <li><strong>Premium pricing:</strong> Customers pay more for brands they believe in</li>
+                    <li><strong>Lower marketing costs:</strong> Authentic mission drives word-of-mouth</li>
+                    <li><strong>Employee retention:</strong> Values-aligned employees stay longer and perform better</li>
+                    <li><strong>Customer loyalty:</strong> Purpose creates emotional connection beyond price</li>
+                    <li><strong>Future-proofing:</strong> Aligned with increasing consumer and regulatory expectations</li>
+                </ul>
+                <p>The key is finding opportunities where all three pillars reinforce each other, not compete.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What if I can't find opportunities that score high on all three pillars?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>This is common and indicates you need to either:</p>
+                <ol>
+                    <li><strong>Get Creative:</strong> Look for innovative ways to align all three pillars</li>
+                    <li><strong>Modify the Opportunity:</strong> Adjust your approach to strengthen weak pillars</li>
+                    <li><strong>Explore Different Opportunities:</strong> Keep searching for better-aligned options</li>
+                    <li><strong>Portfolio Approach:</strong> Balance multiple ventures that excel in different areas</li>
+                </ol>
+                <div class="example">
+                    <strong>Example:</strong> If you love coding but struggling to find profitable + socially beneficial opportunities, consider: open source tools for nonprofits, educational platforms for underserved communities, or efficiency software for small businesses.
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Is PLT too idealistic for the real business world?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong>No.</strong> PLT is based on successful real-world businesses:</p>
+                <ul>
+                    <li><strong>Patagonia:</strong> Billion-dollar revenue with environmental activism</li>
+                    <li><strong>Warby Parker:</strong> Disrupted eyewear with buy-one-give-one model</li>
+                    <li><strong>Buffer:</strong> $20M+ ARR with radical transparency and values</li>
+                    <li><strong>LocalTable:</strong> (Case study) $50K/month helping independent restaurants</li>
+                </ul>
+                <p>PLT doesn't require perfection - it requires intention. Even incremental improvements in Love and Tax pillars often strengthen the Profit pillar.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How do you measure success with PLT?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Track metrics across all three pillars:</p>
+                <p><strong>Profit Metrics:</strong></p>
+                <ul>
+                    <li>Revenue growth, profit margins, customer acquisition cost</li>
+                    <li>Customer lifetime value, retention rate</li>
+                    <li>Financial sustainability indicators</li>
+                </ul>
+                <p><strong>Love Metrics:</strong></p>
+                <ul>
+                    <li>Personal energy and motivation levels</li>
+                    <li>Time spent on activities you enjoy</li>
+                    <li>Employee satisfaction and retention</li>
+                    <li>Values alignment in decision-making</li>
+                </ul>
+                <p><strong>Tax Metrics:</strong></p>
+                <ul>
+                    <li>Social impact measurement (people helped, problems solved)</li>
+                    <li>Environmental footprint</li>
+                    <li>Community contribution</li>
+                    <li>Knowledge sharing and giving back</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-category" id="advanced">
+        <div class="category-header">🚀 Advanced Topics</div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Can PLT scores change over time?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p><strong>Absolutely.</strong> PLT scores evolve due to:</p>
+                <ul>
+                    <li><strong>Market Changes:</strong> Competition, regulation, or economic shifts affect profit potential</li>
+                    <li><strong>Personal Growth:</strong> Your interests, values, and skills develop over time</li>
+                    <li><strong>Social Needs:</strong> New problems emerge or existing problems become more/less critical</li>
+                    <li><strong>Business Evolution:</strong> Your company's capabilities and impact change</li>
+                </ul>
+                <p>Regular PLT reviews help you adapt strategy as conditions change. What scores 8/10 today might score 6/10 next year, and vice versa.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                How does PLT work for teams and partnerships?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>PLT can be applied to group decision-making:</p>
+                <ol>
+                    <li><strong>Individual Assessment:</strong> Each person scores the opportunity independently</li>
+                    <li><strong>Discussion:</strong> Share and discuss different perspectives on each pillar</li>
+                    <li><strong>Consensus Building:</strong> Find areas of agreement and address concerns</li>
+                    <li><strong>Role Alignment:</strong> Ensure each person's role aligns with their strongest PLT pillars</li>
+                </ol>
+                <p>Teams with aligned PLT values make faster decisions and experience less conflict over strategic direction.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                What are the most common PLT implementation mistakes?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Avoid these PLT pitfalls:</p>
+                <ul>
+                    <li><strong>Profit-First Trap:</strong> Using PLT to justify profit-first thinking with superficial Love/Tax elements</li>
+                    <li><strong>Love Delusion:</strong> Confusing what you think you should love with what you actually love</li>
+                    <li><strong>Tax Theater:</strong> Adding token "good deeds" without genuine impact integration</li>
+                    <li><strong>Analysis Paralysis:</strong> Over-analyzing instead of testing and learning</li>
+                    <li><strong>Static Thinking:</strong> Not adapting PLT scores as conditions change</li>
+                    <li><strong>Solo Decision Making:</strong> Not involving key stakeholders in PLT assessment</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-question">
+                Where can I learn more about implementing PLT?
+                <span class="faq-toggle">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Additional PLT resources:</p>
+                <ul>
+                    <li><strong>PLT Calculator:</strong> Interactive scoring tool for opportunities</li>
+                    <li><strong>PLT Canvas:</strong> Downloadable worksheet for detailed analysis</li>
+                    <li><strong>Case Studies:</strong> Real examples of PLT implementation</li>
+                    <li><strong>Implementation Guide:</strong> Step-by-step PLT deployment</li>
+                    <li><strong>Craig Jones Books:</strong> Deep dive into PLT philosophy and practice</li>
+                    <li><strong>PLT Community:</strong> Connect with other practitioners</li>
+                </ul>
+                <p>Start with the PLT Calculator to get a feel for the framework, then dive deeper into the complete guide.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.querySelector('.faq-answer');
+            const toggle = element.querySelector('.faq-toggle');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-answer.active').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                    item.parentElement.querySelector('.faq-toggle').classList.remove('rotated');
+                }
+            });
+            
+            // Toggle current item
+            answer.classList.toggle('active');
+            toggle.classList.toggle('rotated');
+        }
+        
+        // Analytics tracking
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const question = item.querySelector('.faq-question').textContent.trim();
+                console.log('FAQ interaction:', question);
+            });
+        });
+    </script>
+</body>
+</html>

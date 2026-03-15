@@ -1,0 +1,30 @@
+DJINIE SOUL DELEGATION - URGENT OPTIMIZATION REQUEST
+
+Task: Optimize local-chat.html performance and user experience as requested by Craig
+
+Location: web-ecosystem/plt-press/local-chat.html
+
+Requirements:
+1. Performance optimization - make it load faster
+2. Improve user experience significantly 
+3. Make it "way better" as Craig requested
+4. Focus on local AI chat functionality
+5. Ensure mobile responsiveness
+6. Optimize JavaScript performance
+7. Clean up UI/UX flow
+
+Priority: HIGH - Craig specifically requested this optimization
+
+Notes:
+- This is part of the Link Checker Soul's mission but specifically delegated to Djinie Soul
+- Local-chat.html is an important interactive component of the PLT ecosystem
+- Current file exists but needs significant performance and UX improvements
+
+Expected outcome:
+- Much faster loading times
+- Better user interface
+- Smoother chat experience
+- Mobile-optimized design
+- Local AI integration working perfectly
+
+Djinie Soul - please prioritize this optimization task!

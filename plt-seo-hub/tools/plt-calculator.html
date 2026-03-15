@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLT Calculator - Profit Love Tax Framework Score Calculator</title>
+    <meta name="description" content="Free PLT Calculator: Evaluate your business opportunities using the Profit Love Tax framework. Get instant scores and recommendations for better decisions.">
+    <meta name="keywords" content="PLT calculator, profit love tax calculator, business framework calculator, entrepreneurship assessment tool, PLT score">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            border-radius: 12px; 
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1 { 
+            text-align: center; 
+            color: #2c3e50; 
+            margin-bottom: 10px; 
+            font-size: 2.5em;
+        }
+        .subtitle { 
+            text-align: center; 
+            color: #666; 
+            margin-bottom: 40px; 
+            font-size: 1.1em;
+        }
+        .calculator-section { 
+            margin-bottom: 40px; 
+            padding: 30px; 
+            border: 2px solid #ecf0f1; 
+            border-radius: 8px;
+            background: #fafbfc;
+        }
+        .pillar-title { 
+            font-size: 1.8em; 
+            margin-bottom: 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+        .profit-pillar { color: #27ae60; }
+        .love-pillar { color: #e74c3c; }
+        .tax-pillar { color: #f39c12; }
+        .question { 
+            margin-bottom: 25px; 
+        }
+        .question label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 10px; 
+            color: #2c3e50;
+        }
+        .slider-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-bottom: 10px;
+        }
+        .slider { 
+            flex: 1; 
+            height: 8px; 
+            border-radius: 4px; 
+            background: #ddd; 
+            appearance: none; 
+            outline: none;
+        }
+        .slider::-webkit-slider-thumb { 
+            appearance: none; 
+            width: 24px; 
+            height: 24px; 
+            border-radius: 50%; 
+            background: #3498db; 
+            cursor: pointer; 
+        }
+        .slider::-moz-range-thumb { 
+            width: 24px; 
+            height: 24px; 
+            border-radius: 50%; 
+            background: #3498db; 
+            cursor: pointer; 
+            border: none; 
+        }
+        .score-display { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            color: #3498db; 
+            min-width: 40px; 
+            text-align: center;
+        }
+        .question-hint { 
+            font-size: 0.9em; 
+            color: #666; 
+            margin-top: 5px;
+        }
+        .results { 
+            background: #2c3e50; 
+            color: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            margin-top: 40px;
+            display: none;
+        }
+        .results.show { display: block; }
+        .total-score { 
+            text-align: center; 
+            font-size: 3em; 
+            margin-bottom: 20px;
+        }
+        .pillar-scores { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            margin-bottom: 30px;
+        }
+        .pillar-result { 
+            text-align: center; 
+            padding: 20px; 
+            border-radius: 8px;
+        }
+        .profit-result { background: rgba(39, 174, 96, 0.2); }
+        .love-result { background: rgba(231, 76, 60, 0.2); }
+        .tax-result { background: rgba(243, 156, 18, 0.2); }
+        .recommendation { 
+            background: rgba(255,255,255,0.1); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-top: 20px;
+        }
+        .calculate-btn { 
+            background: #3498db; 
+            color: white; 
+            padding: 15px 40px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 1.2em; 
+            cursor: pointer; 
+            display: block; 
+            margin: 30px auto; 
+            font-weight: bold;
+        }
+        .calculate-btn:hover { background: #2980b9; }
+        .reset-btn { 
+            background: #95a5a6; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin-left: 10px;
+        }
+        .business-input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid #ddd; 
+            border-radius: 5px; 
+            font-size: 1.1em; 
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 PLT Calculator</h1>
+        <p class="subtitle">Evaluate your business opportunity using the Profit Love Tax framework</p>
+        
+        <div style="margin-bottom: 30px;">
+            <label for="businessName"><strong>Business Opportunity Name:</strong></label>
+            <input type="text" id="businessName" class="business-input" placeholder="e.g., Online Course Platform, Local Restaurant, SaaS Tool...">
+        </div>
+        
+        <div class="calculator-section">
+            <h2 class="pillar-title profit-pillar">💰 PROFIT PILLAR</h2>
+            
+            <div class="question">
+                <label>How strong is the revenue model?</label>
+                <div class="slider-container">
+                    <span>Weak</span>
+                    <input type="range" class="slider" id="revenue" min="1" max="10" value="5">
+                    <span>Strong</span>
+                    <div class="score-display" id="revenue-score">5</div>
+                </div>
+                <div class="question-hint">Consider recurring revenue, market demand, pricing power</div>
+            </div>
+            
+            <div class="question">
+                <label>How large is the target market?</label>
+                <div class="slider-container">
+                    <span>Small</span>
+                    <input type="range" class="slider" id="market" min="1" max="10" value="5">
+                    <span>Huge</span>
+                    <div class="score-display" id="market-score">5</div>
+                </div>
+                <div class="question-hint">Total addressable market size and growth potential</div>
+            </div>
+            
+            <div class="question">
+                <label>How scalable is the business model?</label>
+                <div class="slider-container">
+                    <span>Linear</span>
+                    <input type="range" class="slider" id="scale" min="1" max="10" value="5">
+                    <span>Exponential</span>
+                    <div class="score-display" id="scale-score">5</div>
+                </div>
+                <div class="question-hint">Can you grow revenue without proportional cost increases?</div>
+            </div>
+            
+            <div class="question">
+                <label>How strong is your competitive advantage?</label>
+                <div class="slider-container">
+                    <span>None</span>
+                    <input type="range" class="slider" id="advantage" min="1" max="10" value="5">
+                    <span>Massive</span>
+                    <div class="score-display" id="advantage-score">5</div>
+                </div>
+                <div class="question-hint">Network effects, patents, brand, exclusive relationships</div>
+            </div>
+            
+            <div class="question">
+                <label>How sustainable are the profit margins?</label>
+                <div class="slider-container">
+                    <span>Thin</span>
+                    <input type="range" class="slider" id="margins" min="1" max="10" value="5">
+                    <span>Fat</span>
+                    <div class="score-display" id="margins-score">5</div>
+                </div>
+                <div class="question-hint">Long-term profitability after competition and market maturity</div>
+            </div>
+        </div>
+        
+        <div class="calculator-section">
+            <h2 class="pillar-title love-pillar">❤️ LOVE PILLAR</h2>
+            
+            <div class="question">
+                <label>How passionate are you about this problem/solution?</label>
+                <div class="slider-container">
+                    <span>Meh</span>
+                    <input type="range" class="slider" id="passion" min="1" max="10" value="5">
+                    <span>Obsessed</span>
+                    <div class="score-display" id="passion-score">5</div>
+                </div>
+                <div class="question-hint">Would you work on this even if it took years to pay off?</div>
+            </div>
+            
+            <div class="question">
+                <label>How well does this align with your core values?</label>
+                <div class="slider-container">
+                    <span>Conflicts</span>
+                    <input type="range" class="slider" id="values" min="1" max="10" value="5">
+                    <span>Perfect Fit</span>
+                    <div class="score-display" id="values-score">5</div>
+                </div>
+                <div class="question-hint">Does this feel authentic to who you are?</div>
+            </div>
+            
+            <div class="question">
+                <label>How well do your skills match what's required?</label>
+                <div class="slider-container">
+                    <span>Poor Match</span>
+                    <input type="range" class="slider" id="skills" min="1" max="10" value="5">
+                    <span>Perfect Match</span>
+                    <div class="score-display" id="skills-score">5</div>
+                </div>
+                <div class="question-hint">Natural abilities + learnable skills needed</div>
+            </div>
+            
+            <div class="question">
+                <label>How energizing vs. draining is this work?</label>
+                <div class="slider-container">
+                    <span>Drains Me</span>
+                    <input type="range" class="slider" id="energy" min="1" max="10" value="5">
+                    <span>Energizes Me</span>
+                    <div class="score-display" id="energy-score">5</div>
+                </div>
+                <div class="question-hint">Do you feel alive or depleted doing this work?</div>
+            </div>
+            
+            <div class="question">
+                <label>Will you still care about this in 5+ years?</label>
+                <div class="slider-container">
+                    <span>Probably Not</span>
+                    <input type="range" class="slider" id="longterm" min="1" max="10" value="5">
+                    <span>Absolutely</span>
+                    <div class="score-display" id="longterm-score">5</div>
+                </div>
+                <div class="question-hint">Is this a passing interest or enduring passion?</div>
+            </div>
+        </div>
+        
+        <div class="calculator-section">
+            <h2 class="pillar-title tax-pillar">🏛️ TAX PILLAR</h2>
+            
+            <div class="question">
+                <label>How significant is the problem you're solving?</label>
+                <div class="slider-container">
+                    <span>Minor</span>
+                    <input type="range" class="slider" id="problem" min="1" max="10" value="5">
+                    <span>Critical</span>
+                    <div class="score-display" id="problem-score">5</div>
+                </div>
+                <div class="question-hint">Real pain point vs. nice-to-have improvement</div>
+            </div>
+            
+            <div class="question">
+                <label>How many people benefit from your success?</label>
+                <div class="slider-container">
+                    <span>Just Me</span>
+                    <input type="range" class="slider" id="beneficiaries" min="1" max="10" value="5">
+                    <span>Everyone</span>
+                    <div class="score-display" id="beneficiaries-score">5</div>
+                </div>
+                <div class="question-hint">Direct customers plus broader stakeholder impact</div>
+            </div>
+            
+            <div class="question">
+                <label>What's the environmental impact?</label>
+                <div class="slider-container">
+                    <span>Harmful</span>
+                    <input type="range" class="slider" id="environment" min="1" max="10" value="5">
+                    <span>Regenerative</span>
+                    <div class="score-display" id="environment-score">5</div>
+                </div>
+                <div class="question-hint">Resource consumption, waste, carbon footprint</div>
+            </div>
+            
+            <div class="question">
+                <label>How does this strengthen communities?</label>
+                <div class="slider-container">
+                    <span>Weakens</span>
+                    <input type="range" class="slider" id="community" min="1" max="10" value="5">
+                    <span>Strengthens</span>
+                    <div class="score-display" id="community-score">5</div>
+                </div>
+                <div class="question-hint">Local economic impact, relationships, social capital</div>
+            </div>
+            
+            <div class="question">
+                <label>How much knowledge/value do you give back?</label>
+                <div class="slider-container">
+                    <span>Hoard It</span>
+                    <input type="range" class="slider" id="sharing" min="1" max="10" value="5">
+                    <span>Share Freely</span>
+                    <div class="score-display" id="sharing-score">5</div>
+                </div>
+                <div class="question-hint">Open source, teaching, mentoring, transparent practices</div>
+            </div>
+        </div>
+        
+        <button class="calculate-btn" onclick="calculatePLT()">Calculate My PLT Score</button>
+        
+        <div class="results" id="results">
+            <div class="total-score">
+                <div id="totalScore">0</div>
+                <div style="font-size: 0.5em;">Total PLT Score</div>
+            </div>
+            
+            <div class="pillar-scores">
+                <div class="pillar-result profit-result">
+                    <h3>💰 PROFIT</h3>
+                    <div style="font-size: 2em;" id="profitTotal">0</div>
+                    <div>/ 50 points</div>
+                </div>
+                <div class="pillar-result love-result">
+                    <h3>❤️ LOVE</h3>
+                    <div style="font-size: 2em;" id="loveTotal">0</div>
+                    <div>/ 50 points</div>
+                </div>
+                <div class="pillar-result tax-result">
+                    <h3>🏛️ TAX</h3>
+                    <div style="font-size: 2em;" id="taxTotal">0</div>
+                    <div>/ 50 points</div>
+                </div>
+            </div>
+            
+            <div class="recommendation" id="recommendation">
+                <!-- Dynamic recommendation will appear here -->
+            </div>
+            
+            <button class="calculate-btn" onclick="resetCalculator()">Calculate Another Opportunity</button>
+        </div>
+    </div>
+    
+    <script>
+        // Update score displays as sliders move
+        document.querySelectorAll('.slider').forEach(slider => {
+            slider.addEventListener('input', function() {
+                const scoreDisplay = document.getElementById(this.id + '-score');
+                scoreDisplay.textContent = this.value;
+            });
+        });
+        
+        function calculatePLT() {
+            const businessName = document.getElementById('businessName').value || 'Your Business';
+            
+            // Profit pillar scores
+            const profitScores = [
+                parseInt(document.getElementById('revenue').value),
+                parseInt(document.getElementById('market').value),
+                parseInt(document.getElementById('scale').value),
+                parseInt(document.getElementById('advantage').value),
+                parseInt(document.getElementById('margins').value)
+            ];
+            
+            // Love pillar scores
+            const loveScores = [
+                parseInt(document.getElementById('passion').value),
+                parseInt(document.getElementById('values').value),
+                parseInt(document.getElementById('skills').value),
+                parseInt(document.getElementById('energy').value),
+                parseInt(document.getElementById('longterm').value)
+            ];
+            
+            // Tax pillar scores
+            const taxScores = [
+                parseInt(document.getElementById('problem').value),
+                parseInt(document.getElementById('beneficiaries').value),
+                parseInt(document.getElementById('environment').value),
+                parseInt(document.getElementById('community').value),
+                parseInt(document.getElementById('sharing').value)
+            ];
+            
+            const profitTotal = profitScores.reduce((a, b) => a + b, 0);
+            const loveTotal = loveScores.reduce((a, b) => a + b, 0);
+            const taxTotal = taxScores.reduce((a, b) => a + b, 0);
+            const totalScore = profitTotal + loveTotal + taxTotal;
+            
+            // Display results
+            document.getElementById('profitTotal').textContent = profitTotal;
+            document.getElementById('loveTotal').textContent = loveTotal;
+            document.getElementById('taxTotal').textContent = taxTotal;
+            document.getElementById('totalScore').textContent = totalScore;
+            
+            // Generate recommendation
+            const recommendation = generateRecommendation(businessName, profitTotal, loveTotal, taxTotal, totalScore);
+            document.getElementById('recommendation').innerHTML = recommendation;
+            
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateRecommendation(business, profit, love, tax, total) {
+            let recommendation = `<h3>📊 PLT Assessment for "${business}"</h3>`;
+            
+            // Overall assessment
+            if (total >= 135) {
+                recommendation += `<p><strong>🎉 EXCEPTIONAL OPPORTUNITY!</strong> This scores in the top 5% of PLT assessments. All three pillars are strong.</p>`;
+            } else if (total >= 120) {
+                recommendation += `<p><strong>🚀 STRONG OPPORTUNITY!</strong> This is well above average with solid potential across all pillars.</p>`;
+            } else if (total >= 105) {
+                recommendation += `<p><strong>✅ GOOD OPPORTUNITY!</strong> This shows promise but may need strengthening in one or more areas.</p>`;
+            } else if (total >= 90) {
+                recommendation += `<p><strong>⚠️ MIXED SIGNALS.</strong> Some strengths but significant gaps that need addressing.</p>`;
+            } else {
+                recommendation += `<p><strong>🔴 PROCEED WITH CAUTION.</strong> Major concerns across multiple pillars. Consider pivoting or passing.</p>`;
+            }
+            
+            // Pillar-specific feedback
+            recommendation += `<h4>Pillar Analysis:</h4><ul>`;
+            
+            if (profit < 30) {
+                recommendation += `<li><strong>💰 Profit Concern:</strong> Financial viability is questionable. Focus on revenue model, market size, or competitive positioning.</li>`;
+            } else if (profit >= 40) {
+                recommendation += `<li><strong>💰 Profit Strength:</strong> Strong financial foundation. This could be very profitable.</li>`;
+            }
+            
+            if (love < 30) {
+                recommendation += `<li><strong>❤️ Love Gap:</strong> Low personal alignment. Consider if this truly fits your passion and values.</li>`;
+            } else if (love >= 40) {
+                recommendation += `<li><strong>❤️ Love Match:</strong> Excellent personal fit. You're likely to stay motivated long-term.</li>`;
+            }
+            
+            if (tax < 30) {
+                recommendation += `<li><strong>🏛️ Tax Deficit:</strong> Limited positive impact. Look for ways to increase societal benefit.</li>`;
+            } else if (tax >= 40) {
+                recommendation += `<li><strong>🏛️ Tax Excellence:</strong> Strong positive impact. This contributes meaningfully to the world.</li>`;
+            }
+            
+            recommendation += `</ul>`;
+            
+            // Next steps
+            recommendation += `<h4>Recommended Next Steps:</h4>`;
+            
+            if (total >= 120) {
+                recommendation += `<ol>
+                    <li>Move forward with confidence</li>
+                    <li>Create detailed business plan</li>
+                    <li>Start building MVP or testing market</li>
+                    <li>Set quarterly PLT reviews to maintain alignment</li>
+                </ol>`;
+            } else if (total >= 90) {
+                recommendation += `<ol>
+                    <li>Identify the weakest pillar and create improvement plan</li>
+                    <li>Validate assumptions through customer interviews</li>
+                    <li>Consider pivoting to strengthen weak areas</li>
+                    <li>Re-assess in 30 days after improvements</li>
+                </ol>`;
+            } else {
+                recommendation += `<ol>
+                    <li>Pause before major investment</li>
+                    <li>Brainstorm alternative approaches</li>
+                    <li>Consider completely different opportunities</li>
+                    <li>Only proceed if you can dramatically improve weak pillars</li>
+                </ol>`;
+            }
+            
+            return recommendation;
+        }
+        
+        function resetCalculator() {
+            document.getElementById('businessName').value = '';
+            document.querySelectorAll('.slider').forEach(slider => {
+                slider.value = 5;
+                document.getElementById(slider.id + '-score').textContent = '5';
+            });
+            document.getElementById('results').classList.remove('show');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

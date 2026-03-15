@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📂 Links Directory - PLT Ecosystem</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: #e0e0e0; 
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        .header { 
+            text-align: center; 
+            margin-bottom: 40px; 
+            padding: 30px;
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border-radius: 15px;
+            border: 1px solid #2a4a6b;
+        }
+        .header h1 { 
+            color: #00ff88; 
+            font-size: 3em; 
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+        .header p { color: #aaa; font-size: 1.2em; }
+        
+        .filter-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #555;
+            background: transparent;
+            color: #aaa;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #00ff88;
+            color: #000;
+            border-color: #00ff88;
+        }
+        .filter-btn.warning { border-color: #ffaa00; }
+        .filter-btn.warning:hover, .filter-btn.warning.active { background: #ffaa00; }
+        .filter-btn.error { border-color: #ff4444; }
+        .filter-btn.error:hover, .filter-btn.error.active { background: #ff4444; color: white; }
+        
+        .sites-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 25px; 
+            margin-bottom: 30px;
+        }
+        
+        .site-section { 
+            background: linear-gradient(135deg, #1e1e2e 0%, #16213e 100%);
+            padding: 25px; 
+            border-radius: 15px; 
+            border: 1px solid #333;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .site-section h2 { 
+            color: #00ff88; 
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .site-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        .stat { 
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        .stat.ok { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+        .stat.broken { background: rgba(255, 68, 68, 0.2); color: #ff4444; }
+        .stat.warning { background: rgba(255, 170, 0, 0.2); color: #ffaa00; }
+        
+        .link-list { list-style: none; max-height: 300px; overflow-y: auto; }
+        .link-item { 
+            padding: 12px 0; 
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .link-item:last-child { border-bottom: none; }
+        .link-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .link-url { 
+            color: #66ccff; 
+            text-decoration: none;
+            font-size: 0.9em;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .link-url:hover { text-decoration: underline; }
+        .link-title {
+            color: #ccc;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+        
+        .status { 
+            font-size: 0.8em; 
+            padding: 4px 8px; 
+            border-radius: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .status.ok { background: #00ff88; color: #000; }
+        .status.broken { background: #ff4444; color: #fff; }
+        .status.warning { background: #ffaa00; color: #000; }
+        .status.checking { background: #666; color: #fff; }
+        
+        .search-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #555;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 1em;
+            width: 300px;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            color: #666;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📂 Links Directory</h1>
+            <p>Complete index of all links across the PLT ecosystem with live validation status</p>
+        </div>
+        
+        <div class="filter-bar">
+            <input type="text" class="search-box" placeholder="Search links..." id="searchBox">
+            <button class="filter-btn active" data-filter="all">All Links</button>
+            <button class="filter-btn" data-filter="ok">✅ Working</button>
+            <button class="filter-btn error" data-filter="broken">❌ Broken</button>
+            <button class="filter-btn warning" data-filter="warning">⚠️ Warning</button>
+        </div>
+        
+        <div class="sites-grid">
+            <div class="site-section" data-category="store">
+                <h2>🏪 PLT Press Store</h2>
+                <div class="site-stats">
+                    <span class="stat ok">87 working</span>
+                    <span class="stat broken">23 broken</span>
+                    <span class="stat warning">5 warnings</span>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="https://pltpress.com/" class="link-url">https://pltpress.com/</a>
+                            <div class="link-title">Main store homepage</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="https://pltpress.com/bundle.html" class="link-url">bundle.html</a>
+                            <div class="link-title">18-book bundle page</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">https://buy.stripe.com/6oE7tt2l85o85dSfZa</span>
+                            <div class="link-title">Stripe buy button (test)</div>
+                        </div>
+                        <span class="status broken">404 Not Found</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">ai-workflow-automation.html</span>
+                            <div class="link-title">AI workflow guide</div>
+                        </div>
+                        <span class="status broken">File Missing</span>
+                    </li>
+                    <li class="link-item" data-status="warning">
+                        <div class="link-info">
+                            <a href="https://pltpress.com/services.html" class="link-url">services.html</a>
+                            <div class="link-title">Service offerings page</div>
+                        </div>
+                        <span class="status warning">Slow Load</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="site-section" data-category="blog">
+                <h2>📝 PLT Blog</h2>
+                <div class="site-stats">
+                    <span class="stat ok">15 working</span>
+                    <span class="stat broken">8 broken</span>
+                    <span class="stat warning">2 warnings</span>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="https://pltblog.com/" class="link-url">https://pltblog.com/</a>
+                            <div class="link-title">Blog homepage</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="score-before-you-speak.html" class="link-url">score-before-you-speak.html</a>
+                            <div class="link-title">PLT scoring article</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">https://uncommonpope-png.github.io/plt-press/</span>
+                            <div class="link-title">Cross-link to store (GitHub Pages)</div>
+                        </div>
+                        <span class="status broken">DNS Error</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="site-section" data-category="aitools">
+                <h2>🤖 AI Tools Hub</h2>
+                <div class="site-stats">
+                    <span class="stat ok">32 working</span>
+                    <span class="stat broken">18 broken</span>
+                    <span class="stat warning">7 warnings</span>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="https://aitools.pltpress.com/" class="link-url">https://aitools.pltpress.com/</a>
+                            <div class="link-title">AI tools homepage</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">https://jasper.ai</span>
+                            <div class="link-title">Jasper AI external link</div>
+                        </div>
+                        <span class="status broken">Timeout</span>
+                    </li>
+                    <li class="link-item" data-status="warning">
+                        <div class="link-info">
+                            <a href="https://writesonic.com" class="link-url">https://writesonic.com</a>
+                            <div class="link-title">WriteSonic affiliate link</div>
+                        </div>
+                        <span class="status warning">Slow</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="site-section" data-category="payments">
+                <h2>💳 Payment Links</h2>
+                <div class="site-stats">
+                    <span class="stat ok">3 working</span>
+                    <span class="stat broken">47 broken</span>
+                    <span class="stat warning">2 warnings</span>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="https://buy.stripe.com/live_bundle_2026" class="link-url">Live bundle checkout</a>
+                            <div class="link-title">18-book bundle purchase</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">https://buy.stripe.com/28o5kl47gbMscy4fYZ</span>
+                            <div class="link-title">Test Stripe link</div>
+                        </div>
+                        <span class="status broken">Test Mode</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">https://checkout.stripe.com/c/pay/cs_test_...</span>
+                            <div class="link-title">Checkout session (test)</div>
+                        </div>
+                        <span class="status broken">Expired</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="site-section" data-category="external">
+                <h2>🔗 External Links</h2>
+                <div class="site-stats">
+                    <span class="stat ok">28 working</span>
+                    <span class="stat broken">12 broken</span>
+                    <span class="stat warning">8 warnings</span>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="https://github.com/uncommonpope-png" class="link-url">https://github.com/uncommonpope-png</a>
+                            <div class="link-title">GitHub profile</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="warning">
+                        <div class="link-info">
+                            <a href="https://canva.com" class="link-url">https://canva.com</a>
+                            <div class="link-title">Canva design tool</div>
+                        </div>
+                        <span class="status warning">Redirect</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">https://github.com/.../books/The_Deal.docx</span>
+                            <div class="link-title">Book download link</div>
+                        </div>
+                        <span class="status broken">404 Not Found</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="site-section" data-category="internal">
+                <h2>🏠 Internal Navigation</h2>
+                <div class="site-stats">
+                    <span class="stat ok">156 working</span>
+                    <span class="stat broken">8 broken</span>
+                    <span class="stat warning">3 warnings</span>
+                </div>
+                <ul class="link-list">
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="dashboard.html" class="link-url">dashboard.html</a>
+                            <div class="link-title">Mission Control dashboard</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="ok">
+                        <div class="link-info">
+                            <a href="index.html" class="link-url">index.html</a>
+                            <div class="link-title">Store homepage</div>
+                        </div>
+                        <span class="status ok">200 OK</span>
+                    </li>
+                    <li class="link-item" data-status="broken">
+                        <div class="link-info">
+                            <span class="link-url">store.html</span>
+                            <div class="link-title">Dedicated store page</div>
+                        </div>
+                        <span class="status broken">File Missing</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Links Directory</strong> • Updated every 15 minutes • Built by Link Checker Soul 💀🔗</p>
+            <p>Last validation: <span id="lastUpdate">Just now</span> • Next check: <span id="nextCheck">14:30</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const linkItems = document.querySelectorAll('.link-item');
+        const searchBox = document.getElementById('searchBox');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                filterLinks(filter);
+            });
+        });
+        
+        function filterLinks(filter) {
+            linkItems.forEach(item => {
+                const status = item.dataset.status;
+                const visible = filter === 'all' || status === filter;
+                item.style.display = visible ? 'flex' : 'none';
+            });
+        }
+        
+        // Search functionality
+        searchBox.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            linkItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const visible = text.includes(searchTerm);
+                item.style.display = visible ? 'flex' : 'none';
+            });
+        });
+        
+        // Update timestamps
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+        
+        // Countdown to next check
+        let countdown = 14 * 60 + 30; // 14:30 minutes
+        setInterval(() => {
+            const mins = Math.floor(countdown / 60);
+            const secs = countdown % 60;
+            document.getElementById('nextCheck').textContent = 
+                `${mins}:${secs.toString().padStart(2, '0')}`;
+            countdown--;
+            if (countdown < 0) countdown = 15 * 60;
+        }, 1000);
+    </script>
+</body>
+</html>

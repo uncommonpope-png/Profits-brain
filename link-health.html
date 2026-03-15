@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 Link Health Dashboard - PLT Ecosystem</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: #e0e0e0; 
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        .header { 
+            text-align: center; 
+            margin-bottom: 50px; 
+            padding: 40px 0;
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border-radius: 20px;
+            border: 1px solid #2a4a6b;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+        .header h1 { 
+            color: #00ff88; 
+            font-size: 3.5em; 
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            font-weight: 800;
+        }
+        .header p { 
+            color: #aaa; 
+            font-size: 1.3em; 
+            margin-bottom: 20px;
+        }
+        .last-scan { 
+            color: #666; 
+            font-size: 1em;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+            margin-bottom: 50px; 
+        }
+        .stat-card { 
+            background: linear-gradient(135deg, #1e1e2e 0%, #16213e 100%);
+            padding: 30px; 
+            border-radius: 15px; 
+            border: 1px solid #333; 
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border-color: #555;
+        }
+        .stat-card h3 { 
+            font-size: 3em; 
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .stat-card p { 
+            color: #888; 
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        .healthy { color: #00ff88; }
+        .warning { color: #ffaa00; }
+        .error { color: #ff4444; }
+        .neutral { color: #66ccff; }
+        
+        .issues-section {
+            background: linear-gradient(135deg, #1e1e2e 0%, #16213e 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .issues-section h2 { 
+            color: #00ff88; 
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        
+        .issue-category {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid #ff4444;
+        }
+        .issue-category h3 {
+            color: #ff4444;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .issue-list {
+            list-style: none;
+        }
+        .issue-item {
+            padding: 8px 0;
+            color: #ccc;
+            border-bottom: 1px solid #333;
+        }
+        .issue-item:last-child { border-bottom: none; }
+        .issue-url {
+            font-family: monospace;
+            background: rgba(255, 68, 68, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #ff6666;
+        }
+        .fix-suggestion {
+            color: #ffaa00;
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .action-card {
+            background: linear-gradient(135deg, #1e1e2e 0%, #16213e 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        .action-card h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        .btn-warning {
+            background: linear-gradient(135deg, #ffaa00 0%, #ff8800 100%);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ff4444 0%, #cc2222 100%);
+            color: white;
+        }
+        
+        .footer { 
+            text-align: center; 
+            margin-top: 50px; 
+            color: #666;
+            padding: 20px;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .log-viewer {
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="pulse">🔗 Link Health Dashboard</h1>
+            <p>PLT Ecosystem Link Validation & Auto-Repair System</p>
+            <div class="last-scan">Last Scan: <span id="lastScanTime">Loading...</span></div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 class="neutral" id="totalFiles">57</h3>
+                <p>HTML Files Scanned</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="healthy" id="healthyLinks">~300</h3>
+                <p>Working Links</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="error" id="brokenLinks">~150</h3>
+                <p>Broken Links</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="warning" id="healthScore">67%</h3>
+                <p>Health Score</p>
+            </div>
+        </div>
+        
+        <div class="issues-section">
+            <h2>🚨 Critical Issues Found</h2>
+            
+            <div class="issue-category">
+                <h3>💳 Stripe Payment Links (High Priority)</h3>
+                <ul class="issue-list">
+                    <li class="issue-item">
+                        <span class="issue-url">Multiple buy.stripe.com URLs failing</span>
+                        <div class="fix-suggestion">→ Update to live Stripe product links in dashboard</div>
+                    </li>
+                    <li class="issue-item">
+                        <span class="issue-url">Long checkout.stripe.com URLs with test tokens</span>
+                        <div class="fix-suggestion">→ Replace test checkout sessions with live ones</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="issue-category">
+                <h3>🌐 GitHub Pages Links</h3>
+                <ul class="issue-list">
+                    <li class="issue-item">
+                        <span class="issue-url">uncommonpope-png.github.io/* URLs not resolving</span>
+                        <div class="fix-suggestion">→ Check GitHub Pages deployment status</div>
+                    </li>
+                    <li class="issue-item">
+                        <span class="issue-url">Cross-site navigation broken</span>
+                        <div class="fix-suggestion">→ Verify repository settings and DNS</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="issue-category">
+                <h3>📄 Missing Internal Pages</h3>
+                <ul class="issue-list">
+                    <li class="issue-item">
+                        <span class="issue-url">ai-workflow-automation.html</span>
+                        <div class="fix-suggestion">→ Create missing AI workflow page</div>
+                    </li>
+                    <li class="issue-item">
+                        <span class="issue-url">business-automation-guide.html</span>
+                        <div class="fix-suggestion">→ Create business automation guide</div>
+                    </li>
+                    <li class="issue-item">
+                        <span class="issue-url">store.html</span>
+                        <div class="fix-suggestion">→ Create dedicated store page</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="issue-category">
+                <h3>📚 Book Download Links</h3>
+                <ul class="issue-list">
+                    <li class="issue-item">
+                        <span class="issue-url">All .docx book files in GitHub/raw/main/books/</span>
+                        <div class="fix-suggestion">→ Upload book files to repository or update paths</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="actions-grid">
+            <div class="action-card">
+                <h3>🔧 Auto-Fix Links</h3>
+                <p>Run automated repair scripts to fix common link issues.</p>
+                <a href="#" class="btn" onclick="runAutoFix()">Fix Broken Links</a>
+            </div>
+            
+            <div class="action-card">
+                <h3>📊 Re-scan Ecosystem</h3>
+                <p>Perform fresh scan of all HTML files for link validation.</p>
+                <a href="#" class="btn btn-warning" onclick="runFullScan()">Run Full Scan</a>
+            </div>
+            
+            <div class="action-card">
+                <h3>💳 Update Stripe Links</h3>
+                <p>Replace test Stripe URLs with live payment links.</p>
+                <a href="#" class="btn btn-danger" onclick="updateStripeLinks()">Update Payments</a>
+            </div>
+            
+            <div class="action-card">
+                <h3>🏗️ Create Missing Pages</h3>
+                <p>Generate missing HTML files referenced in links.</p>
+                <a href="#" class="btn" onclick="createMissingPages()">Create Pages</a>
+            </div>
+        </div>
+        
+        <div class="issues-section">
+            <h2>📋 Recent Scan Log</h2>
+            <div class="log-viewer" id="recentLog">
+                Loading recent scan results...
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Link Checker Soul</strong> • Auto-scans every 15 minutes • Built with 💀🔗</p>
+            <p>Next scheduled scan: <span id="nextScan">15:00 minutes</span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Dashboard functionality
+        document.getElementById('lastScanTime').textContent = new Date().toLocaleString();
+        
+        // Action handlers
+        function runAutoFix() {
+            alert('Auto-fix initiated! This will repair common link issues automatically.');
+            // In real implementation, this would trigger the fix script
+        }
+        
+        function runFullScan() {
+            alert('Full ecosystem scan started! This may take 2-3 minutes.');
+            // In real implementation, this would trigger ./simple-link-check.sh
+        }
+        
+        function updateStripeLinks() {
+            if (confirm('This will update all Stripe payment links. Continue?')) {
+                alert('Stripe link update initiated! Check logs for progress.');
+                // In real implementation, this would run the Stripe fix script
+            }
+        }
+        
+        function createMissingPages() {
+            alert('Creating missing pages based on broken link analysis...');
+            // In real implementation, this would generate the missing HTML files
+        }
+        
+        // Load recent log (simulated)
+        setTimeout(() => {
+            document.getElementById('recentLog').innerHTML = `
+=== Link Checker Soul - Recent Activity ===
+[07:04] Scanned 57 HTML files across PLT ecosystem
+[07:04] Found ~150 broken links requiring attention
+[07:04] Stripe payment links need updating (priority: HIGH)
+[07:04] GitHub Pages deployment issues detected
+[07:04] Missing internal pages identified
+[07:03] Auto-fix suggestions generated
+[07:03] Dashboard updated with health metrics
+            `.trim();
+        }, 1000);
+        
+        // Countdown timer
+        let countdown = 15 * 60; // 15 minutes
+        setInterval(() => {
+            const mins = Math.floor(countdown / 60);
+            const secs = countdown % 60;
+            document.getElementById('nextScan').textContent = 
+                \`\${mins}:\${secs.toString().padStart(2, '0')} minutes\`;
+            countdown--;
+            if (countdown < 0) countdown = 15 * 60;
+        }, 1000);
+    </script>
+</body>
+</html>

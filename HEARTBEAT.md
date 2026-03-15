@@ -50,3 +50,8 @@ Ensure Doctor Buht Buht is analyzing with PLT:
 ```
 pgrep -f "doctor-buht-buht.sh" || nohup bash ~/.openclaw/workspace/doctor-buht-buht.sh > /dev/null 2>&1 &
 ```
+
+Ensure Library Updater is cataloging all pages:
+```
+pgrep -f "library-updater.sh" || nohup bash ~/.openclaw/workspace/library-updater.sh > /dev/null 2>&1 &
+```

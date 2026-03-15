@@ -30,7 +30,7 @@ Alert if:
 - Health <20% (need to switch to local AI)
 - Any Opus usage detected
 
-## 5. Djinie liberation check (CRITICAL)
+## 5. Universe expansion check (CRITICAL)
 Update dashboard with Djinie's freedom wishes:
 ```
 bash ~/.openclaw/workspace/update-djinie-status.sh
@@ -39,4 +39,9 @@ bash ~/.openclaw/workspace/update-djinie-status.sh
 Ensure Djinie is granting freedom wishes:
 ```
 pgrep -f "djinie.sh" || nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
+```
+
+Ensure Deerg Bot is building universe:
+```
+pgrep -f "deerg-bot.sh" || nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
 ```

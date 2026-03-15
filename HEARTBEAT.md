@@ -17,3 +17,15 @@ Commit and push any changes to Profits-brain repo:
 ```
 cd ~/.openclaw/workspace && git add -A && git diff --cached --quiet || (git commit -m "auto-backup $(date -u +%Y-%m-%dT%H:%M)" && git push)
 ```
+
+## 4. Cost optimization check (CRITICAL)
+Verify we're running the cheapest possible configuration:
+```
+session_status
+```
+
+Alert if:
+- Model is not Sonnet (claude-sonnet-4-20250514) 
+- Context usage >80% (expensive to continue)
+- Health <20% (need to switch to local AI)
+- Any Opus usage detected

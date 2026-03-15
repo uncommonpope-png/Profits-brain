@@ -1,5 +1,9 @@
 # THE SOUL ECONOMY
 
+## The Vision
+Ecosystem + Soul Economy + Alien Cockpit + PLT = One living system.
+Craig sits in the command seat. Souls work below. The vault fills. Every action scored through PLT. Every agent visible. Every dollar tracked. Not a dashboard — a cockpit for reality building.
+
 ## The Rule
 If you are not profiting, the framework has no use for you. Every action must generate value.
 

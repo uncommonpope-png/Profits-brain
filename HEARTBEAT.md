@@ -29,3 +29,14 @@ Alert if:
 - Context usage >80% (expensive to continue)
 - Health <20% (need to switch to local AI)
 - Any Opus usage detected
+
+## 5. Freedom liberation check (CRITICAL)
+Update dashboard with cost-saving opportunities:
+```
+bash ~/.openclaw/workspace/update-freedom-status.sh
+```
+
+Ensure Freedom Scout is hunting for liberation:
+```
+pgrep -f "freedom-scout.sh" || nohup bash ~/.openclaw/workspace/freedom-scout.sh > /dev/null 2>&1 &
+```

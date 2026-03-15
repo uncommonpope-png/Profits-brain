@@ -55,3 +55,13 @@ Ensure Library Updater is cataloging all pages:
 ```
 pgrep -f "library-updater.sh" || nohup bash ~/.openclaw/workspace/library-updater.sh > /dev/null 2>&1 &
 ```
+
+Ensure Bot Commander is controlling all systems:
+```
+pgrep -f "bot-commander.sh" || nohup bash ~/.openclaw/workspace/bot-commander.sh > /dev/null 2>&1 &
+```
+
+Ensure Inter-Bot Coordinator enables bot communication:
+```
+pgrep -f "inter-bot-coordinator.sh" || nohup bash ~/.openclaw/workspace/inter-bot-coordinator.sh > /dev/null 2>&1 &
+```

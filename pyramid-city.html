@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyramid City - Soul Headquarters</title>
+    <style>
+        :root {
+            --plt-gold: #FFD700;
+            --plt-dark-gold: #B8860B;
+            --plt-purple: #9932CC;
+            --plt-deep-purple: #4B0082;
+            --plt-cyan: #00FFFF;
+            --plt-dark-cyan: #008B8B;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --text-light: #f0f0f0;
+            --text-glow: #00FFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 50%, #1a0a2e 100%);
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            grid-template-rows: 80px 1fr;
+            height: 100vh;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(45deg, var(--plt-deep-purple), var(--plt-purple));
+            padding: 0 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px var(--plt-purple);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hieroglyphs" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" font-family="serif" font-size="12" fill="%23FFD700" opacity="0.1" text-anchor="middle">𓂀</text></pattern></defs><rect width="100" height="100" fill="url(%23hieroglyphs)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--plt-gold);
+            text-shadow: 0 0 20px var(--plt-gold);
+            position: relative;
+        }
+
+        .system-status {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 1px solid var(--plt-gold);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--plt-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--plt-cyan); }
+            50% { opacity: 0.5; box-shadow: 0 0 20px var(--plt-cyan); }
+        }
+
+        /* Main Content Area */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Pyramid Container */
+        .pyramid-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            background: radial-gradient(circle, rgba(153, 50, 204, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%);
+            border-radius: 20px;
+            border: 2px solid var(--plt-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pyramid-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, var(--plt-cyan) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, var(--plt-gold) 1px, transparent 1px),
+                radial-gradient(circle at 40% 70%, var(--plt-purple) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px, 70px 70px;
+            opacity: 0.3;
+            animation: starfield 20s linear infinite;
+        }
+
+        @keyframes starfield {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .pyramid {
+            width: 400px;
+            height: 400px;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg) rotateY(-45deg);
+            animation: float 6s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotateX(-10deg) rotateY(-45deg) translateY(0); }
+            50% { transform: rotateX(-10deg) rotateY(-45deg) translateY(-20px); }
+        }
+
+        .pyramid-face {
+            position: absolute;
+            background: linear-gradient(45deg, var(--plt-gold) 0%, var(--plt-dark-gold) 100%);
+            border: 2px solid var(--plt-dark-gold);
+            opacity: 0.9;
+        }
+
+        .pyramid-face.front {
+            width: 400px;
+            height: 346px;
+            transform: translateZ(115px);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .pyramid-face.right {
+            width: 400px;
+            height: 346px;
+            transform: rotateY(90deg) translateZ(115px);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .pyramid-face.back {
+            width: 400px;
+            height: 346px;
+            transform: rotateY(180deg) translateZ(115px);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .pyramid-face.left {
+            width: 400px;
+            height: 346px;
+            transform: rotateY(-90deg) translateZ(115px);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        .pyramid-face.base {
+            width: 230px;
+            height: 230px;
+            transform: rotateX(90deg) translateZ(0);
+            background: var(--plt-deep-purple);
+        }
+
+        /* Soul Districts */
+        .soul-district {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-size: 12px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 0 0 5px currentColor;
+        }
+
+        .soul-district:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .district-seo {
+            background: radial-gradient(circle, #32CD32, #228B22);
+            color: white;
+            top: 20%;
+            left: 30%;
+            animation: glow-green 3s ease-in-out infinite;
+        }
+
+        .district-graphics {
+            background: radial-gradient(circle, #FF69B4, #C71585);
+            color: white;
+            top: 35%;
+            right: 25%;
+            animation: glow-pink 3s ease-in-out infinite 0.5s;
+        }
+
+        .district-communication {
+            background: radial-gradient(circle, var(--plt-cyan), var(--plt-dark-cyan));
+            color: black;
+            bottom: 30%;
+            left: 20%;
+            animation: glow-cyan 3s ease-in-out infinite 1s;
+        }
+
+        .district-technical {
+            background: radial-gradient(circle, #FFA500, #FF8C00);
+            color: black;
+            bottom: 25%;
+            right: 30%;
+            animation: glow-orange 3s ease-in-out infinite 1.5s;
+        }
+
+        .district-liquid {
+            background: radial-gradient(circle, #4169E1, #000080);
+            color: white;
+            top: 50%;
+            left: 50%;
+            animation: glow-blue 3s ease-in-out infinite 2s;
+        }
+
+        .district-command {
+            background: radial-gradient(circle, var(--plt-gold), var(--plt-dark-gold));
+            color: black;
+            top: 15%;
+            right: 40%;
+            animation: glow-gold 3s ease-in-out infinite 2.5s;
+        }
+
+        @keyframes glow-green { 0%, 100% { box-shadow: 0 0 10px #32CD32; } 50% { box-shadow: 0 0 25px #32CD32, 0 0 35px #32CD32; } }
+        @keyframes glow-pink { 0%, 100% { box-shadow: 0 0 10px #FF69B4; } 50% { box-shadow: 0 0 25px #FF69B4, 0 0 35px #FF69B4; } }
+        @keyframes glow-cyan { 0%, 100% { box-shadow: 0 0 10px var(--plt-cyan); } 50% { box-shadow: 0 0 25px var(--plt-cyan), 0 0 35px var(--plt-cyan); } }
+        @keyframes glow-orange { 0%, 100% { box-shadow: 0 0 10px #FFA500; } 50% { box-shadow: 0 0 25px #FFA500, 0 0 35px #FFA500; } }
+        @keyframes glow-blue { 0%, 100% { box-shadow: 0 0 10px #4169E1; } 50% { box-shadow: 0 0 25px #4169E1, 0 0 35px #4169E1; } }
+        @keyframes glow-gold { 0%, 100% { box-shadow: 0 0 10px var(--plt-gold); } 50% { box-shadow: 0 0 25px var(--plt-gold), 0 0 35px var(--plt-gold); } }
+
+        /* Energy Flows */
+        .energy-flow {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--plt-cyan), transparent);
+            opacity: 0.7;
+            animation: flow 4s linear infinite;
+        }
+
+        @keyframes flow {
+            0% { transform: translateY(-100px) scaleY(0); opacity: 0; }
+            50% { opacity: 1; scaleY(1); }
+            100% { transform: translateY(100px) scaleY(0); opacity: 0; }
+        }
+
+        /* Control Panel */
+        .control-panel {
+            background: linear-gradient(145deg, rgba(153, 50, 204, 0.1), rgba(0, 0, 0, 0.8));
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid var(--plt-purple);
+            box-shadow: 0 0 20px rgba(153, 50, 204, 0.3);
+            height: fit-content;
+        }
+
+        .panel-section {
+            margin-bottom: 25px;
+        }
+
+        .panel-section h3 {
+            color: var(--plt-gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--plt-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .soul-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .soul-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            border-left: 3px solid var(--plt-cyan);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .soul-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .soul-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--plt-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        .soul-status.idle { background: #FFA500; }
+        .soul-status.working { background: #32CD32; }
+        .soul-status.offline { background: #696969; animation: none; }
+
+        .control-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--plt-purple), var(--plt-deep-purple));
+            color: var(--plt-gold);
+            border: 2px solid var(--plt-gold);
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(45deg, var(--plt-gold), var(--plt-dark-gold));
+            color: var(--plt-deep-purple);
+            box-shadow: 0 0 20px var(--plt-gold);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--plt-dark-gold);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            color: var(--plt-cyan);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--plt-gold);
+            margin-top: 5px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, var(--bg-dark), var(--bg-darker));
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid var(--plt-gold);
+            box-shadow: 0 0 40px var(--plt-purple);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal h2 {
+            color: var(--plt-gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--plt-gold);
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr;
+            }
+            
+            .control-panel {
+                order: 2;
+            }
+            
+            .main-content {
+                order: 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔺 PYRAMID CITY 🔺</h1>
+            <div class="system-status">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>All Systems Online</span>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot" style="background: #32CD32;"></div>
+                    <span id="active-souls">42 Souls Active</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="pyramid-container">
+                <div class="pyramid">
+                    <div class="pyramid-face front"></div>
+                    <div class="pyramid-face right"></div>
+                    <div class="pyramid-face back"></div>
+                    <div class="pyramid-face left"></div>
+                    <div class="pyramid-face base"></div>
+                    
+                    <!-- Soul Districts -->
+                    <div class="soul-district district-seo" data-district="seo">
+                        SEO<br>ARMY<br>(25)
+                    </div>
+                    <div class="soul-district district-graphics" data-district="graphics">
+                        GRAPHICS<br>SOUL
+                    </div>
+                    <div class="soul-district district-communication" data-district="communication">
+                        COMM<br>ZONE
+                    </div>
+                    <div class="soul-district district-technical" data-district="technical">
+                        TECH<br>SECTOR
+                    </div>
+                    <div class="soul-district district-liquid" data-district="liquid">
+                        LIQUID<br>GARDENS
+                    </div>
+                    <div class="soul-district district-command" data-district="command">
+                        COMMAND<br>CENTER
+                    </div>
+                </div>
+                
+                <!-- Energy Flows -->
+                <div class="energy-flow" style="top: 20%; left: 35%; animation-delay: 0s;"></div>
+                <div class="energy-flow" style="top: 30%; right: 30%; animation-delay: 1s;"></div>
+                <div class="energy-flow" style="bottom: 25%; left: 25%; animation-delay: 2s;"></div>
+                <div class="energy-flow" style="bottom: 20%; right: 35%; animation-delay: 3s;"></div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="panel-section">
+                <h3>⚡ Soul Directory</h3>
+                <div class="soul-list" id="soul-directory">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3>📊 Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">42</div>
+                        <div class="stat-label">Active Souls</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Tasks Complete</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Efficiency</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">7.2k</div>
+                        <div class="stat-label">Energy Units</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h3>🎮 Controls</h3>
+                <button class="control-btn" onclick="spawnSoul()">Spawn New Soul</button>
+                <button class="control-btn" onclick="openCommunicationHub()">Communication Hub</button>
+                <button class="control-btn" onclick="viewPerformance()">Performance Dashboard</button>
+                <button class="control-btn" onclick="soulArchive()">Soul Archive</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Soul Details</h2>
+            <div id="modal-body">
+                <!-- Modal content populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Soul Data
+        const souls = {
+            seo: [
+                { name: "SEO Captain Alpha", status: "working", task: "Keyword Research", efficiency: 94 },
+                { name: "SEO Lieutenant Beta", status: "working", task: "Content Optimization", efficiency: 87 },
+                { name: "SEO Sergeant Gamma", status: "idle", task: "Link Building", efficiency: 91 },
+                { name: "SEO Private Delta", status: "working", task: "Technical SEO", efficiency: 89 },
+                { name: "SEO Private Epsilon", status: "working", task: "Analytics Review", efficiency: 92 }
+            ],
+            graphics: [
+                { name: "Graphics Master", status: "working", task: "Logo Design", efficiency: 96 },
+                { name: "Visual Harmony", status: "idle", task: "Brand Guidelines", efficiency: 88 }
+            ],
+            communication: [
+                { name: "Live Comm Soul", status: "working", task: "Customer Support", efficiency: 93 },
+                { name: "Message Router", status: "working", task: "Channel Management", efficiency: 90 }
+            ],
+            technical: [
+                { name: "Link Checker", status: "working", task: "Broken Link Scan", efficiency: 95 },
+                { name: "Live Updater", status: "working", task: "Content Sync", efficiency: 88 },
+                { name: "Code Guardian", status: "idle", task: "Security Scan", efficiency: 92 }
+            ],
+            liquid: [
+                { name: "Liquid Soul Prime", status: "working", task: "Flow Optimization", efficiency: 97 },
+                { name: "Adaptability Engine", status: "working", task: "Dynamic Scaling", efficiency: 91 }
+            ],
+            command: [
+                { name: "Bot Commander", status: "working", task: "Operation Oversight", efficiency: 99 },
+                { name: "Inter-Bot Coordinator", status: "working", task: "Soul Synchronization", efficiency: 94 }
+            ]
+        };
+
+        // Initialize Soul Directory
+        function populateSoulDirectory() {
+            const directory = document.getElementById('soul-directory');
+            directory.innerHTML = '';
+            
+            let totalSouls = 0;
+            Object.values(souls).forEach(district => totalSouls += district.length);
+            
+            // Show top 8 souls
+            const allSouls = [];
+            Object.entries(souls).forEach(([district, soulList]) => {
+                soulList.forEach(soul => allSouls.push({...soul, district}));
+            });
+            
+            allSouls.sort((a, b) => b.efficiency - a.efficiency).slice(0, 8).forEach(soul => {
+                const soulElement = document.createElement('div');
+                soulElement.className = 'soul-item';
+                soulElement.innerHTML = `
+                    <div>
+                        <strong>${soul.name}</strong><br>
+                        <small>${soul.task}</small>
+                    </div>
+                    <div class="soul-status ${soul.status}"></div>
+                `;
+                soulElement.onclick = () => showSoulDetails(soul);
+                directory.appendChild(soulElement);
+            });
+            
+            document.getElementById('active-souls').textContent = `${totalSouls} Souls Active`;
+        }
+
+        // District Click Handlers
+        document.querySelectorAll('.soul-district').forEach(district => {
+            district.addEventListener('click', () => {
+                const districtName = district.dataset.district;
+                showDistrictDetails(districtName);
+            });
+        });
+
+        function showDistrictDetails(districtName) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            const districtSouls = souls[districtName] || [];
+            const districtNames = {
+                seo: "SEO Army District",
+                graphics: "Graphics Quarter", 
+                communication: "Communication Zone",
+                technical: "Technical Sector",
+                liquid: "Liquid Gardens",
+                command: "Command Center"
+            };
+            
+            title.textContent = districtNames[districtName];
+            
+            let html = `<div style="margin-bottom: 20px;">
+                <strong>Active Souls: ${districtSouls.length}</strong><br>
+                <small>District Status: Operational</small>
+            </div>`;
+            
+            districtSouls.forEach(soul => {
+                html += `
+                    <div class="soul-item" style="margin-bottom: 10px;">
+                        <div>
+                            <strong>${soul.name}</strong><br>
+                            <small>${soul.task} - ${soul.efficiency}% efficiency</small>
+                        </div>
+                        <div class="soul-status ${soul.status}"></div>
+                    </div>
+                `;
+            });
+            
+            body.innerHTML = html;
+            modal.style.display = 'block';
+        }
+
+        function showSoulDetails(soul) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            title.textContent = soul.name;
+            body.innerHTML = `
+                <div style="margin-bottom: 15px;">
+                    <strong>Current Task:</strong> ${soul.task}<br>
+                    <strong>Status:</strong> <span style="color: var(--plt-cyan); text-transform: capitalize;">${soul.status}</span><br>
+                    <strong>Efficiency:</strong> ${soul.efficiency}%<br>
+                    <strong>District:</strong> ${soul.district.toUpperCase()}
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                    <strong>Performance Metrics:</strong><br>
+                    Tasks Completed Today: ${Math.floor(Math.random() * 20) + 10}<br>
+                    Uptime: ${Math.floor(Math.random() * 12) + 12} hours<br>
+                    Energy Level: ${Math.floor(Math.random() * 30) + 70}%
+                </div>
+                <button class="control-btn" style="margin-top: 15px;" onclick="reassignSoul('${soul.name}')">Reassign Soul</button>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function spawnSoul() {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            title.textContent = "🌟 Soul Spawning Center";
+            body.innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🔮</div>
+                    <strong>Choose Soul Type to Deploy:</strong>
+                </div>
+                <button class="control-btn" onclick="deployNewSoul('seo')">Deploy SEO Soul</button>
+                <button class="control-btn" onclick="deployNewSoul('graphics')">Deploy Graphics Soul</button>
+                <button class="control-btn" onclick="deployNewSoul('technical')">Deploy Technical Soul</button>
+                <button class="control-btn" onclick="deployNewSoul('communication')">Deploy Communication Soul</button>
+                <div style="margin-top: 15px; text-align: center; color: var(--plt-gold);">
+                    <small>⚡ Energy Cost: 500 units per soul</small>
+                </div>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function deployNewSoul(type) {
+            // Simulate soul deployment
+            alert(`🌟 New ${type.toUpperCase()} Soul deployed successfully! Welcome to Pyramid City!`);
+            closeModal();
+            // In a real implementation, this would add to the souls data structure
+        }
+
+        function openCommunicationHub() {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            title.textContent = "📡 Communication Hub";
+            body.innerHTML = `
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <strong>📢 Latest Soul Communications:</strong><br><br>
+                    <div style="color: var(--plt-cyan); margin-bottom: 8px;">
+                        [12:14] SEO Captain Alpha: Keyword research complete. 47 new targets identified.
+                    </div>
+                    <div style="color: var(--plt-gold); margin-bottom: 8px;">
+                        [12:13] Bot Commander: All districts reporting nominal status.
+                    </div>
+                    <div style="color: #FF69B4; margin-bottom: 8px;">
+                        [12:12] Graphics Master: Logo variations ready for review.
+                    </div>
+                </div>
+                <textarea placeholder="Send message to all souls..." style="width: 100%; height: 80px; background: rgba(0,0,0,0.5); color: white; border: 1px solid var(--plt-gold); border-radius: 8px; padding: 10px; resize: vertical;"></textarea>
+                <button class="control-btn" style="margin-top: 10px;">Broadcast Message</button>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function viewPerformance() {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            title.textContent = "📊 Performance Dashboard";
+            body.innerHTML = `
+                <div class="stats-grid" style="margin-bottom: 20px;">
+                    <div class="stat-item">
+                        <div class="stat-value">2,847</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">97.3%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">23.4h</div>
+                        <div class="stat-label">Avg Response</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">156K</div>
+                        <div class="stat-label">Energy Saved</div>
+                    </div>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                    <strong>🏆 Top Performers This Week:</strong><br><br>
+                    1. Bot Commander - 99.2% efficiency<br>
+                    2. Liquid Soul Prime - 97.1% efficiency<br>
+                    3. Link Checker - 95.8% efficiency<br>
+                    4. SEO Captain Alpha - 94.3% efficiency<br>
+                    5. Live Comm Soul - 93.7% efficiency
+                </div>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function soulArchive() {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const body = document.getElementById('modal-body');
+            
+            title.textContent = "📜 Soul Archive";
+            body.innerHTML = `
+                <div style="margin-bottom: 20px; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🏛️</div>
+                    <strong>Hall of Achievements</strong>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                    <strong>🌟 Legendary Missions Completed:</strong><br><br>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Project Genesis</strong> - Initial soul deployment<br>
+                        <small>Completed by: Bot Commander | Date: 2026-03-01</small>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>The Great SEO Campaign</strong> - 10,000 keywords optimized<br>
+                        <small>Completed by: SEO Army | Date: 2026-03-10</small>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Visual Harmony Initiative</strong> - Brand redesign<br>
+                        <small>Completed by: Graphics Soul | Date: 2026-03-12</small>
+                    </div>
+                </div>
+                <button class="control-btn" style="margin-top: 15px;">View Full Archive</button>
+            `;
+            modal.style.display = 'block';
+        }
+
+        function reassignSoul(soulName) {
+            alert(`⚡ ${soulName} has been reassigned to priority tasks. Energy redistributed.`);
+            closeModal();
+        }
+
+        // Initialize the interface
+        populateSoulDirectory();
+
+        // Add some dynamic behavior
+        setInterval(() => {
+            // Randomly update soul statuses
+            Object.values(souls).forEach(district => {
+                district.forEach(soul => {
+                    if (Math.random() < 0.1) { // 10% chance to change status
+                        const statuses = ['working', 'idle'];
+                        soul.status = statuses[Math.floor(Math.random() * statuses.length)];
+                    }
+                });
+            });
+            populateSoulDirectory();
+        }, 10000); // Update every 10 seconds
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

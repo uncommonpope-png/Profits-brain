@@ -626,7 +626,7 @@
                 // In a real implementation, this would fetch from your actual souls.json
                 const soulData = [
                     { num: 1, name: "OpenAI API (GPT)", emoji: "🧠", role: "Content Writer & Ad Copywriter", status: "active", 
-                      api_url: "https://api.openai.com/v1/chat/completions", 
+                      api_url: "http://localhost:11434/api/generate", 
                       free_tier: "Free $5 credit on signup; GPT-3.5-turbo extremely cheap (~$0.002/1K tokens)",
                       best_use: "Writing book descriptions, blog posts, email sequences, ad copy, and sales pages for PLT Press",
                       category: "content", lastUsed: Date.now() - 300000, callsToday: 47 },
@@ -650,7 +650,7 @@
                       category: "creative", lastUsed: Date.now() - 60000, callsToday: 8 },
 
                     { num: 5, name: "Groq API", emoji: "⚡", role: "Speed Writer & Real-Time Processor", status: "active",
-                      api_url: "https://api.groq.com/openai/v1/chat/completions",
+                      api_url: "http://localhost:11434/api/generate",
                       free_tier: "Free tier: 30 req/min on Llama 3 70B, 30K tokens/min",
                       best_use: "Rapid content drafting, real-time chatbot responses, and bulk text processing",
                       category: "content", lastUsed: Date.now() - 180000, callsToday: 34 }

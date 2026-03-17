@@ -1,0 +1,22 @@
+{
+  "initialized": "2026-03-15T12:00:00.000Z",
+  "counters": {
+    "page_views": 1557,
+    "total_words": 52215,
+    "revenue_cents": 643,
+    "leads_generated": 17,
+    "conversations_scored": 7,
+    "agent_actions": 602,
+    "git_commits": 60,
+    "seo_impressions": 2498,
+    "link_clicks": 82,
+    "uptime_seconds": 1530
+  },
+  "rates": {
+    "views_per_minute": 13.177619973951693,
+    "words_per_hour": 5731.212944271092,
+    "revenue_per_hour": 0.15,
+    "actions_per_minute": 17.581424627013405
+  },
+  "last_updated": "2026-03-17T04:48:27.493Z"
+}

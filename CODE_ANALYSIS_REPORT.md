@@ -3,12 +3,13 @@
 ## 1. EXECUTIVE SUMMARY
 This repository contains a sophisticated, autonomous business engine built on the **Profit · Love · Tax (PLT)** framework. It is designed to operate as a self-sustaining revenue machine for **Craig Jones**, leveraging multi-agent AI orchestration, automated content generation, and deep-funnel optimization.
 
-## 2. SYSTEM ARCHITECTURE
-The ecosystem is organized into specialized divisions:
-- **Autonomous Core**: Orchestrated by `plt-automation-master.sh` and `live-soul-master.sh`, managing continuous background operations.
-- **Content Factory**: Automates blog, social, and email content generation using local and cloud AI.
-- **SEO Army**: A massive technical and content-based structure designed to dominate search rankings for PLT-related keywords.
-- **Visual Intelligence**: Cyberpunk-themed dashboards (`pyramid-city.html`, `revenue-dashboard.html`) provide real-time visibility into the system's "Soul" and financial health.
+## 2. SYSTEM ARCHITECTURE (ONE LIVING SYSTEM)
+The ecosystem has been unified from fragmented scripts into **One Living System**. Every component is bound by the PLT Trinity Engine:
+
+- **The Command Brain**: Orchestrated by `plt-automation-master.sh` and `live-soul-master.sh`. It manages the background "heartbeat" and ensures 24/7 uptime for all sub-agents.
+- **The Content Body**: The **Content Factory** and **SEO Army** function as the system's voice, mass-producing PLT doctrine across the `web-ecosystem/` (Blog, Store, and AI Tools Hub).
+- **The Soul Economy**: A decentralized workforce of AI agents (Souls) that perform research, code, and outreach. This economy is designed to minimize "Tax" (cost) while maximizing "Profit" and "Love" (audience capital).
+- **The Visual Nervous System**: Cyberpunk-themed dashboards (`pyramid-city.html`, `revenue-dashboard.html`) provide real-time visibility into the system's health, metrics, and "Soul" status.
 
 ## 3. COMPONENT ANALYSIS
 

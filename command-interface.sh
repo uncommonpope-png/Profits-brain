@@ -3,7 +3,7 @@
 # Allows dashboard to send commands to bots without requiring Profit API
 
 PORT=8081
-COMMAND_QUEUE="$HOME/.openclaw/workspace/command-queue.txt"
+COMMAND_QUEUE="/app/command-queue.txt"
 
 echo "🌐 COMMAND INTERFACE ACTIVATED - Dashboard Bot Control"
 echo "Started: $(date) | Port: $PORT | PID: $$"
@@ -33,7 +33,7 @@ while true; do
         cat "$COMMAND_QUEUE"
         
         # Bot Commander will process these commands
-        echo "[$(date)] Dashboard commands queued for processing" >> ~/.openclaw/workspace/command-interface.log
+        echo "[$(date)] Dashboard commands queued for processing" >> /app/command-interface.log
     fi
     
     sleep 2

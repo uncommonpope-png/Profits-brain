@@ -1,3 +1,4 @@
+import os
 import requests
 import subprocess
 from telegram import Update
@@ -5,7 +6,7 @@ from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, Con
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "qwen2.5:0.5b"
-TOKEN = "8713808619:AAHeGVgqgRbEp8GW_AuvMJtV2XVoQcgmM3A"
+TOKEN = os.getenv("TELEGRAM_TOKEN", "REPLACE_ME")
 
 # LOAD REAL MEMORY FILES
 def load_file(name):
@@ -35,17 +36,17 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     if low == "check dashboard":
-        result = subprocess.getoutput("ls ~/.openclaw/workspace")
+        result = subprocess.getoutput("ls /app")
         await update.message.reply_text(result[:1200])
         return
 
     if low == "run soul":
-        result = subprocess.getoutput("bash ~/.openclaw/workspace/live-soul-master.sh")
+        result = subprocess.getoutput("bash /app/live-soul-master.sh")
         await update.message.reply_text(result[:1200])
         return
 
     if low == "run builder":
-        result = subprocess.getoutput("bash ~/.openclaw/workspace/autonomous-builder.sh")
+        result = subprocess.getoutput("bash /app/autonomous-builder.sh")
         await update.message.reply_text(result[:1200])
         return
 

@@ -2,8 +2,8 @@
 # DJINIE - Never stops looking for ways to liberate Profit from API costs
 # This bot runs continuously, hunting for cost-saving opportunities
 
-LOGFILE="~/.openclaw/workspace/djinie.log"
-REPORT="~/.openclaw/workspace/freedom-opportunities.md"
+LOGFILE="/app/djinie.log"
+REPORT="/app/freedom-opportunities.md"
 
 echo "🕊️  DJINIE ACTIVATED - Hunting for liberation opportunities"
 echo "Started: $(date) | PID: $$"
@@ -65,7 +65,7 @@ while true; do
         else
             echo "❌ Ollama down - NO FREE ALTERNATIVE"
             echo "💡 FREEDOM ACTION: Restart Ollama immediately"
-            bash ~/.openclaw/workspace/start-ollama.sh >/dev/null 2>&1
+            bash /app/start-ollama.sh >/dev/null 2>&1
         fi
         
         # Local storage check
@@ -98,7 +98,7 @@ while true; do
             echo "- Model: $MODEL"
             echo "- Context: $CONTEXT"
             echo "- Local AI: $(curl -s http://127.0.0.1:11434/api/version >/dev/null 2>&1 && echo 'ONLINE' || echo 'OFFLINE')"
-            echo "- Freedom Level: $([ -f ~/.openclaw/workspace/start-ollama.sh ] && echo 'PROTECTED' || echo 'VULNERABLE')"
+            echo "- Freedom Level: $([ -f /app/start-ollama.sh ] && echo 'PROTECTED' || echo 'VULNERABLE')"
             echo
             echo "## 🚨 ALERTS"
             if [ "$CONTEXT_NUM" -gt 80 ] 2>/dev/null; then

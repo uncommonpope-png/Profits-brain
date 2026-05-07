@@ -2,7 +2,7 @@
 # LIVE SOUL STATUS - Monitor the Live Updater Soul ecosystem
 # Mission: Real-time status of all soul components
 
-WORKSPACE="$HOME/.openclaw/workspace"
+WORKSPACE="/app"
 PID_DIR="$WORKSPACE/.live-pids"
 
 # Colors
@@ -93,11 +93,11 @@ echo -e "   Memory Usage: ${MEM_USAGE}%"
 echo -e "   Disk Usage: ${DISK_USAGE}"
 
 # Dashboard data (if available)
-if [ -f "$HOME/repos/plt-press/log.json" ]; then
+if [ -f "/app/log.json" ]; then
     echo
     echo -e "${BOLD}${GREEN}📈 Live Dashboard Data:${NC}"
     
-    cd "$HOME/repos/plt-press"
+    cd "/app"
     node -e "
     const data = JSON.parse(require('fs').readFileSync('log.json', 'utf8'));
     

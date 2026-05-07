@@ -2,9 +2,9 @@
 # BOT COMMANDER - Direct bot control system using local AI only
 # Allows dashboard commands without requiring Profit API access
 
-COMMANDER_LOG="$HOME/.openclaw/workspace/bot-commander.log"
-COMMAND_QUEUE="$HOME/.openclaw/workspace/command-queue.txt"
-DASHBOARD_PATH="/data/data/com.termux/files/home/repos/plt-press"
+COMMANDER_LOG="/app/bot-commander.log"
+COMMAND_QUEUE="/app/command-queue.txt"
+DASHBOARD_PATH="/app"
 
 echo "🎮 BOT COMMANDER ACTIVATED - Local Bot Control System"
 echo "Started: $(date) | PID: $$ | Mission: Command All Bots Locally"
@@ -27,11 +27,11 @@ while true; do
                     case "$command" in
                         "START_ALL_BOTS")
                             echo "🔄 Starting all bots..."
-                            pgrep -f "autonomous-builder.sh" || nohup bash ~/.openclaw/workspace/autonomous-builder.sh > /dev/null 2>&1 &
-                            pgrep -f "djinie.sh" || nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
-                            pgrep -f "deerg-bot.sh" || nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
-                            pgrep -f "doctor-buht-buht.sh" || nohup bash ~/.openclaw/workspace/doctor-buht-buht.sh > /dev/null 2>&1 &
-                            pgrep -f "library-updater.sh" || nohup bash ~/.openclaw/workspace/library-updater.sh > /dev/null 2>&1 &
+                            pgrep -f "autonomous-builder.sh" || nohup bash /app/autonomous-builder.sh > /dev/null 2>&1 &
+                            pgrep -f "djinie.sh" || nohup bash /app/djinie.sh > /dev/null 2>&1 &
+                            pgrep -f "deerg-bot.sh" || nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
+                            pgrep -f "doctor-buht-buht.sh" || nohup bash /app/doctor-buht-buht.sh > /dev/null 2>&1 &
+                            pgrep -f "library-updater.sh" || nohup bash /app/library-updater.sh > /dev/null 2>&1 &
                             echo "✅ All bots started"
                             ;;
                         "STOP_ALL_BOTS")
@@ -55,17 +55,17 @@ while true; do
                         "ANALYZE_NOW")
                             echo "🔬 Triggering immediate PLT analysis..."
                             # Trigger Doctor Buht Buht analysis
-                            echo "ANALYZE_REQUEST" > ~/.openclaw/workspace/doctor-commands.txt
+                            echo "ANALYZE_REQUEST" > /app/doctor-commands.txt
                             ;;
                         "EXPAND_UNIVERSE")
                             echo "🌌 Triggering universe expansion..."
                             # Signal Deerg Bot to create new universes
-                            echo "EXPAND_REQUEST" > ~/.openclaw/workspace/deerg-commands.txt
+                            echo "EXPAND_REQUEST" > /app/deerg-commands.txt
                             ;;
                         "OPTIMIZE_FREEDOM")
                             echo "🧞‍♂️ Triggering freedom optimization..."
                             # Signal Djinie to run optimization
-                            echo "OPTIMIZE_REQUEST" > ~/.openclaw/workspace/djinie-commands.txt
+                            echo "OPTIMIZE_REQUEST" > /app/djinie-commands.txt
                             ;;
                         "STATUS_ALL")
                             echo "📊 Generating status report..."
@@ -114,7 +114,7 @@ while true; do
         echo "📡 Checking inter-bot communication..."
         
         # Check for bot-to-bot messages
-        for bot_file in ~/.openclaw/workspace/*-commands.txt; do
+        for bot_file in /app/*-commands.txt; do
             if [ -f "$bot_file" ] && [ -s "$bot_file" ]; then
                 echo "📨 Processing bot communication: $(basename "$bot_file")"
                 # Bots can read each other's command files

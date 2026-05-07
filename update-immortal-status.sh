@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update dashboard with immortal status
 
-cd /data/data/com.termux/files/home/repos/plt-press
+cd /app
 
 # Create updated log.json with immortal status
 cat > log_update.json << 'EOF'

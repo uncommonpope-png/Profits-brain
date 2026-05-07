@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
 # Auto-Fix Links - Attempts to repair broken links automatically
 # Focus on Stripe payment links and common internal link issues

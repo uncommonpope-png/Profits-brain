@@ -1,9 +1,9 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
 # Link Daemon - Continuous monitoring every 15 minutes
 # Runs in background to monitor PLT ecosystem links
 
-WORKSPACE_DIR="/data/data/com.termux/files/home/.openclaw/workspace"
+WORKSPACE_DIR="/app"
 PID_FILE="$WORKSPACE_DIR/link-daemon.pid"
 LOG_FILE="$WORKSPACE_DIR/link-reports/daemon.log"
 

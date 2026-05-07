@@ -2,8 +2,8 @@
 # DEERG BOT - Dashboard Universe Builder
 # Creates windows, universes, clickable worlds, and expands the dashboard ecosystem
 
-LOGFILE="~/.openclaw/workspace/deerg-bot.log"
-DASHBOARD_PATH="/data/data/com.termux/files/home/repos/plt-press"
+LOGFILE="/app/deerg-bot.log"
+DASHBOARD_PATH="/app"
 
 echo "🏗️  DEERG BOT ACTIVATED - Building Dashboard Universe"
 echo "Started: $(date) | PID: $$"

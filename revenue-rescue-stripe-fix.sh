@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # REVENUE RESCUE: Fix Broken Stripe Payment Links
 # This script replaces broken Stripe links with working $49 bundle link
 

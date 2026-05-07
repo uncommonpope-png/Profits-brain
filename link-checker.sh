@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
 # Link Checker Soul - Comprehensive Link Validation System
 # Scans all HTML files for broken links and generates health reports

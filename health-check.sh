@@ -1,7 +1,7 @@
 #!/bin/bash
 # HEALTH CHECK - Ensure all autonomous systems stay online
 
-LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
+LOG_FILE="/app/health-check.log"
 
 {
     echo "[$(date)] 🏥 HEALTH CHECK"
@@ -11,7 +11,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Ollama: ONLINE"
     else
         echo "🚨 Ollama: OFFLINE - Restarting..."
-        bash ~/.openclaw/workspace/start-ollama.sh
+        bash /app/start-ollama.sh
     fi
     
     # Check autonomous builder
@@ -19,7 +19,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Autonomous Builder: RUNNING"
     else
         echo "🚨 Autonomous Builder: STOPPED - Restarting..."
-        nohup bash ~/.openclaw/workspace/autonomous-builder.sh > /dev/null 2>&1 &
+        nohup bash /app/autonomous-builder.sh > /dev/null 2>&1 &
     fi
     
     # Check Djinie
@@ -27,7 +27,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Djinie: RUNNING"
     else
         echo "🚨 Djinie: STOPPED - Restarting..."
-        nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
+        nohup bash /app/djinie.sh > /dev/null 2>&1 &
     fi
     
     # Check Deerg Bot
@@ -35,7 +35,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Deerg Bot: RUNNING"
     else
         echo "🚨 Deerg Bot: STOPPED - Restarting..."
-        nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
+        nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
     fi
     
     echo "[$(date)] ✅ Health check complete"

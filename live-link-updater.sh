@@ -2,11 +2,11 @@
 # LIVE LINK UPDATER - Instantly updates links directory with new content
 # Mission: Detect new content and add clickable links immediately
 
-LINK_LOG="$HOME/.openclaw/workspace/live-link-updater.log"
-PLT_PATH="/data/data/com.termux/files/home/repos/plt-press"
-BASE_PATH="/data/data/com.termux/files/home/repos"
+LINK_LOG="/app/live-link-updater.log"
+PLT_PATH="/app"
+BASE_PATH="/app/web-ecosystem"
 LINKS_FILE="$PLT_PATH/live-links.json"
-SEEN_FILES="$HOME/.openclaw/workspace/.seen-files.txt"
+SEEN_FILES="/app/.seen-files.txt"
 
 # Colors
 GREEN='\033[0;32m'

@@ -16,7 +16,7 @@ class LinkCheckerSoul {
     constructor() {
         this.name = "Link Checker Soul";
         this.emoji = "🔗";
-        this.workspace = process.env.HOME + '/.openclaw/workspace';
+        this.workspace = '/app';
         this.logFile = path.join(this.workspace, 'link-checker-soul.log');
         this.reportFile = path.join(this.workspace, 'link-health-report.json');
         this.brokenLinksFile = path.join(this.workspace, 'broken-links.json');

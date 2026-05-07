@@ -1,8 +1,8 @@
 #!/bin/bash
 # LIBRARY UPDATER - Discovers and catalogs all ecosystem pages with clickable links
 
-LIBRARY_LOG="$HOME/.openclaw/workspace/library-updater.log"
-BASE_PATH="/data/data/com.termux/files/home/repos"
+LIBRARY_LOG="/app/library-updater.log"
+BASE_PATH="/app/web-ecosystem"
 
 echo "📚 LIBRARY UPDATER ACTIVATED - Cataloging Ecosystem"
 echo "Started: $(date) | PID: $$ | Mission: Discover All Pages"

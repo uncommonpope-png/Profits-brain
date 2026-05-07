@@ -2,11 +2,11 @@
 # LIVE UPDATER SOUL - Makes the ecosystem feel ALIVE
 # Mission: Constant updates, real-time changes, never stops
 
-UPDATER_LOG="$HOME/.openclaw/workspace/live-updater.log"
-PLT_PATH="/data/data/com.termux/files/home/repos/plt-press"
-BASE_PATH="/data/data/com.termux/files/home/repos"
-NOTIFICATION_LOG="$HOME/.openclaw/workspace/live-notifications.log"
-HEARTBEAT_FILE="$HOME/.openclaw/workspace/.live-updater-heartbeat"
+UPDATER_LOG="/app/live-updater.log"
+PLT_PATH="/app"
+BASE_PATH="/app/web-ecosystem"
+NOTIFICATION_LOG="/app/live-notifications.log"
+HEARTBEAT_FILE="/app/.live-updater-heartbeat"
 
 # Colors for alive feeling
 RED='\033[0;31m'

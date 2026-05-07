@@ -3,7 +3,7 @@
 # PROFIT · LOVE · TAX automated business systems
 
 LOG_FILE="plt-automation.log"
-AUTOMATION_DIR="/data/data/com.termux/files/home/.openclaw/workspace"
+AUTOMATION_DIR="/app"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"

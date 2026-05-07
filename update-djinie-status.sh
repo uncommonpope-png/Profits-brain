@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update dashboard with current freedom opportunities
 
-cd /data/data/com.termux/files/home/repos/plt-press
+cd /app
 
 # Get current freedom status
 OLLAMA_STATUS=$(curl -s --max-time 3 http://127.0.0.1:11434/api/version >/dev/null 2>&1 && echo "ONLINE" || echo "OFFLINE")

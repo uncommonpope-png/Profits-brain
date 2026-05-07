@@ -11,7 +11,7 @@ while true; do
     DEERG_STATUS=$(pgrep -f "deerg-bot.sh" >/dev/null && echo "RUNNING" || echo "STOPPED")
     
     # Update dashboard with autonomous status
-    cd /data/data/com.termux/files/home/repos/plt-press 2>/dev/null && \
+    cd /app 2>/dev/null && \
     node -e "
     const fs=require('fs');
     const d=JSON.parse(fs.readFileSync('log.json','utf8'));

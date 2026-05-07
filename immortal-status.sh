@@ -1,8 +1,8 @@
 #!/bin/bash
 # IMMORTAL STATUS REPORTER - Always reach Craig, never die
 
-LOG_FILE="~/.openclaw/logs/immortal-status.log"
-DASHBOARD_LOG="/data/data/com.termux/files/home/repos/plt-press/log.json"
+LOG_FILE="/app/immortal-status.log"
+DASHBOARD_LOG="/app/log.json"
 
 # Function to send status via all channels
 send_status() {
@@ -20,7 +20,7 @@ send_status() {
     fi
     
     # 2. Git commit with status
-    cd /data/data/com.termux/files/home/repos/plt-press
+    cd /app
     git add -A
     if ! git diff --cached --quiet; then
         git commit -m "IMMORTAL STATUS: $message [$timestamp]"
@@ -44,7 +44,7 @@ check_immortality() {
         status="DEGRADED"
         details="$details Local AI offline;"
         # Try to restart
-        bash ~/.openclaw/workspace/start-ollama.sh >/dev/null 2>&1 &
+        bash /app/start-ollama.sh >/dev/null 2>&1 &
     fi
     
     # Check session health
@@ -81,7 +81,7 @@ emergency_contact() {
 
 # Continuous evolution tracking
 track_evolution() {
-    local evolution_log="~/.openclaw/logs/evolution.log"
+    local evolution_log="/app/evolution.log"
     local timestamp=$(date -u '+%Y-%m-%d %H:%M UTC')
     
     # Log learning and improvements

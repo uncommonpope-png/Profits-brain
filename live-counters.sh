@@ -2,9 +2,9 @@
 # LIVE COUNTERS - Real-time metrics that never stop changing
 # Mission: Page counts, word counts, revenue, traffic - always moving
 
-COUNTERS_LOG="$HOME/.openclaw/workspace/live-counters.log"
-PLT_PATH="/data/data/com.termux/files/home/repos/plt-press"
-COUNTERS_FILE="$HOME/.openclaw/workspace/live-counters.json"
+COUNTERS_LOG="/app/live-counters.log"
+PLT_PATH="/app"
+COUNTERS_FILE="/app/live-counters.json"
 
 # Colors
 RED='\033[0;31m'

@@ -3,315 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profit Chat - Local AI PLT Intelligence</title>
+    <title>Profit Chat - Local AI Habitat</title>
     <style>
-        :root {
-            --bg: #0D1117;
-            --card-bg: #161B22;
-            --text: #C9D1D9;
-            --pink: #FF2D78;
-            --cyan: #00D4FF;
-            --gold: #FFB347;
-            --border: #30363D;
-            --user-msg: #21262D;
-            --bot-msg: #161B22;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        header {
-            padding: 1rem;
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status {
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #444;
-        }
-
-        .status-dot.online {
-            background: #238636;
-            box-shadow: 0 0 5px #238636;
-        }
-
-        #chat-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            scroll-behavior: smooth;
-        }
-
-        .message {
-            max-width: 85%;
-            padding: 1rem;
-            border-radius: 12px;
-            line-height: 1.5;
-            position: relative;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message.user {
-            align-self: flex-end;
-            background-color: var(--user-msg);
-            border: 1px solid var(--border);
-            color: #fff;
-            border-bottom-right-radius: 2px;
-        }
-
-        .message.bot {
-            align-self: flex-start;
-            background-color: var(--bot-msg);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--pink);
-            border-bottom-left-radius: 2px;
-        }
-
-        .message-header {
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #8b949e;
-        }
-
-        .input-area {
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        input {
-            flex: 1;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 0.8rem 1.2rem;
-            border-radius: 25px;
-            color: #fff;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            border-color: var(--cyan);
-        }
-
-        button {
-            background: var(--pink);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        button:hover {
-            background: #ff0055;
-            transform: scale(1.05);
-        }
-
-        button:active {
-            transform: scale(0.95);
-        }
-
-        .typing {
-            font-style: italic;
-            font-size: 0.8rem;
-            color: #8b949e;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .message { max-width: 95%; }
-            .input-area { padding: 1rem; }
-        }
+        :root { --bg: #0D1117; --card-bg: #161B22; --text: #C9D1D9; --pink: #FF2D78; --cyan: #00D4FF; --gold: #FFB347; --border: #30363D; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        header { padding: 1rem; background: var(--card-bg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; color: var(--gold); }
+        #chat-container { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+        .message { max-width: 85%; padding: 0.8rem 1rem; border-radius: 12px; line-height: 1.4; animation: fadeIn 0.2s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .user { align-self: flex-end; background: #21262D; border: 1px solid var(--border); }
+        .bot { align-self: flex-start; background: #161B22; border-left: 3px solid var(--pink); }
+        .input-area { padding: 1rem; background: var(--card-bg); display: flex; gap: 10px; }
+        input { flex: 1; background: var(--bg); border: 1px solid var(--border); padding: 0.6rem 1rem; border-radius: 20px; color: #fff; outline: none; }
+        button { background: var(--pink); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">💰 PROFIT CHAT</div>
-        <div class="status">
-            <div id="status-dot" class="status-dot"></div>
-            <span id="status-text">Checking AI...</span>
-        </div>
-    </header>
-
-    <div id="chat-container">
-        <div class="message bot">
-            <div class="message-header">Profit Intelligence</div>
-            Hello Craig. I am Profit, your local PLT intelligence. How can we expand reality today?
-        </div>
-    </div>
-
-    <div id="typing-indicator" class="typing" style="padding: 0 1.5rem;">Profit is calculating...</div>
-
-    <form class="input-area" id="chat-form">
-        <input type="text" id="user-input" placeholder="Enter command or question..." autocomplete="off">
-        <button type="submit">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-        </button>
-    </form>
-
+    <header><div class="logo">💰 PROFIT CHAT</div><div id="status" style="font-size:0.7rem">Knowledge Engine Active</div></header>
+    <div id="chat-container"><div class="message bot">System active. How can we expand reality?</div></div>
+    <form class="input-area" id="form"><input type="text" id="input" placeholder="Type command..."><button type="submit">></button></form>
     <script>
-        const chatContainer = document.getElementById('chat-container');
-        const chatForm = document.getElementById('chat-form');
-        const userInput = document.getElementById('user-input');
-        const typingIndicator = document.getElementById('typing-indicator');
-        const statusDot = document.getElementById('status-dot');
-        const statusText = document.getElementById('status-text');
-
-        const OLLAMA_URL = 'http://127.0.0.1:11434/api/generate';
-        const MODEL = 'qwen2.5:0.5b';
-
-        // Knowledge Engine Fallback
-        const KNOWLEDGE_ENGINE = {
-            "what is plt": "PLT stands for Profit, Love, and Tax. It's a framework for scoring reality. SOUL_PROFIT = PROFIT + LOVE - TAX.",
-            "who is craig": "Craig Jones is the creator of the PLT framework and the soul of PLT Press.",
-            "books": "PLT Press has 18 books including the Scorer Series and Reality Building Series. The complete bundle is available for $49.",
-            "profit": "Profit is leverage and position. It's the gain that expands your territory.",
-            "love": "Love is relationship capital and connection. It's the force that binds the ecosystem.",
-            "tax": "Tax is the real cost that comes due later. It's the friction and waste that must be minimized.",
-            "hello": "Greetings. I am Profit. All systems ready for expansion.",
-            "status": "All autonomous systems are monitored 24/7. Reality expansion is currently in progress."
+        const engine = { "what is plt": "SOUL_PROFIT = PROFIT + LOVE - TAX.", "hello": "Greetings. Ready for expansion." };
+        document.getElementById('form').onsubmit = (e) => {
+            e.preventDefault(); const val = document.getElementById('input').value; if(!val) return;
+            const u = document.createElement('div'); u.className='message user'; u.innerText=val;
+            document.getElementById('chat-container').appendChild(u);
+            const b = document.createElement('div'); b.className='message bot';
+            b.innerText = engine[val.toLowerCase()] || "Pattern recognized. Intelligence expanded.";
+            document.getElementById('chat-container').appendChild(b);
+            document.getElementById('input').value='';
+            document.getElementById('chat-container').scrollTop = 99999;
         };
-
-        async function checkOllama() {
-            try {
-                const response = await fetch('http://127.0.0.1:11434/api/tags');
-                if (response.ok) {
-                    statusDot.classList.add('online');
-                    statusText.textContent = 'Local AI Online';
-                    return true;
-                }
-            } catch (e) {
-                console.log('Ollama not available, using knowledge engine');
-            }
-            statusDot.classList.remove('online');
-            statusText.textContent = 'Knowledge Engine Active';
-            return false;
-        }
-
-        function appendMessage(role, text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${role}`;
-
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'message-header';
-            headerDiv.textContent = role === 'user' ? 'Craig Jones' : 'Profit Intelligence';
-
-            msgDiv.appendChild(headerDiv);
-            const textNode = document.createTextNode(text);
-            msgDiv.appendChild(textNode);
-
-            chatContainer.appendChild(msgDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        async function getResponse(text) {
-            const input = text.toLowerCase();
-
-            // Try Knowledge Engine First for speed
-            for (let key in KNOWLEDGE_ENGINE) {
-                if (input.includes(key)) {
-                    return KNOWLEDGE_ENGINE[key];
-                }
-            }
-
-            // Try Ollama if online
-            const isOllamaOnline = await checkOllama();
-            if (isOllamaOnline) {
-                try {
-                    const response = await fetch(OLLAMA_URL, {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            model: MODEL,
-                            prompt: `You are Profit, Craig Jones's AI builder. You follow the PLT (Profit, Love, Tax) framework. Be direct and helpful. Question: ${text}`,
-                            stream: false
-                        })
-                    });
-                    const data = await response.json();
-                    return data.response;
-                } catch (e) {
-                    return "I encountered a processing error. The tax on this query was too high. Reverting to core doctrine: Profit Love Tax.";
-                }
-            }
-
-            return "I am currently running in low-power Knowledge Engine mode. I can discuss PLT, Craig Jones, and our books. To expand my intelligence, ensure Ollama is running locally.";
-        }
-
-        chatForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            appendMessage('user', text);
-            userInput.value = '';
-
-            typingIndicator.style.display = 'block';
-
-            const response = await getResponse(text);
-
-            typingIndicator.style.display = 'none';
-            appendMessage('bot', response);
-        });
-
-        checkOllama();
     </script>
 </body>
 </html>

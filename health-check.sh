@@ -38,6 +38,22 @@ LOG_FILE="/app/health-check.log"
         nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
     fi
     
+    # PERFORMANCE MECHANICS: Count reports and update log.json
+    REPORT_COUNT=$(find /app/reports/ -name "*.md" | wc -l)
+
+    # Update log.json using node
+    node -e "
+    const fs = require('fs');
+    const logPath = '/app/log.json';
+    if (fs.existsSync(logPath)) {
+        const log = JSON.parse(fs.readFileSync(logPath, 'utf8'));
+        log.decisions_calculated = (log.decisions_calculated || 0) + $REPORT_COUNT;
+        log.updated = new Date().toISOString();
+        fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
+        console.log('📈 Log mechanics updated: ' + $REPORT_COUNT + ' reports factored.');
+    }
+    " 2>/dev/null
+
     echo "[$(date)] ✅ Health check complete"
     echo "---"
     

@@ -10,14 +10,16 @@
             --plt-dark-gold: #B8860B;
             --plt-purple: #9932CC;
             --plt-deep-purple: #4B0082;
-            --plt-cyan: #00FFFF;
+            --plt-cyan: #00D4FF;
             --plt-dark-cyan: #008B8B;
+            --plt-pink: #FF2D78;
             --bg-dark: #0a0a0a;
             --bg-darker: #050505;
             --text-light: #f0f0f0;
             --success: #10b981;
             --warning: #f59e0b;
             --error: #ef4444;
+            --glow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         * {
@@ -32,6 +34,28 @@
             font-family: 'Courier New', monospace;
             overflow-x: hidden;
             min-height: 100vh;
+            background-image:
+                linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 20px var(--plt-gold);
+            z-index: 1000;
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { top: -10%; }
+            100% { top: 110%; }
         }
 
         .container {
@@ -195,13 +219,50 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 12px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 3px solid;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
         }
+
+        .soul-item:hover {
+            background: rgba(153, 50, 204, 0.15);
+            transform: translateX(10px);
+            border-color: var(--plt-gold);
+            box-shadow: var(--glow);
+        }
+
+        /* AAA STAT BARS */
+        .stat-bars {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+        }
+
+        .stat-bar-container {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .stat-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 1s ease-out;
+        }
+
+        .fill-profit { background: var(--plt-cyan); box-shadow: 0 0 5px var(--plt-cyan); }
+        .fill-love { background: var(--plt-pink); box-shadow: 0 0 5px var(--plt-pink); }
+        .fill-tax { background: #888; }
 
         .soul-item:hover {
             background: rgba(0, 255, 255, 0.1);
@@ -623,39 +684,8 @@
         // LOAD REAL SOUL DATA
         async function loadRealSoulData() {
             try {
-                // In a real implementation, this would fetch from your actual souls.json
-                const soulData = [
-                    { num: 1, name: "OpenAI API (GPT)", emoji: "🧠", role: "Content Writer & Ad Copywriter", status: "active", 
-                      api_url: "http://localhost:11434/api/generate", 
-                      free_tier: "Free $5 credit on signup; GPT-3.5-turbo extremely cheap (~$0.002/1K tokens)",
-                      best_use: "Writing book descriptions, blog posts, email sequences, ad copy, and sales pages for PLT Press",
-                      category: "content", lastUsed: Date.now() - 300000, callsToday: 47 },
-                    
-                    { num: 2, name: "Google Gemini API", emoji: "💎", role: "Research Analyst & Summarizer", status: "active",
-                      api_url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent",
-                      free_tier: "Free tier: 60 requests/min, 1.5M tokens/day on Gemini 2.0 Flash",
-                      best_use: "Market research, competitor analysis, summarizing long documents, and content ideation",
-                      category: "research", lastUsed: Date.now() - 120000, callsToday: 23 },
-
-                    { num: 3, name: "Hugging Face Inference API", emoji: "🤗", role: "Multi-Tool AI Swiss Army Knife", status: "active",
-                      api_url: "https://api-inference.huggingface.co/models/{model_id}",
-                      free_tier: "Free tier with rate limits; access to 200K+ models including text, image, audio",
-                      best_use: "Sentiment analysis on reviews, text classification, and testing niche AI models",
-                      category: "technical", lastUsed: Date.now() - 600000, callsToday: 12 },
-
-                    { num: 4, name: "Stability AI (Stable Diffusion)", emoji: "🎨", role: "Image Generator & Cover Designer", status: "busy",
-                      api_url: "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image",
-                      free_tier: "25 free credits on signup; community models free via Hugging Face",
-                      best_use: "Generating book covers, social media graphics, blog post images, and ad creatives",
-                      category: "creative", lastUsed: Date.now() - 60000, callsToday: 8 },
-
-                    { num: 5, name: "Groq API", emoji: "⚡", role: "Speed Writer & Real-Time Processor", status: "active",
-                      api_url: "http://localhost:11434/api/generate",
-                      free_tier: "Free tier: 30 req/min on Llama 3 70B, 30K tokens/min",
-                      best_use: "Rapid content drafting, real-time chatbot responses, and bulk text processing",
-                      category: "content", lastUsed: Date.now() - 180000, callsToday: 34 }
-                ];
-
+                const response = await fetch('/app/souls.json');
+                const soulData = await response.json();
                 realSoulData = soulData;
                 updateSoulDisplay();
                 updateMetrics();
@@ -685,12 +715,19 @@
                 const lastUsedText = timeSinceUsed < 1 ? 'just now' : `${timeSinceUsed}m ago`;
 
                 soulElement.innerHTML = `
-                    <div>
-                        <strong>${soul.emoji} ${soul.name.substring(0, 20)}...</strong><br>
-                        <small>${soul.role} • Used: ${lastUsedText}</small><br>
-                        <small>Calls today: ${soul.callsToday}</small>
+                    <div style="width: 100%">
+                        <div style="display: flex; justify-content: space-between">
+                            <strong>${soul.emoji} ${soul.name.substring(0, 20)}...</strong>
+                            <span style="color: var(--plt-gold); font-size: 0.7em">LVL ${Math.floor(soul.soul_profit_level/10)}</span>
+                        </div>
+                        <small>${soul.role}</small>
+
+                        <div class="stat-bars">
+                            <div class="stat-bar-container"><div class="stat-fill fill-profit" style="width: ${soul.profit_score*10}%"></div></div>
+                            <div class="stat-bar-container"><div class="stat-fill fill-love" style="width: ${soul.love_score*10}%"></div></div>
+                            <div class="stat-bar-container"><div class="stat-fill fill-tax" style="width: ${soul.tax_cost*20}%"></div></div>
+                        </div>
                     </div>
-                    <div class="soul-status status-${soul.status}"></div>
                 `;
                 
                 soulElement.onclick = () => showRealSoulManagement(soul);

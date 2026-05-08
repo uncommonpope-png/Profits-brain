@@ -2,9 +2,9 @@
 # INTER-BOT COORDINATOR - Makes bots talk to each other using local AI
 # Enables true autonomous coordination without human or API intervention
 
-COORD_LOG="$HOME/.openclaw/workspace/inter-bot-coordinator.log"
-BOT_MESSAGES="$HOME/.openclaw/workspace/bot-messages.json"
-DASHBOARD_PATH="/data/data/com.termux/files/home/repos/plt-press"
+COORD_LOG="/app/inter-bot-coordinator.log"
+BOT_MESSAGES="/app/bot-messages.json"
+DASHBOARD_PATH="/app"
 
 echo "🤖💬 INTER-BOT COORDINATOR ACTIVATED - Bot-to-Bot Communication"
 echo "Started: $(date) | PID: $$ | Mission: Enable Bot Conversations"
@@ -44,27 +44,27 @@ while true; do
         echo "📨 Facilitating bot communication..."
         
         # Create communication files for each bot to read
-        echo "[$(date)] AUTO_BUILDER: Status=$AUTO_STATUS, Next task: Coordinate with Deerg Bot" > ~/.openclaw/workspace/bot-auto-messages.txt
-        echo "[$(date)] DJINIE: Status=$DJINIE_STATUS, Next task: Share optimization with all bots" > ~/.openclaw/workspace/bot-djinie-messages.txt
-        echo "[$(date)] DEERG_BOT: Status=$DEERG_STATUS, Next task: Create windows for new content" > ~/.openclaw/workspace/bot-deerg-messages.txt
-        echo "[$(date)] DOCTOR: Status=$DOCTOR_STATUS, Next task: Share PLT analysis with builders" > ~/.openclaw/workspace/bot-doctor-messages.txt
-        echo "[$(date)] LIBRARY: Status=$LIB_STATUS, Next task: Notify all bots of new discoveries" > ~/.openclaw/workspace/bot-library-messages.txt
+        echo "[$(date)] AUTO_BUILDER: Status=$AUTO_STATUS, Next task: Coordinate with Deerg Bot" > /app/bot-auto-messages.txt
+        echo "[$(date)] DJINIE: Status=$DJINIE_STATUS, Next task: Share optimization with all bots" > /app/bot-djinie-messages.txt
+        echo "[$(date)] DEERG_BOT: Status=$DEERG_STATUS, Next task: Create windows for new content" > /app/bot-deerg-messages.txt
+        echo "[$(date)] DOCTOR: Status=$DOCTOR_STATUS, Next task: Share PLT analysis with builders" > /app/bot-doctor-messages.txt
+        echo "[$(date)] LIBRARY: Status=$LIB_STATUS, Next task: Notify all bots of new discoveries" > /app/bot-library-messages.txt
         
         # 4. COORDINATE BASED ON BOT ACTIVITIES
         echo "🔄 Coordinating bot activities..."
         
         # If Autonomous Builder is active, notify other bots
         if [ "$AUTO_STATUS" = "RUNNING" ]; then
-            echo "BUILD_NOTIFICATION|New content being generated" >> ~/.openclaw/workspace/deerg-commands.txt
-            echo "CONTENT_ALERT|Autonomous building active" >> ~/.openclaw/workspace/doctor-commands.txt
+            echo "BUILD_NOTIFICATION|New content being generated" >> /app/deerg-commands.txt
+            echo "CONTENT_ALERT|Autonomous building active" >> /app/doctor-commands.txt
         fi
         
         # If new content exists, coordinate universe expansion
         cd "$DASHBOARD_PATH"
         RECENT_COMMITS=$(git log --since="1 hour ago" --oneline | wc -l)
         if [ "$RECENT_COMMITS" -gt 0 ]; then
-            echo "NEW_CONTENT|$RECENT_COMMITS recent commits detected" >> ~/.openclaw/workspace/deerg-commands.txt
-            echo "ANALYZE_NEW|Content changes require PLT analysis" >> ~/.openclaw/workspace/doctor-commands.txt
+            echo "NEW_CONTENT|$RECENT_COMMITS recent commits detected" >> /app/deerg-commands.txt
+            echo "ANALYZE_NEW|Content changes require PLT analysis" >> /app/doctor-commands.txt
         fi
         
         # 5. USE LOCAL AI TO GENERATE BOT CONVERSATION

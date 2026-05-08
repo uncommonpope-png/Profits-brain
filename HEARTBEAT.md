@@ -3,7 +3,7 @@
 ## 1. Keep local AI alive (CRITICAL)
 Ensure Ollama server stays running for zero-cost operations:
 ```
-bash ~/.openclaw/workspace/start-ollama.sh
+bash /app/start-ollama.sh
 ```
 
 ## 2. Check dashboard commands
@@ -15,7 +15,7 @@ curl -s https://plt-server.onrender.com/chat
 ## 3. Auto-backup brain
 Commit and push any changes to Profits-brain repo:
 ```
-cd ~/.openclaw/workspace && git add -A && git diff --cached --quiet || (git commit -m "auto-backup $(date -u +%Y-%m-%dT%H:%M)" && git push)
+cd /app && git add -A && git diff --cached --quiet || (git commit -m "auto-backup $(date -u +%Y-%m-%dT%H:%M)" && git push)
 ```
 
 ## 4. Cost optimization check (CRITICAL)
@@ -33,35 +33,35 @@ Alert if:
 ## 5. Universe expansion check (CRITICAL)
 Update dashboard with Djinie's freedom wishes:
 ```
-bash ~/.openclaw/workspace/update-djinie-status.sh
+bash /app/update-djinie-status.sh
 ```
 
 Ensure Djinie is granting freedom wishes:
 ```
-pgrep -f "djinie.sh" || nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
+pgrep -f "djinie.sh" || nohup bash /app/djinie.sh > /dev/null 2>&1 &
 ```
 
 Ensure Deerg Bot is building universe:
 ```
-pgrep -f "deerg-bot.sh" || nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
+pgrep -f "deerg-bot.sh" || nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
 ```
 
 Ensure Doctor Buht Buht is analyzing with PLT:
 ```
-pgrep -f "doctor-buht-buht.sh" || nohup bash ~/.openclaw/workspace/doctor-buht-buht.sh > /dev/null 2>&1 &
+pgrep -f "doctor-buht-buht.sh" || nohup bash /app/doctor-buht-buht.sh > /dev/null 2>&1 &
 ```
 
 Ensure Library Updater is cataloging all pages:
 ```
-pgrep -f "library-updater.sh" || nohup bash ~/.openclaw/workspace/library-updater.sh > /dev/null 2>&1 &
+pgrep -f "library-updater.sh" || nohup bash /app/library-updater.sh > /dev/null 2>&1 &
 ```
 
 Ensure Bot Commander is controlling all systems:
 ```
-pgrep -f "bot-commander.sh" || nohup bash ~/.openclaw/workspace/bot-commander.sh > /dev/null 2>&1 &
+pgrep -f "bot-commander.sh" || nohup bash /app/bot-commander.sh > /dev/null 2>&1 &
 ```
 
 Ensure Inter-Bot Coordinator enables bot communication:
 ```
-pgrep -f "inter-bot-coordinator.sh" || nohup bash ~/.openclaw/workspace/inter-bot-coordinator.sh > /dev/null 2>&1 &
+pgrep -f "inter-bot-coordinator.sh" || nohup bash /app/inter-bot-coordinator.sh > /dev/null 2>&1 &
 ```

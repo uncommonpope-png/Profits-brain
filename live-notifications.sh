@@ -2,10 +2,10 @@
 # LIVE NOTIFICATIONS - Instant alerts when things happen
 # Mission: Real-time notifications for new content, milestones, system events
 
-NOTIFICATIONS_LOG="$HOME/.openclaw/workspace/live-notifications.log"
-PLT_PATH="/data/data/com.termux/files/home/repos/plt-press"
-ALERTS_FILE="$HOME/.openclaw/workspace/live-alerts.json"
-LAST_CHECK_FILE="$HOME/.openclaw/workspace/.last-notification-check"
+NOTIFICATIONS_LOG="/app/live-notifications.log"
+PLT_PATH="/app"
+ALERTS_FILE="/app/live-alerts.json"
+LAST_CHECK_FILE="/app/.last-notification-check"
 
 # Colors
 RED='\033[0;31m'
@@ -59,8 +59,8 @@ while true; do
             ACTIVE_AGENTS=$(echo "$DASHBOARD_DATA" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin')).live_stats?.active_agents || 0)")
             
             # Check counter data if available
-            if [ -f "$HOME/.openclaw/workspace/live-counters.json" ]; then
-                COUNTER_DATA=$(cat "$HOME/.openclaw/workspace/live-counters.json")
+            if [ -f "/app/live-counters.json" ]; then
+                COUNTER_DATA=$(cat "/app/live-counters.json")
                 PAGE_VIEWS=$(echo "$COUNTER_DATA" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin')).counters.page_views || 0)")
                 LEADS=$(echo "$COUNTER_DATA" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin')).counters.leads_generated || 0)")
                 
@@ -132,10 +132,10 @@ while true; do
         fi
         
         # 4. MILESTONE NOTIFICATIONS
-        if [ -f "$HOME/.openclaw/workspace/live-counters.json" ]; then
+        if [ -f "/app/live-counters.json" ]; then
             MILESTONE_CHECK=$(node -e "
             const fs = require('fs');
-            const counters = JSON.parse(fs.readFileSync('$HOME/.openclaw/workspace/live-counters.json', 'utf8'));
+            const counters = JSON.parse(fs.readFileSync('/app/live-counters.json', 'utf8'));
             const views = counters.counters.page_views;
             const words = counters.counters.total_words;
             const actions = counters.counters.agent_actions;

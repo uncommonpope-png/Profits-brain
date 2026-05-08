@@ -2,9 +2,9 @@
 # LIVE SOUL MASTER - Orchestrates the entire Live Updater Soul ecosystem
 # Mission: Ensure ALL components run 24/7, auto-restart, never stop updating
 
-MASTER_LOG="$HOME/.openclaw/workspace/live-soul-master.log"
-PID_DIR="$HOME/.openclaw/workspace/.live-pids"
-WORKSPACE="$HOME/.openclaw/workspace"
+MASTER_LOG="/app/live-soul-master.log"
+PID_DIR="/app/.live-pids"
+WORKSPACE="/app"
 
 # Colors for dramatic effect
 RED='\033[0;31m'
@@ -149,8 +149,8 @@ while true; do
         fi
         
         # Update master status in dashboard (if available)
-        if [ -f "$HOME/repos/plt-press/log.json" ]; then
-            cd "$HOME/repos/plt-press"
+        if [ -f "/app/log.json" ]; then
+            cd "/app"
             node -e "
             const fs = require('fs');
             const data = JSON.parse(fs.readFileSync('log.json', 'utf8'));

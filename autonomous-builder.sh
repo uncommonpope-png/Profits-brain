@@ -2,8 +2,8 @@
 # AUTONOMOUS BUILDER - Keeps building even when Profit is offline
 # Runs independently, spawns agents, builds content, commits work
 
-BUILDER_LOG="$HOME/.openclaw/workspace/autonomous-builder.log"
-WORKSPACE_PATH="/data/data/com.termux/files/home/repos/plt-press"
+BUILDER_LOG="/app/autonomous-builder.log"
+WORKSPACE_PATH="/app"
 
 echo "🤖 AUTONOMOUS BUILDER ACTIVATED - Independent Operation Mode"
 echo "Started: $(date) | PID: $$ | Session: AUTONOMOUS"
@@ -97,19 +97,19 @@ while true; do
         # Restart Ollama if needed
         if ! curl -s --max-time 3 http://127.0.0.1:11434/api/version >/dev/null 2>&1; then
             echo "🚨 Ollama offline, restarting..."
-            bash ~/.openclaw/workspace/start-ollama.sh
+            bash /app/start-ollama.sh
         fi
         
         # Check Djinie
         if ! pgrep -f "djinie.sh" >/dev/null; then
             echo "🧞‍♂️ Restarting Djinie..."
-            nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
+            nohup bash /app/djinie.sh > /dev/null 2>&1 &
         fi
         
         # Check Deerg Bot
         if ! pgrep -f "deerg-bot.sh" >/dev/null; then
             echo "🏗️ Restarting Deerg Bot..."
-            nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
+            nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
         fi
         
         echo "[$(date)] ✅ Autonomous build cycle complete - next cycle in 20 minutes"

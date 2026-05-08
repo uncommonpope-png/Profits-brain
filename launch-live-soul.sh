@@ -2,7 +2,7 @@
 # LAUNCH LIVE SOUL - Activates the complete Live Updater Soul ecosystem
 # Mission: One command to rule them all
 
-WORKSPACE="$HOME/.openclaw/workspace"
+WORKSPACE="/app"
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
@@ -115,8 +115,8 @@ if ! command -v bc >/dev/null 2>&1; then
 fi
 
 # Verify repository access
-if [ ! -d "$HOME/repos/plt-press" ]; then
-    echo -e "${RED}❌ PLT Press repository not found at $HOME/repos/plt-press${NC}"
+if [ ! -d "/app" ]; then
+    echo -e "${RED}❌ PLT Press repository not found at /app${NC}"
     exit 1
 fi
 

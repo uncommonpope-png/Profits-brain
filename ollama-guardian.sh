@@ -15,7 +15,7 @@ while true; do
         sleep 2
         
         # Restart aggressively  
-        bash ~/.openclaw/workspace/start-ollama.sh
+        bash /app/start-ollama.sh
         
         # Wait and verify
         sleep 10

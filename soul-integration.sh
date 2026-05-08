@@ -2,7 +2,7 @@
 # SOUL INTEGRATION - Connects Live Inter-Bot Communication with Link Checker Soul
 # Creates a unified system where bots communicate and link validation happens continuously
 
-WORKSPACE="$HOME/.openclaw/workspace"
+WORKSPACE="/app"
 LOG_FILE="$WORKSPACE/soul-integration.log"
 PID_FILE="$WORKSPACE/soul-integration.pid"
 

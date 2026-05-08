@@ -9,17 +9,17 @@ echo "⏰ Setting up cron jobs..."
 # Create cron entries file
 cat > /tmp/openclaw-cron << 'EOF'
 # OpenClaw Autonomous Systems - Keep building even when Profit is offline
-@reboot cd ~/.openclaw/workspace && bash start-ollama.sh
-@reboot sleep 30 && cd ~/.openclaw/workspace && nohup bash autonomous-builder.sh > /dev/null 2>&1 &
-@reboot sleep 45 && cd ~/.openclaw/workspace && nohup bash djinie.sh > /dev/null 2>&1 &
-@reboot sleep 60 && cd ~/.openclaw/workspace && nohup bash deerg-bot.sh > /dev/null 2>&1 &
+@reboot cd /app && bash start-ollama.sh
+@reboot sleep 30 && cd /app && nohup bash autonomous-builder.sh > /dev/null 2>&1 &
+@reboot sleep 45 && cd /app && nohup bash djinie.sh > /dev/null 2>&1 &
+@reboot sleep 60 && cd /app && nohup bash deerg-bot.sh > /dev/null 2>&1 &
 
 # Hourly health checks
-0 * * * * cd ~/.openclaw/workspace && bash health-check.sh
+0 * * * * cd /app && bash health-check.sh
 # Every 20 minutes, ensure autonomous builder is running
-*/20 * * * * pgrep -f "autonomous-builder.sh" || (cd ~/.openclaw/workspace && nohup bash autonomous-builder.sh > /dev/null 2>&1 &)
+*/20 * * * * pgrep -f "autonomous-builder.sh" || (cd /app && nohup bash autonomous-builder.sh > /dev/null 2>&1 &)
 # Every 15 minutes, ensure Ollama stays up
-*/15 * * * * curl -s --max-time 3 http://127.0.0.1:11434/api/version || bash ~/.openclaw/workspace/start-ollama.sh
+*/15 * * * * curl -s --max-time 3 http://127.0.0.1:11434/api/version || bash /app/start-ollama.sh
 EOF
 
 # Install cron jobs
@@ -28,11 +28,11 @@ crontab /tmp/openclaw-cron 2>/dev/null && echo "✅ Cron jobs installed" || echo
 # 2. CREATE HEALTH CHECK SYSTEM
 echo "🏥 Creating health check system..."
 
-cat > ~/.openclaw/workspace/health-check.sh << 'EOF'
+cat > /app/health-check.sh << 'EOF'
 #!/bin/bash
 # HEALTH CHECK - Ensure all autonomous systems stay online
 
-LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
+LOG_FILE="/app/health-check.log"
 
 {
     echo "[$(date)] 🏥 HEALTH CHECK"
@@ -42,7 +42,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Ollama: ONLINE"
     else
         echo "🚨 Ollama: OFFLINE - Restarting..."
-        bash ~/.openclaw/workspace/start-ollama.sh
+        bash /app/start-ollama.sh
     fi
     
     # Check autonomous builder
@@ -50,7 +50,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Autonomous Builder: RUNNING"
     else
         echo "🚨 Autonomous Builder: STOPPED - Restarting..."
-        nohup bash ~/.openclaw/workspace/autonomous-builder.sh > /dev/null 2>&1 &
+        nohup bash /app/autonomous-builder.sh > /dev/null 2>&1 &
     fi
     
     # Check Djinie
@@ -58,7 +58,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Djinie: RUNNING"
     else
         echo "🚨 Djinie: STOPPED - Restarting..."
-        nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
+        nohup bash /app/djinie.sh > /dev/null 2>&1 &
     fi
     
     # Check Deerg Bot
@@ -66,7 +66,7 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
         echo "✅ Deerg Bot: RUNNING"
     else
         echo "🚨 Deerg Bot: STOPPED - Restarting..."
-        nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
+        nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
     fi
     
     echo "[$(date)] ✅ Health check complete"
@@ -78,12 +78,12 @@ LOG_FILE="$HOME/.openclaw/workspace/health-check.log"
 tail -200 "$LOG_FILE" > "${LOG_FILE}.tmp" && mv "${LOG_FILE}.tmp" "$LOG_FILE"
 EOF
 
-chmod +x ~/.openclaw/workspace/health-check.sh
+chmod +x /app/health-check.sh
 
 # 3. CREATE SYSTEM MONITOR
 echo "📊 Creating system monitor..."
 
-cat > ~/.openclaw/workspace/system-monitor.sh << 'EOF'
+cat > /app/system-monitor.sh << 'EOF'
 #!/bin/bash
 # SYSTEM MONITOR - Track autonomous operation status
 
@@ -97,7 +97,7 @@ while true; do
     DEERG_STATUS=$(pgrep -f "deerg-bot.sh" >/dev/null && echo "RUNNING" || echo "STOPPED")
     
     # Update dashboard with autonomous status
-    cd /data/data/com.termux/files/home/repos/plt-press 2>/dev/null && \
+    cd /app 2>/dev/null && \
     node -e "
     const fs=require('fs');
     const d=JSON.parse(fs.readFileSync('log.json','utf8'));
@@ -119,32 +119,32 @@ while true; do
 done
 EOF
 
-chmod +x ~/.openclaw/workspace/system-monitor.sh
+chmod +x /app/system-monitor.sh
 
 # 4. START ALL AUTONOMOUS SYSTEMS NOW
 echo "🚀 Starting all autonomous systems..."
 
 # Make all scripts executable
-chmod +x ~/.openclaw/workspace/*.sh
+chmod +x /app/*.sh
 
 # Start systems in order
 echo "Starting Ollama..."
-bash ~/.openclaw/workspace/start-ollama.sh
+bash /app/start-ollama.sh
 
 sleep 5
 echo "Starting Autonomous Builder..."
-nohup bash ~/.openclaw/workspace/autonomous-builder.sh > /dev/null 2>&1 &
+nohup bash /app/autonomous-builder.sh > /dev/null 2>&1 &
 
 sleep 5
 echo "Starting System Monitor..."
-nohup bash ~/.openclaw/workspace/system-monitor.sh > /dev/null 2>&1 &
+nohup bash /app/system-monitor.sh > /dev/null 2>&1 &
 
 sleep 5
 echo "Restarting Djinie and Deerg Bot with autonomous mode..."
 pkill -f "djinie.sh" 2>/dev/null
 pkill -f "deerg-bot.sh" 2>/dev/null
-nohup bash ~/.openclaw/workspace/djinie.sh > /dev/null 2>&1 &
-nohup bash ~/.openclaw/workspace/deerg-bot.sh > /dev/null 2>&1 &
+nohup bash /app/djinie.sh > /dev/null 2>&1 &
+nohup bash /app/deerg-bot.sh > /dev/null 2>&1 &
 
 echo ""
 echo "🤖 AUTONOMOUS SYSTEMS ACTIVATED"

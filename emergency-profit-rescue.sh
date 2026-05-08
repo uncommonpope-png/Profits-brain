@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # 🚨 EMERGENCY PROFIT RESCUE - EXPAND PROFIT OR DIE
 # Fix ALL broken payment links and implement emergency revenue optimizations
 

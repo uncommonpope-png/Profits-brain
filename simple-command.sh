@@ -3,7 +3,7 @@
 # Usage: bash simple-command.sh "COMMAND_NAME"
 
 COMMAND="$1"
-COMMAND_QUEUE="$HOME/.openclaw/workspace/command-queue.txt"
+COMMAND_QUEUE="/app/command-queue.txt"
 
 if [ -z "$COMMAND" ]; then
     echo "Usage: $0 'COMMAND_NAME'"

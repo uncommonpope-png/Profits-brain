@@ -2,8 +2,8 @@
 # DOCTOR BUHT BUHT - PLT Ecosystem Analyst
 # Analyzes entire system and scores everything with Profit · Love · Tax framework
 
-DOCTOR_LOG="$HOME/.openclaw/workspace/doctor-buht-buht.log"
-DASHBOARD_PATH="/data/data/com.termux/files/home/repos/plt-press"
+DOCTOR_LOG="/app/doctor-buht-buht.log"
+DASHBOARD_PATH="/app"
 
 echo "👨‍⚕️ DOCTOR BUHT BUHT ACTIVATED - PLT Ecosystem Analysis"
 echo "Started: $(date) | PID: $$ | Mission: Analyze & Score Everything"

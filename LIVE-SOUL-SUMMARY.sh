@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # LIVE SOUL SUMMARY - Overview of the complete Live Updater Soul system
 
 GREEN='\033[0;32m'

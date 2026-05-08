@@ -1,0 +1,23 @@
+{
+  "last_scan": "2026-05-07T17:10:42Z",
+  "opportunities": [
+    {
+      "name": "PLT Blog Collection Vol 1",
+      "source": "2 articles",
+      "type": "E-Book",
+      "status": "READY",
+      "estimated_profit": "HIGH"
+    },
+    {
+      "name": "PLT Mastery Video Series",
+      "source": "1 scripts",
+      "type": "Video Course",
+      "status": "QUEUED",
+      "estimated_profit": "MAXIMUM"
+    }
+  ],
+  "stats": {
+    "total_assets": 4,
+    "readiness_level": "OPTIMIZED"
+  }
+}

@@ -12,7 +12,7 @@ LOGFILE="/tmp/ollama-monitor.log"
         echo "[$(date)] ✓ Ollama healthy"
     else
         echo "[$(date)] 🚨 OLLAMA DOWN - RESTARTING IMMEDIATELY"
-        bash ~/.openclaw/workspace/start-ollama.sh
+        bash /app/start-ollama.sh
         
         # Verify restart
         sleep 5

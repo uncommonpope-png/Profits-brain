@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 # 🚨 EMERGENCY AFFILIATE ARMY ACTIVATION
 # Get others selling PLT books for commission IMMEDIATELY
 

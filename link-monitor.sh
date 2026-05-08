@@ -1,11 +1,11 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 
 # Link Monitor - Runs every 15 minutes via cron
 # Monitors PLT ecosystem links and auto-fixes where possible
 
 set -e
 
-WORKSPACE_DIR="/data/data/com.termux/files/home/.openclaw/workspace"
+WORKSPACE_DIR="/app"
 WEB_DIR="$WORKSPACE_DIR/web-ecosystem"
 REPORT_DIR="$WORKSPACE_DIR/link-reports"
 LOG_FILE="$REPORT_DIR/monitor-$(date +%Y%m%d).log"

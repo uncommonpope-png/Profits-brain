@@ -3,8 +3,8 @@
 # Usage: bash restore.sh <github_token>
 
 TOKEN="${1:?Usage: bash restore.sh <github_pat_token>}"
-WORKSPACE="$HOME/.openclaw/workspace"
-REPOS="$HOME/repos"
+WORKSPACE="/app"
+REPOS="/app/web-ecosystem"
 
 echo "🧠 Restoring Profit's brain..."
 

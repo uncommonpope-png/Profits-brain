@@ -2,88 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pyramid Sim - WorldBox Ultra</title>
+    <title>PLT Pyramid Sim - RTS Edition</title>
     <style>
-        body { background: #050505; color: #eee; font-family: monospace; overflow: hidden; margin: 0; }
-        #canvas { width: 100vw; height: 100vh; image-rendering: pixelated; filter: saturate(1.4) brightness(1.2) contrast(1.1); }
-        #ui { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.85); border: 2px solid #FFD700; padding: 15px; pointer-events: none; border-radius: 8px; box-shadow: 0 0 20px rgba(255,215,0,0.2); }
-        .metric { font-size: 1.1rem; margin-bottom: 5px; }
-        .gold { color: #FFD700; font-weight: bold; }
-        #log { position: absolute; bottom: 15px; right: 15px; width: 300px; height: 120px; background: rgba(0,0,0,0.7); border: 1px solid #333; padding: 10px; font-size: 0.75rem; overflow-y: hidden; }
+        body { background: #000; color: #f0e68c; font-family: 'Georgia', serif; overflow: hidden; margin: 0; }
+        #canvas { width: 100vw; height: calc(100vh - 180px); cursor: crosshair; image-rendering: pixelated; }
+
+        /* RTS HUD STYLES */
+        #rts-hud {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: #2c2c2c;
+            border-top: 6px solid #1a1a1a;
+            display: flex;
+            padding: 10px;
+            box-sizing: border-box;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png'); /* Stone-like texture */
+            box-shadow: 0 -10px 20px rgba(0,0,0,0.5);
+        }
+
+        .hud-panel {
+            border: 4px solid #5d4037; /* Wood border */
+            background: #3e2723;
+            margin: 0 5px;
+            padding: 10px;
+            box-shadow: inset 0 0 15px #000;
+            position: relative;
+        }
+
+        #mini-map-panel { width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+        #mini-map { width: 140px; height: 140px; background: #0a2f0a; border: 2px solid #1a1a1a; position: relative; }
+
+        #unit-info-panel { flex-grow: 1; display: flex; gap: 20px; }
+        .unit-portrait { width: 100px; height: 120px; background: #1a1a1a; border: 2px solid #8d6e63; }
+        .unit-stats { flex-grow: 1; }
+        .unit-name { font-size: 1.4rem; color: #FFD700; text-shadow: 1px 1px #000; margin-bottom: 5px; border-bottom: 1px solid #5d4037; }
+
+        #command-grid { width: 240px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; align-content: start; }
+        .cmd-btn {
+            background: #5d4037;
+            border: 2px solid #8d6e63;
+            aspect-ratio: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: #ddd;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.1s;
+            text-align: center;
+        }
+        .cmd-btn:hover { background: #795548; color: #fff; border-color: #d7ccc8; }
+        .cmd-btn:active { transform: translateY(2px); background: #3e2723; }
+
+        #top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: rgba(0,0,0,0.7);
+            border-bottom: 2px solid #5d4037;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        .resource { margin-right: 30px; display: flex; align-items: center; }
+        .resource span { color: #FFD700; font-weight: bold; margin-left: 5px; }
+
+        #log {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            width: 250px;
+            max-height: 200px;
+            pointer-events: none;
+            font-size: 0.8rem;
+            color: #fff;
+            text-shadow: 1px 1px #000;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
-    <div id="ui">
-        <div class="metric">REALITY SCORE: <span id="sp" class="gold">0</span></div>
-        <div class="metric">ACTIVE AGENTS: <span class="gold">10</span></div>
-        <div style="font-size: 0.8rem; opacity: 0.8;">HABITAT: ULTRA RENDER ACTIVE</div>
+    <div id="top-bar">
+        <div class="resource">GOLD: <span id="res-gold">1450</span></div>
+        <div class="resource">WOOD: <span id="res-wood">820</span></div>
+        <div class="resource">SOULS: <span id="res-souls">10/50</span></div>
+        <div class="resource" style="margin-left: auto;">REALITY STABILITY: <span id="res-stability" style="color:#00ff00">98%</span></div>
     </div>
-    <canvas id="canvas"></canvas>
+
     <div id="log"></div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="rts-hud">
+        <div id="mini-map-panel" class="hud-panel">
+            <div id="mini-map">
+                <!-- Mini map dots rendered by JS -->
+            </div>
+        </div>
+
+        <div id="unit-info-panel" class="hud-panel">
+            <div class="unit-portrait" id="portrait"></div>
+            <div class="unit-stats">
+                <div class="unit-name" id="selected-name">Bot-Commander</div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">Status: <span id="selected-status" style="color:#00ff00">Active</span></div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">Task: <span id="selected-task">Optimizing Profits</span></div>
+                <div style="margin-top: 10px; height: 12px; width: 100%; background: #1a1a1a; border: 1px solid #5d4037; box-shadow: inset 0 0 5px #000;">
+                    <div id="health-bar" style="width: 100%; height: 100%; background: linear-gradient(to bottom, #2ecc71, #27ae60); transition: width 0.5s;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="command-grid" class="hud-panel">
+            <div class="cmd-btn">Move</div>
+            <div class="cmd-btn">Stop</div>
+            <div class="cmd-btn" style="color:#aaa">Attack</div>
+            <div class="cmd-btn">Guard</div>
+            <div class="cmd-btn">Build</div>
+            <div class="cmd-btn">Harvest</div>
+            <div class="cmd-btn">Repair</div>
+            <div class="cmd-btn">Scale</div>
+            <div class="cmd-btn" style="color:#ffcc00">Soul Sync</div>
+            <div class="cmd-btn">Reset</div>
+            <div class="cmd-btn">Abort</div>
+            <div class="cmd-btn" style="background:#1a1a1a">Menu</div>
+        </div>
+    </div>
+
+    <script src="pyramid-sim.js"></script>
     <script>
-        const c = document.getElementById('canvas'); const ctx = c.getContext('2d');
-        const logPanel = document.getElementById('log');
-        let w, h; const resize = () => { w = c.width = window.innerWidth; h = c.height = window.innerHeight; };
-        window.onresize = resize; resize();
+        // UI Interaction Logic
+        function updateUI() {
+            const gold = document.getElementById('res-gold');
+            gold.innerText = (parseInt(gold.innerText) + (Math.random() > 0.8 ? 1 : 0));
 
-        const agents = [
-            "Revenue-Soul", "Content-Factory", "Traffic-Soul", "Automation-Soul", "Djinie",
-            "Deerg-Bot", "Doctor-Buht-Buht", "Library-Updater", "Bot-Commander", "Link-Checker"
-        ].map((name, i) => ({
-            name, x: Math.random()*w, y: Math.random()*h,
-            vx: (Math.random()-0.5)*1.5, vy: (Math.random()-0.5)*1.5,
-            color: ['#32CD32','#FFA500','#FF2D78','#00D4FF','#FFB347'][i%5],
-            size: 8 + Math.random()*4
-        }));
-
-        function addLog(msg) {
-            const d = document.createElement('div'); d.innerText = `> ${msg}`;
-            logPanel.prepend(d); if(logPanel.children.length > 8) logPanel.lastChild.remove();
+            // Randomize selection occasionally for visual variety
+            if(Math.random() < 0.05 && agents.length > 0) {
+                const a = agents[Math.floor(Math.random()*agents.length)];
+                document.getElementById('selected-name').innerText = a.name;
+                document.getElementById('selected-status').innerText = a.energy > 20 ? "Active" : "Low Energy";
+                document.getElementById('selected-status').style.color = a.energy > 20 ? "#00ff00" : "#ff0000";
+                document.getElementById('health-bar').style.width = a.energy + "%";
+                document.getElementById('selected-task').innerText = ["Mining Gold", "Cutting Wood", "Building Future", "Syncing Souls"][Math.floor(Math.random()*4)];
+            }
         }
-
-        const loop = () => {
-            // WorldBox Style Trails
-            ctx.fillStyle = 'rgba(5, 5, 5, 0.15)'; ctx.fillRect(0, 0, w, h);
-
-            agents.forEach(s => {
-                s.x += s.vx; s.y += s.vy;
-                if(s.x < 0 || s.x > w) s.vx *= -1;
-                if(s.y < 0 || s.y > h) s.vy *= -1;
-
-                // Ultra Render: Glow + Shadow
-                ctx.save();
-                ctx.shadowBlur = 20;
-                ctx.shadowColor = s.color;
-                ctx.fillStyle = s.color;
-                ctx.fillRect(s.x - s.size/2, s.y - s.size/2, s.size, s.size);
-
-                // Particle trail
-                if(Math.random() < 0.1) {
-                   ctx.fillStyle = 'rgba(255,255,255,0.3)';
-                   ctx.fillRect(s.x, s.y, 2, 2);
-                }
-                ctx.restore();
-
-                // Interactions
-                agents.forEach(other => {
-                    if(other === s) return;
-                    let dist = Math.hypot(other.x-s.x, other.y-s.y);
-                    if(dist < 80) {
-                        ctx.strokeStyle = s.color;
-                        ctx.globalAlpha = (80-dist)/80;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(other.x, other.y); ctx.stroke();
-                        ctx.globalAlpha = 1;
-                    }
-                });
-            });
-
-            if(Math.random() < 0.01) addLog(`${agents[Math.floor(Math.random()*10)].name} is processing reality...`);
-            document.getElementById('sp').innerText = (parseFloat(document.getElementById('sp').innerText) + 0.1).toFixed(1);
-            requestAnimationFrame(loop);
-        };
-        addLog("HABITAT STABILIZED. 10 AGENTS ONLINE.");
-        loop();
+        setInterval(updateUI, 1000);
     </script>
 </body>
 </html>

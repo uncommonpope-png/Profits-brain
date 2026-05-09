@@ -3,192 +3,250 @@ const ctx = canvas.getContext('2d');
 const logPanel = document.getElementById('log');
 
 let w, h;
-const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+const resize = () => {
+    w = canvas.width = canvas.clientWidth;
+    h = canvas.height = canvas.clientHeight;
+};
 window.onresize = resize;
 resize();
 
-// Simulation State
-let agents = [];
-let particles = [];
-let biomes = [];
-let resources = [];
-let frame = 0;
+// Isometric Constants
+const TILE_W = 64;
+const TILE_H = 32;
+const MAP_SIZE = 20;
 
-const COLORS = {
-    content: '#32CD32',  // Green
-    tech: '#FFA500',     // Orange
-    research: '#FF69B4', // Pink
-    system: '#00D4FF',   // Cyan
-    gold: '#FFD700',
-    void: '#050505'
+// Coordinate conversion
+const cartToIso = (x, y) => ({
+    x: (x - y) * (TILE_W / 2),
+    y: (x + y) * (TILE_H / 2)
+});
+
+const isoToCart = (ix, iy) => ({
+    x: (iy / (TILE_H / 2) + ix / (TILE_W / 2)) / 2,
+    y: (iy / (TILE_H / 2) - ix / (TILE_W / 2)) / 2
+});
+
+// Assets (Procedural Textures)
+const drawTile = (tx, ty, type) => {
+    const iso = cartToIso(tx, ty);
+    const screenX = w/2 + iso.x;
+    const screenY = h/4 + iso.y;
+
+    ctx.beginPath();
+    ctx.moveTo(screenX, screenY);
+    ctx.lineTo(screenX + TILE_W/2, screenY + TILE_H/2);
+    ctx.lineTo(screenX, screenY + TILE_H);
+    ctx.lineTo(screenX - TILE_W/2, screenY + TILE_H/2);
+    ctx.closePath();
+
+    if(type === 'grass') ctx.fillStyle = '#2d5a27';
+    else if(type === 'water') ctx.fillStyle = '#1e3d59';
+    else ctx.fillStyle = '#3a3a3a';
+
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+    ctx.stroke();
+
+    // Noise/Texture
+    ctx.fillStyle = 'rgba(255,255,255,0.05)';
+    if(Math.random() < 0.1) ctx.fillRect(screenX-2, screenY+TILE_H/2, 4, 4);
 };
 
-// Initialize Procedural Biomes
-function initBiomes() {
-    for(let i=0; i<4; i++) {
-        biomes.push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            r: 200 + Math.random() * 300,
-            color: `rgba(${Math.random()*50}, ${Math.random()*50}, ${50 + Math.random()*100}, 0.05)`
-        });
-    }
-}
+// Simulation state
+let agents = [];
+let resources = [];
 
 class Agent {
     constructor(name, type, i) {
         this.name = name;
         this.type = type;
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = (Math.random() - 0.5) * 1.5;
-        this.color = [COLORS.content, COLORS.tech, COLORS.research, COLORS.system, COLORS.gold][i % 5];
-        this.size = 10 + Math.random() * 4;
+        this.tx = Math.random() * MAP_SIZE; // Tile X
+        this.ty = Math.random() * MAP_SIZE; // Tile Y
+        this.targetX = this.tx;
+        this.targetY = this.ty;
+        this.color = ['#32CD32', '#FFA500', '#FF69B4', '#00D4FF', '#FFD700'][i % 5];
         this.energy = 100;
-        this.history = [];
     }
 
     update() {
-        // Emergent movement
-        this.x += this.vx;
-        this.y += this.vy;
+        if (Math.abs(this.tx - this.targetX) < 0.1 && Math.abs(this.ty - this.targetY) < 0.1) {
+            this.targetX = Math.random() * MAP_SIZE;
+            this.targetY = Math.random() * MAP_SIZE;
+        }
 
-        // Keep in habitat
-        if (this.x < 0 || this.x > w) this.vx *= -1;
-        if (this.y < 0 || this.y > h) this.vy *= -1;
-
-        // Resource interaction
-        resources.forEach((r, idx) => {
-            let dist = Math.hypot(r.x - this.x, r.y - this.y);
-            if (dist < 10) {
-                resources.splice(idx, 1);
-                this.energy = Math.min(100, this.energy + 20);
-                spawnExplosion(this.x, this.y, this.color);
-                addLog(`${this.name} harvested Profit.`);
-            } else if (dist < 100) {
-                this.vx += (r.x - this.x) * 0.005;
-                this.vy += (r.y - this.y) * 0.005;
-            }
-        });
-
-        // Friction and speed limits
-        this.vx *= 0.99; this.vy *= 0.99;
-        if (Math.abs(this.vx) < 0.2) this.vx = (Math.random()-0.5)*2;
-        if (Math.abs(this.vy) < 0.2) this.vy = (Math.random()-0.5)*2;
-
-        this.energy -= 0.01;
-
-        // Tail history for "Ultra" look
-        this.history.push({x: this.x, y: this.y});
-        if (this.history.length > 10) this.history.shift();
+        this.tx += (this.targetX - this.tx) * 0.01;
+        this.ty += (this.targetY - this.ty) * 0.01;
+        this.energy -= 0.005;
     }
 
     draw() {
-        // Draw tail
+        const iso = cartToIso(this.tx, this.ty);
+        const sx = w/2 + iso.x;
+        const sy = h/4 + iso.y;
+
+        // AoE Style Shadow
+        ctx.fillStyle = 'rgba(0,0,0,0.4)';
         ctx.beginPath();
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = 2;
-        ctx.globalAlpha = 0.3;
-        this.history.forEach((p, i) => {
-            if(i===0) ctx.moveTo(p.x, p.y);
-            else ctx.lineTo(p.x, p.y);
-        });
-        ctx.stroke();
-        ctx.globalAlpha = 1;
+        ctx.ellipse(sx, sy + TILE_H/2, 12, 6, 0, 0, Math.PI*2);
+        ctx.fill();
 
-        // Draw Agent Core
+        // Procedural Villager Sprite
         ctx.save();
-        ctx.shadowBlur = 25;
-        ctx.shadowColor = this.color;
+        ctx.translate(sx, sy);
+
+        // Body (Tunic)
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+        ctx.fillRect(-4, -15, 8, 15);
 
-        // Label
-        ctx.fillStyle = '#fff';
-        ctx.font = '8px monospace';
-        ctx.fillText(this.name, this.x + 10, this.y);
+        // Head
+        ctx.fillStyle = '#ffdbac';
+        ctx.fillRect(-3, -20, 6, 6);
+
+        // Details (Arms/Belt)
+        ctx.fillStyle = '#3e2723';
+        ctx.fillRect(-4, -8, 8, 2); // Belt
+
         ctx.restore();
+
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 9px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(this.name, sx, sy - 25);
     }
 }
 
-function spawnExplosion(x, y, color) {
-    for(let i=0; i<15; i++) {
-        particles.push({
-            x, y,
-            vx: (Math.random()-0.5)*6,
-            vy: (Math.random()-0.5)*6,
-            life: 1.0,
-            color
-        });
-    }
-}
+const drawStructure = (tx, ty, type, color) => {
+    const iso = cartToIso(tx, ty);
+    const sx = w/2 + iso.x;
+    const sy = h/4 + iso.y;
+
+    ctx.save();
+    ctx.translate(sx, sy);
+
+    // Foundation
+    ctx.fillStyle = '#5d4037';
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(TILE_W/2, TILE_H/2);
+    ctx.lineTo(0, TILE_H);
+    ctx.lineTo(-TILE_W/2, TILE_H/2);
+    ctx.fill();
+
+    // Walls
+    ctx.fillStyle = '#8d6e63';
+    ctx.beginPath();
+    ctx.moveTo(-TILE_W/2, TILE_H/2);
+    ctx.lineTo(0, TILE_H);
+    ctx.lineTo(0, TILE_H - 30);
+    ctx.lineTo(-TILE_W/2, TILE_H/2 - 30);
+    ctx.fill();
+
+    ctx.fillStyle = '#795548';
+    ctx.beginPath();
+    ctx.moveTo(TILE_W/2, TILE_H/2);
+    ctx.lineTo(0, TILE_H);
+    ctx.lineTo(0, TILE_H - 30);
+    ctx.lineTo(TILE_W/2, TILE_H/2 - 30);
+    ctx.fill();
+
+    // Roof (Tent style)
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(0, TILE_H - 30);
+    ctx.lineTo(-TILE_W/2, TILE_H/2 - 30);
+    ctx.lineTo(0, TILE_H/2 - 50);
+    ctx.lineTo(TILE_W/2, TILE_H/2 - 30);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.restore();
+};
+
+const drawTree = (tx, ty) => {
+    const iso = cartToIso(tx, ty);
+    const sx = w/2 + iso.x;
+    const sy = h/4 + iso.y;
+
+    ctx.save();
+    ctx.translate(sx, sy);
+    // Shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.2)';
+    ctx.beginPath(); ctx.ellipse(0, TILE_H/2, 6, 3, 0, 0, Math.PI*2); ctx.fill();
+    // Trunk
+    ctx.fillStyle = '#4e342e';
+    ctx.fillRect(-2, -5, 4, 10);
+    // Leaves
+    ctx.fillStyle = '#1b5e20';
+    ctx.beginPath(); ctx.arc(0, -10, 8, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(5, -5, 6, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(-5, -5, 6, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+};
+
+const drawGoldMine = (tx, ty) => {
+    const iso = cartToIso(tx, ty);
+    const sx = w/2 + iso.x;
+    const sy = h/4 + iso.y;
+
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.fillStyle = '#424242';
+    ctx.beginPath(); ctx.moveTo(-15, TILE_H/2); ctx.lineTo(0, -10); ctx.lineTo(15, TILE_H/2); ctx.lineTo(0, TILE_H+5); ctx.fill();
+    ctx.fillStyle = '#FFD700';
+    ctx.shadowBlur = 5; ctx.shadowColor = '#FFD700';
+    ctx.fillRect(-5, 0, 10, 10);
+    ctx.restore();
+};
 
 function addLog(msg) {
     const d = document.createElement('div');
     d.innerText = `> ${msg}`;
     logPanel.prepend(d);
-    if(logPanel.children.length > 10) logPanel.lastChild.remove();
+    if(logPanel.children.length > 8) logPanel.lastChild.remove();
 }
 
-function loop() {
-    frame++;
-    // Ultra Background (Slow clear for trails)
-    ctx.fillStyle = 'rgba(5, 5, 5, 0.1)';
+const loop = () => {
+    // If w or h are 0 (hidden or initial), try resizing again
+    if(w === 0 || h === 0) resize();
+
+    ctx.fillStyle = '#050505';
     ctx.fillRect(0, 0, w, h);
 
-    // Biomes
-    biomes.forEach(b => {
-        ctx.fillStyle = b.color;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
-        ctx.fill();
-    });
-
-    // Spawn Profit Resources
-    if (frame % 60 === 0 && resources.length < 15) {
-        resources.push({x: Math.random()*w, y: Math.random()*h});
+    // Draw Map (Grid)
+    for(let y=0; y<MAP_SIZE; y++) {
+        for(let x=0; x<MAP_SIZE; x++) {
+            let type = 'grass';
+            // Simple landscape: water on edges
+            if(x < 1 || y < 1 || x > MAP_SIZE-2 || y > MAP_SIZE-2) type = 'water';
+            drawTile(x, y, type);
+        }
     }
 
-    // Draw Resources
-    resources.forEach(r => {
-        ctx.fillStyle = COLORS.gold;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = COLORS.gold;
-        ctx.beginPath(); ctx.arc(r.x, r.y, 4, 0, Math.PI*2); ctx.fill();
-        ctx.shadowBlur = 0;
-    });
+    // Environment
+    drawTree(3, 4); drawTree(4, 18); drawTree(12, 5); drawTree(18, 3);
+    drawGoldMine(10, 10); drawGoldMine(2, 12);
 
-    // Update & Draw Particles
-    particles = particles.filter(p => p.life > 0);
-    particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy; p.life -= 0.02;
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life;
-        ctx.fillRect(p.x, p.y, 2, 2);
-    });
-    ctx.globalAlpha = 1;
+    // Draw Structures (Static)
+    drawStructure(5, 5, 'towncenter', '#FFD700');
+    drawStructure(14, 14, 'market', '#32CD32');
+    drawStructure(8, 12, 'university', '#00D4FF');
 
-    // Update & Draw Agents
+    // Depth Sorting for Agents
+    agents.sort((a, b) => (a.tx + a.ty) - (b.tx + b.ty));
+
     agents.forEach(a => {
         a.update();
         a.draw();
     });
 
-    // Reality Score
-    document.getElementById('sp').innerText = (frame * 0.1).toFixed(1);
-
     requestAnimationFrame(loop);
-}
+};
 
-// Start System
 const HABITAT_AGENTS = [
     "Revenue-Soul", "Content-Factory", "Traffic-Soul", "Automation-Soul", "Djinie",
     "Deerg-Bot", "Doctor-Buht-Buht", "Library-Updater", "Bot-Commander", "Link-Checker"
 ];
 
 agents = HABITAT_AGENTS.map((name, i) => new Agent(name, "agent", i));
-initBiomes();
-addLog("ULTRA GRAPHICS INITIALIZED.");
-addLog("10 AGENTS CONNECTED TO HABITAT.");
+addLog("ISOMETRIC ENGINE ONLINE.");
 loop();

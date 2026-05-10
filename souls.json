@@ -10,11 +10,7 @@
     "best_use": "Writing book descriptions, blog posts, email sequences, ad copy, and sales pages for PLT Press",
     "category": "content",
     "lastUsed": 1741996800000,
-    "callsToday": 47,
-    "profit_score": 9,
-    "love_score": 4,
-    "tax_cost": 2,
-    "soul_profit_level": 85
+    "callsToday": 47
   },
   {
     "num": 2,
@@ -27,11 +23,7 @@
     "best_use": "Market research, competitor analysis, summarizing long documents, and content ideation",
     "category": "research",
     "lastUsed": 1741996800000,
-    "callsToday": 23,
-    "profit_score": 8,
-    "love_score": 5,
-    "tax_cost": 1,
-    "soul_profit_level": 92
+    "callsToday": 23
   },
   {
     "num": 3,
@@ -44,11 +36,7 @@
     "best_use": "Sentiment analysis on reviews, text classification, and testing niche AI models",
     "category": "technical",
     "lastUsed": 1741996800000,
-    "callsToday": 12,
-    "profit_score": 6,
-    "love_score": 3,
-    "tax_cost": 4,
-    "soul_profit_level": 60
+    "callsToday": 12
   },
   {
     "num": 4,
@@ -61,11 +49,7 @@
     "best_use": "Generating book covers, social media graphics, blog post images, and ad creatives",
     "category": "creative",
     "lastUsed": 1741996800000,
-    "callsToday": 8,
-    "profit_score": 10,
-    "love_score": 8,
-    "tax_cost": 3,
-    "soul_profit_level": 78
+    "callsToday": 8
   },
   {
     "num": 5,
@@ -78,11 +62,7 @@
     "best_use": "Rapid content drafting, real-time chatbot responses, and bulk text processing",
     "category": "content",
     "lastUsed": 1741996800000,
-    "callsToday": 34,
-    "profit_score": 7,
-    "love_score": 2,
-    "tax_cost": 1,
-    "soul_profit_level": 88
+    "callsToday": 34
   },
   {
     "num": 6,
@@ -95,11 +75,7 @@
     "best_use": "Analyzing OKR, KPI, and competitor models to ensure PLT domination",
     "category": "research",
     "lastUsed": 1742000000000,
-    "callsToday": 5,
-    "profit_score": 9,
-    "love_score": 6,
-    "tax_cost": 2,
-    "soul_profit_level": 95
+    "callsToday": 5
   },
   {
     "num": 7,
@@ -112,10 +88,6 @@
     "best_use": "Turning raw content factory output into scalable digital products",
     "category": "command",
     "lastUsed": 1742000000000,
-    "callsToday": 2,
-    "profit_score": 10,
-    "love_score": 7,
-    "tax_cost": 1,
-    "soul_profit_level": 98
+    "callsToday": 2
   }
 ]

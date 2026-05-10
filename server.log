@@ -1,0 +1,3 @@
+127.0.0.1 - - [10/May/2026 04:03:40] "GET /pyramid-city.html HTTP/1.1" 200 -
+127.0.0.1 - - [10/May/2026 04:03:41] "GET /souls.json HTTP/1.1" 200 -
+127.0.0.1 - - [10/May/2026 04:03:41] "GET /log.json HTTP/1.1" 200 -

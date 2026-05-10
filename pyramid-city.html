@@ -626,16 +626,16 @@
                         <div class="metric-label">Active Souls</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value" id="task-count">0</div>
-                        <div class="metric-label">Tasks Today</div>
+                        <div class="metric-value" id="decisions-calculated">0</div>
+                        <div class="metric-label">Battle Plans</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value" id="success-rate">0%</div>
-                        <div class="metric-label">Success Rate</div>
+                        <div class="metric-value" id="pages-built">0</div>
+                        <div class="metric-label">SEO Pages</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value" id="api-calls">0</div>
-                        <div class="metric-label">API Calls</div>
+                        <div class="metric-value" id="uptime-hours">0h</div>
+                        <div class="metric-label">Uptime</div>
                     </div>
                 </div>
             </div>
@@ -684,7 +684,7 @@
         // LOAD REAL SOUL DATA
         async function loadRealSoulData() {
             try {
-                const response = await fetch('/app/souls.json');
+                const response = await fetch('souls.json');
                 const soulData = await response.json();
                 realSoulData = soulData;
                 updateSoulDisplay();
@@ -718,14 +718,11 @@
                     <div style="width: 100%">
                         <div style="display: flex; justify-content: space-between">
                             <strong>${soul.emoji} ${soul.name.substring(0, 20)}...</strong>
-                            <span style="color: var(--plt-gold); font-size: 0.7em">LVL ${Math.floor(soul.soul_profit_level/10)}</span>
+                            <span style="color: var(--plt-gold); font-size: 0.7em">${soul.status.toUpperCase()}</span>
                         </div>
                         <small>${soul.role}</small>
-
-                        <div class="stat-bars">
-                            <div class="stat-bar-container"><div class="stat-fill fill-profit" style="width: ${soul.profit_score*10}%"></div></div>
-                            <div class="stat-bar-container"><div class="stat-fill fill-love" style="width: ${soul.love_score*10}%"></div></div>
-                            <div class="stat-bar-container"><div class="stat-fill fill-tax" style="width: ${soul.tax_cost*20}%"></div></div>
+                        <div style="margin-top: 5px; font-size: 0.8em; color: #888;">
+                            Calls: ${soul.callsToday} | Last Used: ${lastUsedText}
                         </div>
                     </div>
                 `;
@@ -1145,11 +1142,18 @@
         }
 
         // UPDATE METRICS DISPLAY
-        function updateMetrics() {
-            document.getElementById('active-count').textContent = realSoulData.length;
-            document.getElementById('task-count').textContent = systemMetrics.tasksToday;
-            document.getElementById('success-rate').textContent = systemMetrics.successRate + '%';
-            document.getElementById('api-calls').textContent = realSoulData.reduce((sum, soul) => sum + soul.callsToday, 0);
+        async function updateMetrics() {
+            try {
+                const response = await fetch('log.json');
+                const log = await response.json();
+
+                document.getElementById('active-count').textContent = log.soul_system.components_alive || 0;
+                document.getElementById('decisions-calculated').textContent = log.decisions_calculated || 0;
+                document.getElementById('pages-built').textContent = log.autonomous_status.pages_built || 0;
+                document.getElementById('uptime-hours').textContent = (log.autonomous_status.uptime_hours || 0) + 'h';
+            } catch (e) {
+                console.warn('Could not update live metrics from log.json');
+            }
         }
 
         // MODAL CONTROLS

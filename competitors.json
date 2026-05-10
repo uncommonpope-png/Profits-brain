@@ -1,0 +1,26 @@
+{
+  "OKR": {
+    "weakness": "High implementation tax; rigid quarterly cycles",
+    "plt_advantage": "Real-time conversation scoring",
+    "profit_potential": "Medium",
+    "love_index": "Low"
+  },
+  "KPI": {
+    "weakness": "Backward-looking; easily gamified",
+    "plt_advantage": "Forward-looking reality building",
+    "profit_potential": "High",
+    "love_index": "Neutral"
+  },
+  "Lean Startup": {
+    "weakness": "Requires high capital burn for validation",
+    "plt_advantage": "Profit-first validation",
+    "profit_potential": "High",
+    "love_index": "High"
+  },
+  "SMART Goals": {
+    "weakness": "Lacks the human connection (Love) component",
+    "plt_advantage": "Trinity balance",
+    "profit_potential": "Low",
+    "love_index": "Very Low"
+  }
+}

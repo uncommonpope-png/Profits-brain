@@ -14,6 +14,7 @@
 ## PLT Press — What We Built
 - **Store**: https://uncommonpope-png.github.io/plt-press/
 - **Dashboard**: https://uncommonpope-png.github.io/plt-press/dashboard.html
+- **Living World**: https://uncommonpope-png.github.io/plt-press/living-world.html
 - **Blog**: https://uncommonpope-png.github.io/plt-blog/
 - **AI Tools Hub**: https://uncommonpope-png.github.io/ai-tools-hub/
 - **GitHub repo**: https://github.com/uncommonpope-png/plt-press
@@ -23,6 +24,7 @@
 - 18 books with live Stripe payments
 - $49 bundle (all 18 books, save 70%)
 - Mission Control dashboard with: Seshat chat, activity log, revenue plan, live feed, status reports
+- Living World 3D Simulation: Interactive Three.js environment visualizing the "soulverse" and agent interactions, synchronized with `souls.json`.
 - 12 SEO pages indexed via Bing/Yandex (IndexNow)
 - 3 sales funnels: bundle, what-is-plt, profit-love-tax
 - Seshat = AI chat on dashboard
